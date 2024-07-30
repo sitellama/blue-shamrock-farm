@@ -1,9 +1,6 @@
 import { RouteObject, createBrowserRouter } from "react-router-dom";
-import { Services } from "../components/2-main/services";
 import { Root } from "./root";
-import { About } from "@/components/2-main/about/about";
-import { Contact } from "../components/2-main/contact";
-import { Home } from "../components/2-main/home";
+import { Animals, Contact, Home, Services } from "@/components/2-main";
 
 const routes: RouteObject[] = [
     {
@@ -12,7 +9,7 @@ const routes: RouteObject[] = [
     },
     {
         path: "/about",
-        element: <About />,
+        element: <Animals />,
     },
     {
         path: "/services",

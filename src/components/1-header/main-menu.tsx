@@ -4,6 +4,7 @@ import { useClickAway } from "react-use";
 import { classNames } from "@/utils";
 import { IconCross, IconHamburger } from "@/ui";
 import { createPortal } from "react-dom";
+import logoImg from "@/assets/favicon.svg";
 
 const linkClasses = "\
 px-2 py-3 text-sm \
@@ -26,6 +27,7 @@ py-8 \
 hidden \
 sm:flex \
 1space-x-4 \
+items-center\
 ";
 
 const menuColClasses = "\
@@ -135,10 +137,16 @@ function MenuBody({ closeMenu, loc, className }: { closeMenu: () => void; loc: L
     return (
         <ul className={className}>
             {/* <OurLink label="Home" to="/" loc={loc} /> */}
-            <OurLink label="Services" to="#services" loc={loc} />
-            <OurLink label="Portfolio" to="#portfolio" loc={loc} />
-            <OurLink label="Pricing" to="#pricing" loc={loc} />
-            <OurLink label="Contact" to="#contact" loc={loc} />
+            <OurLink label="Meet The Animals" to="/animals" loc={loc} />
+            <OurLink label="Services & Events" to="/services" loc={loc} />
+            <figure className="flex justify-center items-center">
+                <a href="/">
+                    <img src={logoImg} alt="Blue Shamrock Farm" className="w-full" />
+                    <figcaption className="text-white">Blue Shamrock Farm</figcaption>
+                </a>
+            </figure>
+            <OurLink label="Shamrock Shop" to="https://blue-shamrock-farm-llc.square.site/" loc={loc} />
+            <OurLink label="Get In Touch" to="/contact" loc={loc} />
         </ul>
     );
 }

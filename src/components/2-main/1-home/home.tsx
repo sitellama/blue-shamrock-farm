@@ -1,5 +1,5 @@
-import { SEO } from "../../utils/seo";
-import { WorkWithUs } from "../4-library/work-with-us";
+import { WorkWithUs } from "@/components/4-library/work-with-us";
+import { SEO } from "@/utils/seo";
 
 export function Home() {
   return (
@@ -8,7 +8,7 @@ export function Home() {
 
         <div>Home</div>
 
-        <WorkWithUs />
+        {/* <WorkWithUs /> */}
     </>
   )
 }
