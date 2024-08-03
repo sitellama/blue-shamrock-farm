@@ -93,9 +93,9 @@ function MenuBody({ closeMenu, loc, className }: { closeMenu: () => void; loc: L
             <OurLink label="Meet The Animals" to="/animals" loc={loc} />
             <OurLink label="Services & Events" to="/services" loc={loc} />
             <figure className="flex justify-center items-center">
-                <a href="/">
+                <a href="/" className="no-underline">
                     <img src={logoImg} alt="Blue Shamrock Farm" className="w-[50%] mx-auto mb-2" />
-                    <figcaption className="no-underline">Blue Shamrock Farm</figcaption>
+                    <figcaption>Blue Shamrock Farm</figcaption>
                 </a>
             </figure>
             <OurLink label="Shamrock Shop" to="https://blue-shamrock-farm-llc.square.site/" loc={loc} />
