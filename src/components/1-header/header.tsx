@@ -14,6 +14,7 @@ export function Header({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
                 </a> */}
 
                 <MainMenu />
+
             </div>
         </div>
     </>);
