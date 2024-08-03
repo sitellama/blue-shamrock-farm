@@ -75,8 +75,13 @@
   .btn-a {
     @apply block m-0 px-10 py-[5px] text-white no-underline;
   }
+
+  .animal-tag {
+    @apply w-[80%] mx-auto -mt-4 py-1 z-10 relative bg-tan text-center;
+  }
 }
 
+/* slick slider  */
 .slick-prev {
   @apply left-[-70px];
 }

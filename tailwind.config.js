@@ -16,6 +16,7 @@ export default {
                 'blue-medium': '#45536E',
                 'blue-dark': '#23374F',
                 'brown': '#8F5C49',
+                'tan': '#9D8374',
             },
             flex: {
                 '1': '1 1 50%',
