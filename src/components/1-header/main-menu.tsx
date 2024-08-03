@@ -1,4 +1,4 @@
-import { HTMLAttributes, useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Location, useLocation } from "react-router-dom";
 import { useClickAway } from "react-use";
 import { classNames } from "@/utils";
@@ -7,6 +7,7 @@ import { createPortal } from "react-dom";
 import logoImg from "@/assets/logo-dark.png";
 
 const linkClasses = "px-2 py-3 text-sm text-slate-900 bg-slate-300 hover:bg-sky-500 hover:text-white";
+
 const linkActiveClasses = "!bg-white-700";
 
 const itemClasses = (path: string, loc: Location): string => {
@@ -21,28 +22,13 @@ export function MainMenu() {
 
     const ref = useRef(null);
 
-    const buttonRef = useRef<HTMLButtonElement>(null);
+    useClickAway(ref, () => {
+        closeMenu();
+    });
 
-    useClickAway<MouseEvent | TouchEvent>(ref,
-        useCallback((event) => {
-            if (!buttonRef.current) {
-                return;
-            }
-
-            const target = event.target as HTMLElement;
-            const isChild = buttonRef.current.contains(target);
-
-            if (!isChild) {
-                setIsMenuOpen(false);
-            }
-        }, [buttonRef])
-    );
-
-    const closeMenu = useCallback(
-        function closeMenu() {
-            setIsMenuOpen(false);
-        }, []
-    );
+    function closeMenu() {
+        setIsMenuOpen(false);
+    }
 
     return (
         <div className="z-50 w-full">
@@ -51,12 +37,10 @@ export function MainMenu() {
             <div className="relative">
                 <div>
                     <button
-                        ref={buttonRef}
                         className="sm:hidden"
-                        onClick={() => setIsMenuOpen(v => !v)}
+                        onClick={() => setIsMenuOpen((v) => !v)}
                         role="navigation"
-                        aria-label="Main Menu"
-                        type="button"
+                        aria-label="Main Menu" // aria-state={isMenuOpen ? "open" : "closed"}
                     >
                         {isMenuOpen
                             ? <IconCross className="size-7 fill-black" />
@@ -88,9 +72,10 @@ function OurLink({ label, to, loc }: { label: string; to: string; loc: Location;
                 className={classNames(liClasses, isActive && "text-white")}
                 target="_blank"
                 aria-current={isActive ? "page" : undefined}
-                onClick={(event) => {
-                    event.preventDefault();
-                    closeMenu();
+                onClick={(e) => {
+                    e.preventDefault();
+                    console.log("clicked");
+
                     window.location.href = to;
                 }
                 }
@@ -101,20 +86,20 @@ function OurLink({ label, to, loc }: { label: string; to: string; loc: Location;
     );
 }
 
-function MenuBody({ loc, closeMenu, ...rest }: { loc: Location; closeMenu: () => void; } & HTMLAttributes<HTMLUListElement>) {
+function MenuBody({ closeMenu, loc, className }: { closeMenu: () => void; loc: Location; className?: string; }) {
     return (
-        <ul {...rest}>
+        <ul className={className}>
             {/* <OurLink label="Home" to="/" loc={loc} /> */}
-            <OurLink label="Meet The Animals" to="/animals" loc={loc} closeMenu={closeMenu} />
-            <OurLink label="Services & Events" to="/services" loc={loc} closeMenu={closeMenu} />
-            <figure className="hidden md:flex justify-center items-center">
+            <OurLink label="Meet The Animals" to="/animals" loc={loc} />
+            <OurLink label="Services & Events" to="/services" loc={loc} />
+            <figure className="flex justify-center items-center">
                 <a href="/">
                     <img src={logoImg} alt="Blue Shamrock Farm" className="w-[50%] mx-auto mb-2" />
                     <figcaption className="no-underline">Blue Shamrock Farm</figcaption>
                 </a>
             </figure>
-            <OurLink label="Shamrock Shop" to="https://blue-shamrock-farm-llc.square.site/" loc={loc} closeMenu={closeMenu} />
-            <OurLink label="Get In Touch" to="/contact" loc={loc} closeMenu={closeMenu} />
+            <OurLink label="Shamrock Shop" to="https://blue-shamrock-farm-llc.square.site/" loc={loc} />
+            <OurLink label="Get In Touch" to="/contact" loc={loc} />
         </ul>
     );
 }
