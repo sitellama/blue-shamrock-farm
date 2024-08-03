@@ -1,3 +1,132 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* poppins - regular */
+@font-face {
+  font-display: swap;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  src: url("@/assets/fonts/Poppins-Regular.ttf") format("truetype");
+}
+
+/* poppins - bold */
+@font-face {
+  font-display: swap;
+  font-family: "Poppins";
+  font-style: bold;
+  font-weight: bold;
+  src: url("@/assets/fonts/Poppins-Bold.ttf") format("ttf");
+}
+
+/* porcelain - regular */
+@font-face {
+  font-display: swap;
+  font-family: "Porcelain";
+  font-style: normal;
+  font-weight: normal;
+  src: url("@/assets/fonts/Porcelain.otf") format("opentype");
+}
+
+@layer components {
+  h1 {
+    @apply font-headings text-7xl my-6;
+  }
+
+  h2 {
+    @apply font-headings text-6xl my-6;
+  }
+
+  h3 {
+    @apply font-headings text-3xl;
+  }
+
+  p,
+  a {
+    @apply my-4;
+  }
+
+  a {
+    @apply underline;
+  }
+
+  section {
+    @apply mt-6;
+  }
+
+  .subheading {
+    @apply font-bold tracking-wide;
+  }
+
+  .max-content {
+    @apply w-[95%] max-w-[1200px] mx-auto;
+  }
+
+  .btn-outer {
+    @apply w-fit p-[6px] mx-auto;
+  }
+
+  .btn-inner {
+    @apply w-fit border-solid border-white border;
+  }
+
+  .btn-a {
+    @apply block m-0 px-10 py-[5px] text-white no-underline;
+  }
+}
+
+.slick-prev {
+  @apply left-[-70px];
+}
+
+.slick-next {
+  @apply right-[-70px];
+}
+
+.slick-prev,
+.slick-next {
+  @apply p-6 bg-blue-dark border-2 border-solid border-blue-dark rounded-[50%];
+}
+
+.slick-prev:focus-visible,
+.slick-next:focus-visible {
+  outline: 4px solid black;
+}
+
+.slick-prev:hover,
+.slick-next:hover,
+.slick-prev:focus,
+.slick-next:focus {
+  @apply p-6 bg-blue-light border-2 border-solid border-blue-light rounded-[50%];
+}
+
+.slick-next:before {
+  content: "\2B9E";
+}
+
+.slick-prev:before {
+  content: "\2B9C";
+}
+
+.slick-next:before,
+.slick-prev:before {
+  /* @apply font-5xl text-white; */
+  font-size: 40px;
+  /* color: #23374f; */
+  color: white;
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -58%);
+}
+
+.slick-slide > div {
+  margin: 0 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.slick-list {
+  margin: 0 -10px;
+}
