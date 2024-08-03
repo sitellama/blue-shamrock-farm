@@ -4,16 +4,9 @@ import { useClickAway } from "react-use";
 import { classNames } from "@/utils";
 import { IconCross, IconHamburger } from "@/ui";
 import { createPortal } from "react-dom";
-import logoImg from "@/assets/favicon.svg";
+import logoImg from "@/assets/logo-dark.png";
 
-const linkClasses = "\
-px-2 py-3 text-sm \
-\
-text-slate-900 \
-bg-slate-300 \
-hover:bg-sky-500 hover:text-white \
-";
-
+const linkClasses = "px-2 py-3 text-sm text-slate-900 bg-slate-300 hover:bg-sky-500 hover:text-white";
 const linkActiveClasses = "!bg-white-700";
 
 const itemClasses = (path: string, loc: Location): string => {
@@ -21,23 +14,6 @@ const itemClasses = (path: string, loc: Location): string => {
     return classNames(linkClasses, isActive && linkActiveClasses);
 };
 
-const menuRowClasses = "\
-py-8 \
-\
-hidden \
-sm:flex \
-1space-x-4 \
-items-center\
-";
-
-const menuColClasses = "\
-w-full \
-sm:hidden \
-\
-bg-white \
-\
-flex flex-col items-center \
-";
 
 export function MainMenu() {
     const loc = useLocation();
@@ -54,8 +30,8 @@ export function MainMenu() {
     }
 
     return (
-        <div className="z-50">
-            <MenuBody className={menuRowClasses} closeMenu={closeMenu} loc={loc} />
+        <div className="z-50 w-full">
+            <MenuBody className="hidden sm:flex items-end justify-between" closeMenu={closeMenu} loc={loc} />
 
             <div className="relative">
                 <div>
@@ -67,14 +43,14 @@ export function MainMenu() {
                     >
                         {isMenuOpen
                             ? <IconCross className="size-7 fill-black" />
-                            : <IconHamburger className="size-7 fill-white" />
+                            : <IconHamburger className="size-7 fill-black" />
                         }
                     </button>
 
                     {isMenuOpen &&
                         createPortal(
                             <div ref={ref} className="w-full absolute right-0 top-0 flex justify-end">
-                                <MenuBody className={menuColClasses} closeMenu={closeMenu} loc={loc} />
+                                <MenuBody className="w-full sm:hidden bg-page-bg flex flex-col items-center" closeMenu={closeMenu} loc={loc} />
                             </div>, document.body
                         )
                     }
@@ -84,27 +60,7 @@ export function MainMenu() {
     );
 }
 
-const liClasses = "\
-block \
-px-3 \
-py-2 \
-text-lg \
-\
-md:text-white \
-\
-hover:underline \
-\
-1border-red-500 1border \
-\
-1md:p-0 \
-1md:border-0 \
-1md:hover:bg-transparent \
-1md:hover:text-blue-700 \
-1md:dark:hover:text-blue-500 \
-1md:dark:hover:bg-transparent \
-\
-select-none \
-";
+const liClasses = "block px-3 py-2 text-lg no-underline select-none";
 
 function OurLink({ label, to, loc }: { label: string; to: string; loc: Location; }) {
     const isActive = to === loc.pathname;
@@ -141,8 +97,8 @@ function MenuBody({ closeMenu, loc, className }: { closeMenu: () => void; loc: L
             <OurLink label="Services & Events" to="/services" loc={loc} />
             <figure className="flex justify-center items-center">
                 <a href="/">
-                    <img src={logoImg} alt="Blue Shamrock Farm" className="w-full" />
-                    <figcaption className="text-white">Blue Shamrock Farm</figcaption>
+                    <img src={logoImg} alt="Blue Shamrock Farm" className="w-[50%] mx-auto mb-2" />
+                    <figcaption className="no-underline">Blue Shamrock Farm</figcaption>
                 </a>
             </figure>
             <OurLink label="Shamrock Shop" to="https://blue-shamrock-farm-llc.square.site/" loc={loc} />
