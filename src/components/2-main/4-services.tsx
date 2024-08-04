@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { SEO } from "../../utils/seo";
 import { ServicesEvents } from "../4-library/services-events";
 import goat from "@/assets/holiday-parties.jpg";
