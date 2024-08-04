@@ -12,7 +12,7 @@ export function ServicesEvents(
 
                 <a href={linkPDF} className="subheading">{linkText}</a>
 
-                <p className="flex gap-6 mb-0">
+                <p className="flex gap-6 mb-0 ">
                     {onsite && <div className="px-5 py-1 bg-gray">Hosted on-site</div>}
                     {travel && <div className="px-5 py-1 bg-gray">Available for travel</div>}
                 </p>
