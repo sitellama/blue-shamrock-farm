@@ -1,4 +1,6 @@
-export function ServicesEvents({ image, label, content, linkText, linkPDF }: { image: string, label: string, content: string, linkText: string, linkPDF: string; }) {
+export function ServicesEvents(
+    { image, label, content, linkText, linkPDF, onsite, travel }: { image: string, label: string, content: string, linkText: string, linkPDF: string, onsite?: boolean, travel?: boolean; }
+) {
     return (
         <div className="max-w-7xl flex bg-white">
             <img src={image} className="flex" />
@@ -10,9 +12,9 @@ export function ServicesEvents({ image, label, content, linkText, linkPDF }: { i
 
                 <a href={linkPDF} className="subheading">{linkText}</a>
 
-                <p className="flex gap-6">
-                    <div className="px-5 py-1 bg-gray">Hosted on-site</div>
-                    <div className="px-5 py-1 bg-gray">Available for travel</div>
+                <p className="flex gap-6 mb-0">
+                    {onsite && <div className="px-5 py-1 bg-gray">Hosted on-site</div>}
+                    {travel && <div className="px-5 py-1 bg-gray">Available for travel</div>}
                 </p>
             </div>
         </div>
