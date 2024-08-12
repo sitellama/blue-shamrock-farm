@@ -1,6 +1,6 @@
-export function ServicesEvents(
-    { image, label, content, linkText, linkPDF, onsite, travel }: { image: string, label: string, content: string, linkText: string, linkPDF: string, onsite?: boolean, travel?: boolean; }
-) {
+import { Service } from "../2-main";
+
+export function ServicesEvents({ image, label, content, pdfName, pdfUrl, onsite, travel }: Service) {
     return (
         <div className="max-w-7xl flex bg-white">
             <img src={image} className="flex" />
@@ -10,7 +10,7 @@ export function ServicesEvents(
 
                 <p>{content}</p>
 
-                <a href={linkPDF} className="subheading">{linkText}</a>
+                <a href={pdfUrl} className="subheading">{pdfName}</a>
 
                 <p className="flex gap-6 mb-0 ">
                     {onsite && <div className="px-5 py-1 bg-gray">Hosted on-site</div>}
