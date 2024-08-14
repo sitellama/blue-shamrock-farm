@@ -8,6 +8,9 @@ dependencies:
   '@types/react-slick':
     specifier: ^0.23.13
     version: 0.23.13
+  jotai:
+    specifier: ^2.9.3
+    version: 2.9.3(@types/react@18.2.77)(react@18.2.0)
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -40,6 +43,9 @@ dependencies:
     version: 2.2.2
 
 devDependencies:
+  '@tailwindcss/forms':
+    specifier: ^0.5.7
+    version: 0.5.7(tailwindcss@3.4.3)
   '@types/react':
     specifier: ^18.2.66
     version: 18.2.77
@@ -784,6 +790,15 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@tailwindcss/forms@0.5.7(tailwindcss@3.4.3):
+    resolution: {integrity: sha512-QE7X69iQI+ZXwldE+rzasvbJiyV/ju1FGHH0Qn2W3FKbuYtqp8LKcy6iSw79fVUT5/Vvf+0XgLCeYVG+UV6hOw==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
+    dependencies:
+      mini-svg-data-uri: 1.4.4
+      tailwindcss: 3.4.3
+    dev: true
 
   /@types/babel__core@7.20.5:
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -1874,6 +1889,22 @@ packages:
     hasBin: true
     dev: true
 
+  /jotai@2.9.3(@types/react@18.2.77)(react@18.2.0):
+    resolution: {integrity: sha512-IqMWKoXuEzWSShjd9UhalNsRGbdju5G2FrqNLQJT+Ih6p41VNYe2sav5hnwQx4HJr25jq9wRqvGSWGviGG6Gjw==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      '@types/react': 18.2.77
+      react: 18.2.0
+    dev: false
+
   /jquery@3.7.1:
     resolution: {integrity: sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==}
     dev: false
@@ -2027,6 +2058,11 @@ packages:
     dependencies:
       braces: 3.0.2
       picomatch: 2.3.1
+    dev: true
+
+  /mini-svg-data-uri@1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
     dev: true
 
   /minimatch@3.1.2:

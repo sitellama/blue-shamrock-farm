@@ -1,9 +1,9 @@
-import { Service } from "../2-main";
+import { Service } from "./8-services-data";
 
 export function ServicesEvents({ image, label, content, pdfName, pdfUrl, onsite, travel }: Service) {
     return (
-        <div className="max-w-7xl flex bg-white">
-            <img src={image} className="flex" />
+        <div className="flex bg-white">
+            <img src={image} />
 
             <div className="p-4 flex-1 text-black">
                 <h3>{label}</h3>
