@@ -7,7 +7,6 @@ import { GoatYoga } from "@/components/4-library/goat-yoga";
 import { HeroImg } from "@/components/4-library/hero-img";
 import { MapIntro } from "@/components/4-library/map-intro";
 import { PettingZoo } from "@/components/4-library/petting-zoo";
-import { WorkWithUs } from "@/components/4-library/work-with-us";
 import { SEO } from "@/utils/seo";
 
 export function Home() {

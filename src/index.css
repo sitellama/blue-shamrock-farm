@@ -31,11 +31,11 @@
 
 @layer components {
   h1 {
-    @apply font-headings text-7xl my-6;
+    @apply font-headings text-5xl md:text-7xl my-6;
   }
 
   h2 {
-    @apply font-headings text-6xl my-6;
+    @apply font-headings text-5xl md:text-6xl my-6;
   }
 
   h3,

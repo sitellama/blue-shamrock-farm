@@ -1,12 +1,15 @@
 import goatGram from "@/assets/goat-gram.png";
+import barnWoodImg from "@/assets/farm-wood.webp";
+
+const barnWood = `url(${barnWoodImg})`;
 
 export function GoatGram() {
     return (
-        <section className="bg-gray-600 py-24 border-b-[40px] border-solid border-brown">
-            <div className="max-content btn-outer bg-blue-light relative max-w-[64%]">
-                <div className="btn-inner text-white text-center py-8 px-32">
+        <section className="bg-gray-600 py-6 md:py-24 border-b-[40px] border-solid border-brown md:!bg-center !bg-cover" style={{ background: barnWood }}>
+            <div className="max-content btn-outer bg-blue-light lg:relative max-w-[90%] lg:max-w-[64%]">
+                <div className="btn-inner text-white text-center py-8 px-4 lg:px-32">
                     <div>
-                        <img src={goatGram} className="absolute bottom-[-4rem] right-[-10rem] max-w-[275px]" />
+                        <img src={goatGram} className="lg:absolute bottom-[-4rem] right-[-10rem] mx-auto max-w-[75%] md:max-w-[275px]" />
                         <h2>Surprise! It's a Goat Gram!</h2>
                     </div>
                     <div>

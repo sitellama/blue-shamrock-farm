@@ -1,5 +1,6 @@
 import barn from "@/assets/barn-sketch.png";
 import bday from "@/assets/birthday-parties.jpg";
+import senior from "@/assets/senior-center-events.jpg";
 import shamrock from "@/assets/blue-shamrock.png";
 import holiday from "@/assets/holiday-parties.jpg";
 import fair from "@/assets/fairs-and-festivals.jpg";
@@ -130,11 +131,11 @@ export function EventsSection() {
 
                     {/* Senior Center Visits */}
                     <div className="shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
-                        <img src={bday} />
+                        <img src={senior} />
                         <div className="bg-white p-4 text-center h-[485px]">
-                            <h3>Senior Center Visits</h3>
+                            <h3>Senior Center Events</h3>
                             <p>Both kids and adults can enjoy the charm of a country-themed birthday party.</p>
-                            <p> Guests love playing party games along side our silly critters and depending on the season, baby animals are available for snuggles. </p>
+                            <p>Guests love playing party games along side our silly critters and depending on the season, baby animals are available for snuggles. </p>
                             <p>With a track record of fantastic birthdays, we're eager to share the joy and fun with you!</p>
                         </div>
                         <div className="bg-blue-light">
