@@ -1,9 +1,14 @@
 import barn from "@/assets/barn-sketch.png";
 import bday from "@/assets/birthday-parties.jpg";
-import senior from "@/assets/senior-center-events.jpg";
-import shamrock from "@/assets/blue-shamrock.png";
 import holiday from "@/assets/holiday-parties.jpg";
 import fair from "@/assets/fairs-and-festivals.jpg";
+import graduation from "@/assets/graduation-party.jpg";
+import blockParty from "@/assets/neighborhood-party.jpg";
+import school from "@/assets/school-events.jpg";
+import church from "@/assets/church-events.jpg";
+import grandOpening from "@/assets/grand-opening.jpg";
+import senior from "@/assets/senior-center-events.jpg";
+import shamrock from "@/assets/blue-shamrock.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -13,8 +18,29 @@ export function EventsSection() {
         infinite: true,
         speed: 500,
         slidesToShow: 3,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+
+        responsive: [
+
+            {
+                breakpoint: 1000,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
     };
+
+
     return (
         <section className="mt-0">
             <div className="bg-blue-dark pt-16 pb-40 -mb-24">
@@ -23,7 +49,7 @@ export function EventsSection() {
                     <h2>Celebrations and Events</h2>
                     <p>Host your next party with us or let us bring the party to you!</p>
                     <p>We're experienced hosts offering 2 hours or more of fun activities, complete with music and a ton of party animals. Our barnyard critters are always ready to join the fun, whether they're entertaining guests at our venue or strutting their stuff at your special event. Explore some of our past party themes for inspiration!</p>
-                    <a>View all party packages</a>
+                    <a href="/services">View all party packages</a>
                 </div>
             </div>
 
@@ -75,7 +101,7 @@ export function EventsSection() {
 
                     {/* Graduation Parties */}
                     <div className="shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
-                        <img src={bday} />
+                        <img src={graduation} />
                         <div className="bg-white p-4 text-center h-[485px]">
                             <h3>Graduation Parties</h3>
                             <p>Both kids and adults can enjoy the charm of a country-themed birthday party.</p>
@@ -89,7 +115,7 @@ export function EventsSection() {
 
                     {/* Neighborhood Block Parties */}
                     <div className="shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
-                        <img src={bday} />
+                        <img src={blockParty} />
                         <div className="bg-white p-4 text-center h-[485px]">
                             <h3>Neighborhood Block Parties</h3>
                             <p>Both kids and adults can enjoy the charm of a country-themed birthday party.</p>
@@ -103,7 +129,7 @@ export function EventsSection() {
 
                     {/* School Functions */}
                     <div className="shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
-                        <img src={bday} />
+                        <img src={school} />
                         <div className="bg-white p-4 text-center h-[485px]">
                             <h3>School Functions</h3>
                             <p>Both kids and adults can enjoy the charm of a country-themed birthday party.</p>
@@ -117,7 +143,7 @@ export function EventsSection() {
 
                     {/* Church Gatherings */}
                     <div className="shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
-                        <img src={bday} />
+                        <img src={church} />
                         <div className="bg-white p-4 text-center h-[485px]">
                             <h3>Church Gatherings</h3>
                             <p>Both kids and adults can enjoy the charm of a country-themed birthday party.</p>
@@ -145,7 +171,7 @@ export function EventsSection() {
 
                     {/* Grand Openings */}
                     <div className="shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
-                        <img src={bday} />
+                        <img src={grandOpening} />
                         <div className="bg-white p-4 text-center h-[485px]">
                             <h3>Grand Openings</h3>
                             <p>Both kids and adults can enjoy the charm of a country-themed birthday party.</p>

@@ -17,7 +17,7 @@ export function PettingZoo() {
                     <img src={goats} className="mx-auto mb-8 hidden md:block" />
                     <p>Seasonally, we host our famous Blue Shamrock Petting Zoo at our farm in Oxford, MI. The petting zoo includes access to pet and feed sheep, goats, chickens, alpacas and more! Please check Facebook in case of unforeseen cancelations.</p>
                     <p>Our farm animals are also available to travel to your next big event</p>
-                    <a href="#" className="subheading">Learn more about our mobile petting zoo packages.</a>
+                    <a href="/services" className="subheading">Learn more about our mobile petting zoo packages.</a>
                 </div>
             </div>
         </section>
