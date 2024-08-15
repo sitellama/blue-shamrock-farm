@@ -26,6 +26,7 @@ export default {
     },
     plugins: [
         require("./tailwind/tailwind-plugin-debug-screens"),
+        require("@tailwindcss/forms"),
     ],
 }
 

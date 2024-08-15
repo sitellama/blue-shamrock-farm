@@ -74,7 +74,6 @@ function OurLink({ label, to, loc }: { label: string; to: string; loc: Location;
                 aria-current={isActive ? "page" : undefined}
                 onClick={(e) => {
                     e.preventDefault();
-                    console.log("clicked");
 
                     window.location.href = to;
                 }
