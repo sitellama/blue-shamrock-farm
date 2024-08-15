@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Location, useLocation } from "react-router-dom";
 import { useClickAway } from "react-use";
 import { classNames } from "@/utils";
@@ -6,29 +6,33 @@ import { IconCross, IconHamburger } from "@/ui";
 import { createPortal } from "react-dom";
 import logoImg from "@/assets/logo-dark.png";
 
-const linkClasses = "px-2 py-3 text-sm text-slate-900 bg-slate-300 hover:bg-sky-500 hover:text-white";
-
-const linkActiveClasses = "!bg-white-700";
-
-const itemClasses = (path: string, loc: Location): string => {
-    const isActive = path === loc.pathname;
-    return classNames(linkClasses, isActive && linkActiveClasses);
-};
-
-
 export function MainMenu() {
     const loc = useLocation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const ref = useRef(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
 
-    useClickAway(ref, () => {
-        closeMenu();
-    });
+    useClickAway<MouseEvent | TouchEvent>(ref,
+        useCallback((event) => {
+            if (!buttonRef.current) {
+                return;
+            }
 
-    function closeMenu() {
-        setIsMenuOpen(false);
-    }
+            const target = event.target as HTMLElement;
+            const isChild = buttonRef.current.contains(target);
+
+            if (!isChild) {
+                setIsMenuOpen(false);
+            }
+        }, [buttonRef])
+    );
+
+    const closeMenu = useCallback(
+        function closeMenu() {
+            setIsMenuOpen(false);
+        }, []
+    );
 
     return (
         <div className="z-50 w-full">
@@ -69,7 +73,7 @@ function OurLink({ label, to, loc }: { label: string; to: string; loc: Location;
         <li>
             <a
                 href={to}
-                className={classNames(liClasses, isActive && "text-white")}
+                className={classNames(liClasses, isActive && "!underline")}
                 target="_blank"
                 aria-current={isActive ? "page" : undefined}
                 onClick={(e) => {
