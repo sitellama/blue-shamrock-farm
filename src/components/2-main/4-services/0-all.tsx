@@ -8,8 +8,8 @@ export function Services() {
 
         <h1 className="flex justify-center">Services</h1>
 
-        <section className="w-full flex flex-col items-center">
-            <div className="max-w-7xl space-y-16">
+        <section className="max-content flex flex-col items-center">
+            <div className="space-y-16">
                 <DropdownSection />
                 <ServicesList />
             </div>
