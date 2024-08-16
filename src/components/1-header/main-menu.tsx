@@ -32,7 +32,10 @@ export function MainMenu() {
         <div className="w-full">
             <MenuBody className="hidden md:flex items-end justify-between text-center" loc={loc} />
 
-            <div className="flex justify-end">
+
+            <div className="flex justify-between">
+                <a href="/" className="m-0"><img src={logoImg} alt="Blue Shamrock Farm" className="size-10 md:hidden" /></a>
+
                 <button
                     className="md:hidden z-50 relative"
                     onClick={() => setIsMenuOpen((v) => !v)}
@@ -40,8 +43,8 @@ export function MainMenu() {
                     aria-label="Main Menu" // aria-state={isMenuOpen ? "open" : "closed"}
                 >
                     {isMenuOpen
-                        ? <IconCross className="size-7 fill-black" />
-                        : <IconHamburger className="size-7 fill-black" />
+                        ? <IconCross className="size-10 fill-black" />
+                        : <IconHamburger className="size-10 fill-black" />
                     }
                 </button>
 
