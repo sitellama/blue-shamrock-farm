@@ -47,7 +47,7 @@ export function ContactUs() {
 
             <div>
                 <h2 className="text-center">Get in Touch</h2>
-                <form className="w-4/5 md:w-2/5 max-w-8xl flex flex-col justify-center gap-y-1 mx-auto" onSubmit={onSubmit}>
+                <form className="w-4/5 md:w-2/5 max-w-8xl md:pb-12 flex flex-col justify-center gap-y-1 mx-auto" onSubmit={onSubmit}>
                     <label for="name" >Name</label>
                     <input type="text" id="name" name="name" />
                     <label for="email">Email</label>
@@ -57,15 +57,15 @@ export function ContactUs() {
                     <label for="message">Message</label>
                     <textarea id="message" name="message"></textarea>
                     <input
-                        className="cursor-pointer w-[calc(100%-16px)] lg:w-1/4 mx-auto py-[5px] mt-4 border-[1px] border-black ring-8 ring-[#B9B0AB] bg-[#B9B0AB]"
+                        className="cursor-pointer w-[calc(100%-16px)] md:w-1/4 mx-auto py-[5px] mt-4 border-[1px] border-black ring-8 ring-[#B9B0AB] bg-[#B9B0AB]"
                         type="submit"
                     />
                 </form>
-                <div className="flex ">
-                    <img src={shamrock} alt="" className="-z-10 md:absolute left-0 bottom-0 w-1/2 lg:w-1/3" />
-                    <img src={shamrock} alt="" className="-z-10 md:absolute right-0 bottom-0 w-1/2 lg:w-1/3 [transform:rotateY(180deg)]" />
+                <div className="flex -mt-20 md:mt-0">
+                    <img src={shamrock} alt="" className="-z-10 md:absolute left-0 bottom-0 w-1/2 md:w-1/3" />
+                    <img src={shamrock} alt="" className="-z-10 md:absolute right-0 bottom-0 w-1/2 md:w-1/3 [transform:rotateY(180deg)]" />
                 </div>
-                <div className="flex justify-center mt-4">{result}</div>
+                <div className="flex justify-center md:mt-4">{result}</div>
             </div>
         </section>
     );
