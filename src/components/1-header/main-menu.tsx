@@ -28,44 +28,36 @@ export function MainMenu() {
         }, [buttonRef])
     );
 
-    const closeMenu = useCallback(
-        function closeMenu() {
-            setIsMenuOpen(false);
-        }, []
-    );
-
     return (
-        <div className="z-50 w-full">
-            <MenuBody className="hidden sm:flex items-end justify-between" closeMenu={closeMenu} loc={loc} />
+        <div className="w-full">
+            <MenuBody className="hidden md:flex items-end justify-between text-center" loc={loc} />
 
-            <div className="relative">
-                <div>
-                    <button
-                        className="sm:hidden"
-                        onClick={() => setIsMenuOpen((v) => !v)}
-                        role="navigation"
-                        aria-label="Main Menu" // aria-state={isMenuOpen ? "open" : "closed"}
-                    >
-                        {isMenuOpen
-                            ? <IconCross className="size-7 fill-black" />
-                            : <IconHamburger className="size-7 fill-black" />
-                        }
-                    </button>
-
-                    {isMenuOpen &&
-                        createPortal(
-                            <div ref={ref} className="w-full absolute right-0 top-0 flex justify-end">
-                                <MenuBody className="w-full sm:hidden bg-page-bg flex flex-col items-center" closeMenu={closeMenu} loc={loc} />
-                            </div>, document.body
-                        )
+            <div className="flex justify-end">
+                <button
+                    className="md:hidden z-50 relative"
+                    onClick={() => setIsMenuOpen((v) => !v)}
+                    role="navigation"
+                    aria-label="Main Menu" // aria-state={isMenuOpen ? "open" : "closed"}
+                >
+                    {isMenuOpen
+                        ? <IconCross className="size-7 fill-black" />
+                        : <IconHamburger className="size-7 fill-black" />
                     }
-                </div>
+                </button>
+
+                {isMenuOpen &&
+                    createPortal(
+                        <div ref={ref} className="w-full absolute right-0 top-0">
+                            <MenuBody className="w-full md:hidden bg-page-bg flex flex-col items-center pb-4" loc={loc} />
+                        </div>, document.body
+                    )
+                }
             </div>
         </div>
     );
 }
 
-const liClasses = "block px-3 py-2 text-lg no-underline select-none";
+const liClasses = "block px-3 py-2 m-0 text-lg no-underline select-none";
 
 function OurLink({ label, to, loc }: { label: string; to: string; loc: Location; }) {
     const isActive = to === loc.pathname;
@@ -89,14 +81,14 @@ function OurLink({ label, to, loc }: { label: string; to: string; loc: Location;
     );
 }
 
-function MenuBody({ closeMenu, loc, className }: { closeMenu: () => void; loc: Location; className?: string; }) {
+function MenuBody({ loc, className }: { loc: Location; className?: string; }) {
     return (
         <ul className={className}>
             {/* <OurLink label="Home" to="/" loc={loc} /> */}
             <OurLink label="Meet The Animals" to="/animals" loc={loc} />
             <OurLink label="Services & Events" to="/services" loc={loc} />
-            <figure className="flex justify-center items-center">
-                <a href="/" className="no-underline">
+            <figure className={`flex justify-center items-center -order-1 md:order-none`}>
+                <a href="/" className="no-underline mb-0">
                     <img src={logoImg} alt="Blue Shamrock Farm" className="w-[50%] mx-auto mb-2" />
                     <figcaption>Blue Shamrock Farm</figcaption>
                 </a>
