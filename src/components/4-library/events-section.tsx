@@ -26,8 +26,8 @@ export function EventsSection() {
                 breakpoint: 1000,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 2
+                    slidesToScroll: 1,
+                    initialSlide: 1
                 }
             },
             {
@@ -54,7 +54,7 @@ export function EventsSection() {
             </div>
 
             {/* start slides */}
-            <div className="slider-container max-content w-[80%] mx-auto">
+            <div className="slider-container max-content w-[65%] md:w-[80%] mx-auto">
                 <Slider {...settings}>
 
                     {/*Birthday Parties*/}

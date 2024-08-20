@@ -12,7 +12,7 @@ import { SEO } from "@/utils/seo";
 export function Home() {
   return (
     <>
-      <SEO title="Home Page" description="This is the home page" href="/" />
+      <SEO title="Blue Shamrock Farm" description="This is the home page" href="/" />
 
       <HeroImg />
 

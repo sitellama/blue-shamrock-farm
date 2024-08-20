@@ -15,7 +15,7 @@ export function Animals() {
 
       <h2>Please meet some of our friends</h2>
 
-      <Sections sections={sections} />
+      {/* <Sections sections={sections} /> */}
 
       <AnimalList />
 

@@ -43,7 +43,7 @@ export function ContactUs() {
     };
 
     return (
-        <section className=" relative flex flex-col lg:max-content">
+        <section className=" relative flex flex-col lg:max-content" id="contact">
 
             <div>
                 <h2 className="text-center">Get in Touch</h2>
