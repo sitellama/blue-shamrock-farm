@@ -26,8 +26,8 @@ export function EventsSection() {
                 breakpoint: 1000,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 2
+                    slidesToScroll: 1,
+                    initialSlide: 1
                 }
             },
             {
@@ -45,7 +45,7 @@ export function EventsSection() {
         <section className="mt-0">
             <div className="bg-blue-dark pt-16 pb-40 -mb-24">
                 <img src={barn} className="mx-auto max-w-[300px]" />
-                <div className="w-[50%] max-w-[900px] mx-auto text-white text-center">
+                <div className="max-content md:w-[50%] max-w-[900px] mx-auto text-white text-center">
                     <h2>Celebrations and Events</h2>
                     <p>Host your next party with us or let us bring the party to you!</p>
                     <p>We're experienced hosts offering 2 hours or more of fun activities, complete with music and a ton of party animals. Our barnyard critters are always ready to join the fun, whether they're entertaining guests at our venue or strutting their stuff at your special event. Explore some of our past party themes for inspiration!</p>
@@ -54,7 +54,7 @@ export function EventsSection() {
             </div>
 
             {/* start slides */}
-            <div className="slider-container max-content w-[80%] mx-auto">
+            <div className="slider-container max-content w-[65%] md:w-[80%] mx-auto">
                 <Slider {...settings}>
 
                     {/*Birthday Parties*/}

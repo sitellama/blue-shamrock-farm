@@ -1,6 +1,7 @@
 import { RouteObject, createBrowserRouter } from "react-router-dom";
 import { Root } from "./root";
 import { Animals, Contact, Home, Services } from "@/components/2-main";
+import { Privacy } from "@/components/2-main/5-privacy";
 
 const routes: RouteObject[] = [
     {
@@ -18,6 +19,10 @@ const routes: RouteObject[] = [
     {
         path: "/contact",
         element: <Contact />,
+    },
+    {
+        path: "/privacy-policy",
+        element: <Privacy />,
     },
 ];
 

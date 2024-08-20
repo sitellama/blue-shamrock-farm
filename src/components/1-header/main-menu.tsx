@@ -97,7 +97,7 @@ function MenuBody({ loc, className }: { loc: Location; className?: string; }) {
                 </a>
             </figure>
             <OurLink label="Shamrock Shop" to="https://blue-shamrock-farm-llc.square.site/" loc={loc} />
-            <OurLink label="Get In Touch" to="/contact" loc={loc} />
+            <OurLink label="Get In Touch" to="#contact" loc={loc} />
         </ul>
     );
 }
