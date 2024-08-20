@@ -8,13 +8,14 @@ import { HeroImg } from "@/components/4-library/hero-img";
 import { MapIntro } from "@/components/4-library/map-intro";
 import { PettingZoo } from "@/components/4-library/petting-zoo";
 import { SEO } from "@/utils/seo";
+import heroHorse from "@/assets/hero-horse.webp"
 
 export function Home() {
   return (
     <>
       <SEO title="Home Page" description="This is the home page" href="/" />
 
-      <HeroImg />
+      <HeroImg hero={heroHorse} />
 
       <MapIntro />
 

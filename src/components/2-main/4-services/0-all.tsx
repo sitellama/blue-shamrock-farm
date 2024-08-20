@@ -1,10 +1,14 @@
+import { HeroImg } from "@/components/4-library/hero-img";
 import { SEO } from "../../../utils/seo";
 import { DropdownSection } from "./1-dropdown-section";
 import { ServicesList } from "./2-services-list";
+import fairs from "@/assets/fairs-and-festivals.jpg";
 
 export function Services() {
     return (<>
         <SEO title="Services Page" description="This is the services page" href="/" />
+
+        <HeroImg hero={fairs} />
 
         <h1 className="flex justify-center">Services</h1>
 
