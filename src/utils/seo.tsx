@@ -6,8 +6,8 @@ export function SEO({ title, description, href }: { title: string; description: 
             <link rel='canonical' href={href} />
             <title>{title}</title>
             <meta name='description' content={description} />
-            <meta name="title" content="Default Title" data-react-helmet="true"></meta>
-            <meta name="og:title" content="S6 Ranch" data-react-helmet="true"></meta>
+            <meta name="title" content="Blue Shamrock Farm" data-react-helmet="true"></meta>
+            <meta name="og:title" content="Blue Shamrock Farm" data-react-helmet="true"></meta>
         </Helmet>
     );
 }

@@ -4,15 +4,19 @@ import barnWoodImg from "@/assets/farm-wood.webp";
 
 
 export function Privacy() {
+    const currentYear = new Date().getFullYear();
+
     return (
         <>
             <SEO title="Animals Page" description="This is the Animals page" href="/" />
 
-            <HeroImg src={barnWoodImg} />
+            {/* <HeroImg hero={barnWoodImg} /> */}
+
+            <div className="bg-blue-dark h-[50px]"></div>
 
             <section className="max-content">
                 <h1 className="font-sans text-4xl font-bold">Privacy Policy</h1>
-                <p>Effective Date: {Date.UTC()}</p>
+                <p>Effective Date: 8-1-{currentYear}</p>
 
                 <h2 className="font-sans text-2xl font-bold">Blue Shamrock Farms</h2>
                 <p>Welcome to Blue Shamrock Farms ("we," "our," "us"). We respect your privacy and have created this Privacy Policy to outline how we collect, use, and protect your personal information when you visit and interact with our website [blueshamrock.farm] (the "Site"). By using our Site, you agree to the terms of this Privacy Policy.</p>
@@ -42,8 +46,9 @@ export function Privacy() {
                 <p>We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. Any changes will be posted on this page with an updated effective date. We encourage you to review this Privacy Policy periodically.</p>
 
                 <h2 className="font-sans text-2xl font-bold">Contact us</h2>
-                <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at [your contact email] or [your contact address].</p>
-                <p>Thank you for visiting [Your Website Name]</p>
+                <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at farmerkate225@gmail.com.</p>
+                <br></br>
+                <p><a href="/">Navigate back to home page</a></p>
             </section>
 
         </>

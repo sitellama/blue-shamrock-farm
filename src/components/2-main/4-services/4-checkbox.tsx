@@ -9,7 +9,7 @@ export function Checkbox({ label, checked, setChecked }: CheckboxProps) {
         <label className="flex items-center">
             <input
                 type="checkbox"
-                className="size-9 rounded text-green-500 focus:ring-green-500"
+                className="size-9 rounded text-blue-dark focus:to-blue-medium"
                 checked={checked}
                 onChange={(event) => setChecked(event.target.checked)}
             />

@@ -1,3 +1,12 @@
+import pettingZoo from "@/assets/petting-zoo-event.jpg";
+import goatYoga from "@/assets/goat-yoag.jpg";
+import donkey from "@/assets/animal-waiter.jpg";
+import parties from "@/assets/birthday-parties.jpg";
+import snuggle from "@/assets/animal-snuggling.jpg";
+import forSale from "@/assets/Animals-for-sale.jpg";
+import education from "@/assets/educational-classes.jpg";
+import popup from "@/assets/pop-up-shop.jpg";
+import addOns from "@/assets/event-add-ons.jpg";
 import goat from "@/assets/holiday-parties.jpg";
 import { atom } from "jotai";
 
@@ -12,35 +21,44 @@ export type Service = {
 };
 
 const services: Service[] = [
-    // {
-    //     image: goat,
-    //     label: "Petting Zoo",
-    //     content: "A petting zoo is a fun and interactive attraction where visitors can get up close and personal with a variety of friendly animals. It typically features gentle, domesticated creatures like goats, sheep, rabbits, and chickens, allowing people to pet, feed, and sometimes even hold them. Petting zoos are popular for their educational and therapeutic benefits, offering a hands-on experience that fosters a connection with animals and promotes a sense of wonder and joy.",
-    //     pdfName: "Petting Zoo Details",
-    //     pdfUrl: "",
-    //     onsite: true,
-    //     travel: true,
-    // },
-    // {
-    //     image: goat,
-    //     label: "Goat Yoga",
-    //     content: "Goat yoga is a playful and unique fitness trend that combines traditional yoga practices with the company of friendly goats. In a typical session, participants perform yoga poses while goats roam freely around them, occasionally hopping onto their backs or snuggling up for some interaction. This blend of exercise and animal interaction aims to create a lighthearted, stress-relieving experience, enhancing the joy and relaxation of the yoga practice.",
-    //     pdfName: "Goat Yoga Details",
-    //     pdfUrl: "",
-    //     onsite: true,
-    //     travel: true,
-    // },
-    // {
-    //     image: goat,
-    //     label: "Parties",
-    //     content: "Hosting parties on a farm offers a unique, charming setting that combines rustic appeal with natural beauty. Guests can enjoy open spaces, fresh air, and scenic views, while engaging in fun activities like hayrides, petting zoo visits, and bonfires. Whether it's a birthday, wedding, or corporate event, a farm setting provides a relaxed and memorable atmosphere, perfect for creating lasting memories in a picturesque countryside environment.",
-    //     pdfName: "Party Details",
-    //     pdfUrl: "",
-    //     onsite: true,
-    //     travel: true,
-    // },
     {
-        image: goat,
+        image: pettingZoo,
+        label: "Petting Zoo",
+        content: "A petting zoo is a fun and interactive attraction where visitors can get up close and personal with a variety of friendly animals. It typically features gentle, domesticated creatures like goats, sheep, rabbits, and chickens, allowing people to pet, feed, and sometimes even hold them. Petting zoos are popular for their educational and therapeutic benefits, offering a hands-on experience that fosters a connection with animals and promotes a sense of wonder and joy.",
+        pdfName: "Petting Zoo Details",
+        pdfUrl: "",
+        onsite: true,
+        travel: true,
+    },
+    {
+        image: goatYoga,
+        label: "Goat Yoga",
+        content: "Goat yoga is a playful and unique fitness trend that combines traditional yoga practices with the company of friendly goats. In a typical session, participants perform yoga poses while goats roam freely around them, occasionally hopping onto their backs or snuggling up for some interaction. This blend of exercise and animal interaction aims to create a lighthearted, stress-relieving experience, enhancing the joy and relaxation of the yoga practice.",
+        pdfName: "Goat Yoga Details",
+        pdfUrl: "",
+        onsite: true,
+        travel: true,
+    },
+    {
+        image: donkey,
+        label: "Animal Waitstaff",
+        content: "Add a unique twist to your next event with our delightful animal waitstaff! Donkeys, llamas or ponies at your service. Imagine these charming friends gracefully serving hors d'oeuvres and drinks, bringing an unexpected touch of fun and cuteness to your gathering. With their friendly antics and impeccable service, our four-legged team is sure to make your event truly extraordinary!",
+        pdfName: "Animal Waitstaff Details",
+        pdfUrl: "",
+        onsite: false,
+        travel: true,
+    },
+    {
+        image: parties,
+        label: "Parties",
+        content: "Hosting parties on a farm offers a unique, charming setting that combines rustic appeal with natural beauty. Guests can enjoy open spaces, fresh air, and scenic views, while engaging in fun activities like hayrides, petting zoo visits, and bonfires. Whether it's a birthday, wedding, or corporate event, a farm setting provides a relaxed and memorable atmosphere, perfect for creating lasting memories in a picturesque countryside environment.",
+        pdfName: "Party Details",
+        pdfUrl: "",
+        onsite: true,
+        travel: true,
+    },
+    {
+        image: snuggle,
         label: "Animal Snuggling",
         content: "Visitors of all ages can enjoy gentle embraces with fluffy bunnies, soft lambs, and even serene goats under the guidance of our friendly staff. Surrounded by the serene beauty of rolling pastures and the sweet scent of hay, guests find solace and joy in the simple act of snuggling these gentle creatures.",
         pdfName: "Animal Snuggling Details",
@@ -57,39 +75,39 @@ const services: Service[] = [
         travel: true,
     },
     {
-        image: goat,
+        image: forSale,
         label: "Animals for Sale",
         content: "Discover the charm of our farm's baby animals for sale! From adorable piglets to fluffy chicks and playful kid goats, our farm offers the perfect opportunity to bring home a new furry or feathered friend. Raised with care and surrounded by the peaceful countryside, these lovable companions are ready to add joy and warmth to your family. Visit us to find your perfect match and experience the magic of bonding with our delightful baby animals!",
         pdfName: "View Current Animals for Sale",
         pdfUrl: "",
         onsite: true,
     },
-    // {
-    //     image: goat,
-    //     label: "Educational Classes",
-    //     content: "Explore and learn at our farm's educational classes! From understanding farm-to-table practices to hands-on experiences with animals, our classes offer enriching insights into agriculture and sustainability. Perfect for curious minds of all ages, these engaging sessions combine fun and learning amidst the tranquil beauty of our farm. Join us to cultivate knowledge and appreciation for the natural world right here on our educational farm!",
-    //     pdfName: "Educational Details",
-    //     pdfUrl: "",
-    //     onsite: true,
-    //     travel: true,
-    // },
-    // {
-    //     image: goat,
-    //     label: "Pop up Markets",
-    //     content: "Explore our online store and pop-up markets to discover a delightful array of fresh produce, artisanal cheeses, homemade jams, and more. Savor the flavors of our sustainable practices and locally sourced ingredients, bringing the essence of the farm directly to your table. Join us in celebrating quality, community, and the goodness of farm life wherever you are!",
-    //     pdfName: "View the Blue Shamrock Shop",
-    //     pdfUrl: "",
-    //     travel: true,
-    // },
-    // {
-    //     image: goat,
-    //     label: "Complete List of Add ons",
-    //     content: "Saddle up for excitement with pony rides at our farm! Perfect for young adventurers and pony enthusiasts alike, our rides offer a memorable experience trotting through scenic trails. Guided by our experienced staff, children can enjoy the thrill of riding gentle ponies in a safe and picturesque environment. Join us for a delightful journey on horseback and create lasting memories at our charming farm!",
-    //     pdfName: "List of Add on Services",
-    //     pdfUrl: "",
-    //     onsite: true,
-    //     travel: true,
-    // },
+    {
+        image: education,
+        label: "Educational Classes",
+        content: "Explore and learn at our farm's educational classes! From understanding farm-to-table practices to hands-on experiences with animals, our classes offer enriching insights into agriculture and sustainability. Perfect for curious minds of all ages, these engaging sessions combine fun and learning amidst the tranquil beauty of our farm. Join us to cultivate knowledge and appreciation for the natural world right here on our educational farm!",
+        pdfName: "Educational Details",
+        pdfUrl: "",
+        onsite: true,
+        travel: true,
+    },
+    {
+        image: popup,
+        label: "Pop up Markets",
+        content: "Explore our online store and pop-up markets to discover a delightful array of fresh produce, artisanal cheeses, homemade jams, and more. Savor the flavors of our sustainable practices and locally sourced ingredients, bringing the essence of the farm directly to your table. Join us in celebrating quality, community, and the goodness of farm life wherever you are!",
+        pdfName: "View the Blue Shamrock Shop",
+        pdfUrl: "",
+        travel: true,
+    },
+    {
+        image: addOns,
+        label: "Complete List of Add ons",
+        content: "Saddle up for excitement with pony rides at our farm! Perfect for young adventurers and pony enthusiasts alike, our rides offer a memorable experience trotting through scenic trails. Guided by our experienced staff, children can enjoy the thrill of riding gentle ponies in a safe and picturesque environment. Join us for a delightful journey on horseback and create lasting memories at our charming farm!",
+        pdfName: "List of Add on Services",
+        pdfUrl: "",
+        onsite: true,
+        travel: true,
+    },
 ];
 
 export const servicesAtom = atom(services);

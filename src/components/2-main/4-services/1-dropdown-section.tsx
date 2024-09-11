@@ -8,7 +8,7 @@ export function DropdownSection() {
     const [onsite, setOnsite] = useAtom(onsiteAtom);
     const [travel, setTravel] = useAtom(travelAtom);
     return (
-        <div className="w-full flex justify-start items-center gap-4" >
+        <div className="w-full flex flex-col md:flex-row justify-start md:items-center gap-4" >
             <DropdownList />
 
             {!isAll && (<>

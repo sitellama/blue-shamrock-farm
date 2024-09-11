@@ -11,8 +11,9 @@ export function DropdownList() {
     const services = useAtomValue(servicesAtom);
     const [selected, setSelected] = useAtom(dropdownSelectionAtom);
     return (<>
+        <span>Filter by event type:</span>
         <select
-            className="p-2 rounded-md border border-gray"
+            className="mr-[5rem] p-2 rounded-md border border-gray"
             value={selected}
             onChange={(event) => {
                 setSelected(event.target.value);

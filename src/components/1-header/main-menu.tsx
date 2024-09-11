@@ -4,7 +4,8 @@ import { useClickAway } from "react-use";
 import { classNames } from "@/utils";
 import { IconCross, IconHamburger } from "@/ui";
 import { createPortal } from "react-dom";
-import logoImg from "@/assets/logo-dark.png";
+// import logoImg from "@/assets/logo-dark.png";
+import logoImg from "@/assets/logo-v2.png";
 
 export function MainMenu() {
     const loc = useLocation();
@@ -70,6 +71,7 @@ function OurLink({ label, to, loc }: { label: string; to: string; loc: Location;
                 href={to}
                 className={classNames(liClasses, isActive && "!underline")}
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-current={isActive ? "page" : undefined}
                 onClick={(e) => {
                     e.preventDefault();
