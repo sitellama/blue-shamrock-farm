@@ -14,7 +14,7 @@ export function GoatYoga() {
                     <p>Our goats and fencing are all mobile so let us liven up your next gathering with this  unique animal experience.</p>
                     <div className="btn-outer bg-brown mx-0">
                         <div className="btn-inner">
-                            <a href="#" className="btn-a">Register Today!<span className="sr-only"> for goat yoga</span></a>
+                            <a href="#contact" className="btn-a">Register Today!<span className="sr-only"> for goat yoga</span></a>
                         </div>
                     </div>
                 </div>

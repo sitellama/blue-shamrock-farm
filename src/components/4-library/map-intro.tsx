@@ -13,7 +13,7 @@ export function MapIntro() {
                 <p>Ready to brighten up your next big event?</p>
                 <div className="btn-outer bg-blue-dark ">
                     <div className="btn-inner">
-                        <a href="#" className="btn-a">Now Taking Reservations!</a>
+                        <a href="#contact" className="btn-a">Now Taking Reservations!</a>
                     </div>
                 </div>
             </div>

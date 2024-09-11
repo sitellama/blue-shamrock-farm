@@ -18,7 +18,7 @@ export function TextImg() {
                     <li>Baby animal snuggles</li>
                     <li>Mobile drink bar</li>
                 </ul>
-                <p>P. S. If you don't see your idea listed, please ask! <a href="#" className="subheading">View more add-ons here</a></p>
+                <p>P. S. If you don't see your idea listed, please ask! <a href="/services" className="subheading">View more add-ons here</a></p>
             </div>
         </section>
     );

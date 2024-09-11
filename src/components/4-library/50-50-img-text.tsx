@@ -11,7 +11,7 @@ export function ImgText() {
                 <h2>Homeschool Classes</h2>
                 <p>There’s lots to learn on the farm!</p>
                 <p>Classes include 1st - 12th grade courses on farm animal studies, stable management and animal care. All classes are taught by licensed professionals.</p>
-                <a href="#" className="subheading">Click for homeschool class details</a>
+                <a href="/services" className="subheading">Click for homeschool class details</a>
             </div>
         </section>
     );

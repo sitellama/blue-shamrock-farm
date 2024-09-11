@@ -92,7 +92,7 @@
 
 .slick-prev,
 .slick-next {
-  @apply p-6 bg-blue-dark border-2 border-solid border-blue-dark rounded-[50%];
+  @apply p-4 md:p-6 bg-blue-dark border-2 border-solid border-blue-dark rounded-[50%];
 }
 
 .slick-prev:focus-visible,
@@ -117,9 +117,7 @@
 
 .slick-next:before,
 .slick-prev:before {
-  /* @apply font-5xl text-white; */
-  font-size: 40px;
-  /* color: #23374f; */
+  font-size: 30px;
   color: white;
   opacity: 1;
   position: absolute;

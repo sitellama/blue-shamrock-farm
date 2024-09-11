@@ -13,12 +13,12 @@ export function SupportUs() {
             <div className="w-[95%] max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-center gap-[5%]">
                 <div className="flex flex-col items-center md:flex-[33%] mt-8">
                     <img src={cow} className="rounded-full border-solid border-4 border-white w-[292px]" />
-                    <a href="#" className="btn-a mx-auto text-center text-2xl">Amazon Wish List</a>
+                    <a href="https://www.amazon.com/hz/wishlist/ls/1KF35XP0KD1RI?ref_=wl_share" className="btn-a mx-auto text-center text-2xl">Amazon Wish List</a>
                 </div>
 
                 <div className="flex flex-col items-center md:flex-[33%] mt-8">
                     <img src={soap} className="rounded-full border-solid border-4 border-white w-[292px]" />
-                    <a href="#" className="btn-a mx-auto text-center text-2xl">Blue Shamrock Shop</a>
+                    <a href="https://blue-shamrock-farm-llc.square.site/" className="btn-a mx-auto text-center text-2xl">Blue Shamrock Shop</a>
                 </div>
 
                 <div className="flex flex-col items-center md:flex-[33%] mt-8">

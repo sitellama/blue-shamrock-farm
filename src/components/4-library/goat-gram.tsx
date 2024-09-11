@@ -21,7 +21,7 @@ export function GoatGram() {
                             <li>You can also pick other animals for gram deliveries</li>
                         </ul>
                         <p>Or make it a party gram! Book multiple animals and shower your loved one with all the cuteness they can handle!</p>
-                        <a href="#" className="subheading">See Animal Gram details here</a>
+                        <a href="/services" className="subheading">See Animal Gram details here</a>
                     </div>
                 </div>
             </div>

@@ -32,7 +32,7 @@ import featureGoat from "@/assets/nigerian-dwarf-goat.jpg";
 
 export function AnimalList() {
     return (
-        <section className="max-content">
+        <section className="max-content mt-16">
 
             {/* pattern 1 */}
             <div className="mb-16 flex flex-col md:flex-row gap-[2rem]">
@@ -64,7 +64,7 @@ export function AnimalList() {
                     <div>
                         <h3 className="text-5xl">Kerry Bog Ponies</h3>
                         <p className="">Kerry Bog Ponies, native to Ireland, are small, sturdy ponies known for their endurance and adaptability in marshy terrains. Valued for their strength and calm temperament, they have historically assisted in farming and rural work. Today, they are considered endangered, prompting conservation efforts to preserve this resilient breed.</p>
-                        <a href="#" className="">More Info<span className="sr-only"> on kerry bog ponies</span></a>
+                        {/* <a href="#" className="">More Info<span className="sr-only"> on kerry bog ponies</span></a> */}
                     </div>
                 </div>
 
@@ -104,7 +104,7 @@ export function AnimalList() {
                     <div>
                         <h3 className="text-5xl">Tornjaks</h3>
                         <p className="">Tornjaks are strong, loyal livestock guardian dogs from Bosnia and Herzegovina. They are known for their protective nature, sturdy build, and thick coats, making them ideal for guarding flocks in harsh conditions. Valued for their gentle temperament with both family and animals, Tornjaks remain a respected breed for their dependable guardianship.</p>
-                        <a href="#" className="">More Info<span className="sr-only"> on tornjaks</span></a>
+                        {/* <a href="#" className="">More Info<span className="sr-only"> on tornjaks</span></a> */}
                     </div>
                 </div>
 
@@ -117,19 +117,19 @@ export function AnimalList() {
             <div className="mb-16 flex flex-col md:flex-row gap-[2rem]">
                 <div className="flex gap-[2rem]">
                     <div>
-                        <img src={guineaPig} />
-                        <h3 className="animal-tag">Guinea Pig</h3>
-                    </div>
-                    <div>
                         <img src={budgie} />
                         <h3 className="animal-tag">Budgies</h3>
+                    </div>
+                    <div>
+                        <img src={guineaPig} />
+                        <h3 className="animal-tag">Guinea Pig</h3>
                     </div>
                 </div>
 
                 <div className="flex gap-[2rem]">
                     <div>
-                        <img src={chicken} />
-                        <h3 className="animal-tag">Chickens</h3>
+                        <img src={donkey} />
+                        <h3 className="animal-tag">Donkey</h3>
                     </div>
                     <div>
                         <img src={chinchilla} />
@@ -143,7 +143,7 @@ export function AnimalList() {
                     <div>
                         <h3 className="text-5xl">Nigerian Dwarf Goats</h3>
                         <p className="">Nigerian Dwarf goats are a small, friendly breed known for their high milk production despite their size. Originating from West Africa, these goats are prized for their sweet temperament and diverse coat colors. Their compact stature and efficiency make them ideal for small farms, where they provide rich, creamy milk and serve as charming companions.</p>
-                        <a href="#" className="">More Info<span className="sr-only"> on nigerian dwarf goats</span></a>
+                        {/* <a href="#" className="">More Info<span className="sr-only"> on nigerian dwarf goats</span></a> */}
                     </div>
                 </div>
 
@@ -167,8 +167,8 @@ export function AnimalList() {
 
                 <div className="flex gap-[2rem]">
                     <div>
-                        <img src={donkey} />
-                        <h3 className="animal-tag">Donkey</h3>
+                        <img src={chicken} />
+                        <h3 className="animal-tag">Chickens</h3>
                     </div>
                     <div>
                         <img src={llama} />
@@ -182,7 +182,7 @@ export function AnimalList() {
                     <div>
                         <h3 className="text-5xl">Shetland Sheep</h3>
                         <p className="">Shetland Sheepdogs, or Shelties, are small, intelligent herding dogs with a striking, long coat. Originally bred in the Shetland Islands, they are known for their agility and trainability, making them excellent in various dog sports. Friendly and affectionate, Shelties are great with families and children, combining their herding instinct with a loving temperament.</p>
-                        <a href="#" className="">More Info<span className="sr-only"> on shetland sheep</span></a>
+                        {/* <a href="#" className="">More Info<span className="sr-only"> on shetland sheep</span></a> */}
                     </div>
                 </div>
 

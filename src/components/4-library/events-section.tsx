@@ -118,9 +118,8 @@ export function EventsSection() {
                         <img src={blockParty} />
                         <div className="bg-white p-4 text-center h-[485px]">
                             <h3>Neighborhood Block Parties</h3>
-                            <p>Both kids and adults can enjoy the charm of a country-themed birthday party.</p>
                             <p> Guests love playing party games along side our silly critters and depending on the season, baby animals are available for snuggles. </p>
-                            <p>With a track record of fantastic birthdays, we're eager to share the joy and fun with you!</p>
+                            <p>With a track record of fantastic block parties we're eager to share the joy and fun with you!</p>
                         </div>
                         <div className="bg-blue-light">
                             <img src={shamrock} className="mx-auto w-[25px] py-1" />
