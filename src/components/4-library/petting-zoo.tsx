@@ -9,8 +9,8 @@ export function PettingZoo() {
                 <img src={doubleImg} className="mx-auto -mt-16 mb-8 inline-block md:hidden" />
                 <div className="flex-1 md:max-w-[500px] mt-6">
                     <h2>Blue Shamrock Petting Zoo</h2>
-                    <p className="uppercase text-bold">Open every Tuesday 2-4pm in June, July & August.</p>
-                    <p className="uppercase text-bold">**Available for events all year round**</p>
+                    {/* <p className="uppercase text-bold">Open every Tuesday 2-4pm in June, July & August.</p> */}
+                    <p className="uppercase text-bold">Available for events all year round</p>
                     <img src={chickens} className="mx-auto mt-8 hidden md:block" />
                 </div>
                 <div className="flex-1 md:max-w-[500px] md:-mt-16">

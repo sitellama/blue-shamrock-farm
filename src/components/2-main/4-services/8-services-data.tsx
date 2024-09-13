@@ -18,7 +18,7 @@ import animalGramImg from "@/assets/holiday-parties.jpg";
 import animalGramPDF from "@/assets/pdf/animal-grams.pdf";
 
 import forSaleImg from "@/assets/Animals-for-sale.jpg";
-import forSalePDF from "@/assets/pdf/sale-animals.pdf";
+// import forSalePDF from "@/assets/pdf/sale-animals.pdf";
 
 import educationImg from "@/assets/educational-classes.jpg";
 import educationPDF from "@/assets/pdf/classes.pdf";
@@ -26,7 +26,7 @@ import educationPDF from "@/assets/pdf/classes.pdf";
 import photoshootImg from "@/assets/photoshoot.jpg";
 import photoshootPDF from "@/assets/pdf/photoshoot.pdf";
 
-import nativityImg from "@/assets/event-add-ons.jpg";
+import nativityImg from "@/assets/nativity.jpg";
 import nativityPDF from "@/assets/pdf/nativity.pdf";
 
 import ponyRidesImg from "@/assets/pony-rides.jpg";
@@ -93,7 +93,7 @@ const services: Service[] = [
         pdfName: "Animal Snuggling Details",
         pdfUrl: snugglePDF,
         onsite: true,
-        travel: true,
+        travel: false,
     },
     {
         image: animalGramImg,
@@ -108,7 +108,7 @@ const services: Service[] = [
         label: "Animals for Sale",
         content: "Discover the charm of our farm's baby animals for sale! From adorable piglets to fluffy chicks and playful kid goats, our farm offers the perfect opportunity to bring home a new furry or feathered friend. Raised with care and surrounded by the peaceful countryside, these lovable companions are ready to add joy and warmth to your family. Visit us to find your perfect match and experience the magic of bonding with our delightful baby animals!",
         pdfName: "View Current Animals for Sale",
-        pdfUrl: forSalePDF,
+        pdfUrl: "https://blue-shamrock-farm-llc.square.site/",
         onsite: true,
     },
     {

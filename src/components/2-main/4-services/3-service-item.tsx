@@ -10,7 +10,7 @@ export function ServicesEvents({ image, label, content, pdfName, pdfUrl, onsite,
 
                 <p>{content}</p>
 
-                <a href={pdfUrl} className="subheading">{pdfName}</a>
+                <a href={pdfUrl} target="_blank" className="subheading">{pdfName}</a>
 
                 <p className="flex gap-6 mb-0 ">
                     {onsite && <div className="px-5 py-1 bg-gray">Hosted on-site</div>}

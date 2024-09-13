@@ -25,8 +25,8 @@ export function ContactUs() {
         setResult("Sending....");
         const formData = new FormData(event.target);
 
-        // sitellama access key in place
-        formData.append("access_key", "a04f96ee-90d4-419a-98a1-81e984f2f3de");
+        // katie's access key in place
+        formData.append("access_key", "405982dd-a7a4-40fe-bafb-ef718f3ffb52");
 
         const res = await fetch("https://api.web3forms.com/submit", {
             method: "POST",
