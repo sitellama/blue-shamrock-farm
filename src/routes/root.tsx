@@ -18,7 +18,7 @@ export function Root() {
 
     return (<>
         <div className={`relative bg-zinc-100 ${debugClasses}`}>
-            <Header className={classNames(loc.pathname === "/" && "absolute")} />
+            <Header />
             <Outlet />
         </div>
 
