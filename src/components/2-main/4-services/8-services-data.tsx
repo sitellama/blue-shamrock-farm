@@ -9,7 +9,7 @@ import waitstaffImg from "@/assets/animal-waiter.jpg";
 import waitstaffPDF from "@/assets/pdf/waitstaff.pdf";
 
 import partiesImg from "@/assets/birthday-parties.jpg";
-import partiesPDF from "@/assets/birthday-parties.jpg";
+import partiesPDF from "@/assets/pdf/mobile-party-package.pdf";
 
 import snuggleImg from "@/assets/animal-snuggling.jpg";
 import snugglePDF from "@/assets/pdf/snuggling.pdf";
@@ -158,7 +158,7 @@ const services: Service[] = [
     {
         image: addOnImg,
         label: "Complete List of Add ons",
-        content: "Saddle up for excitement with pony rides at our farm! Perfect for young adventurers and pony enthusiasts alike, our rides offer a memorable experience trotting through scenic trails. Guided by our experienced staff, children can enjoy the thrill of riding gentle ponies in a safe and picturesque environment. Join us for a delightful journey on horseback and create lasting memories at our charming farm!",
+        content: "Add an extra sprinkle of fun with some creative add on options. Whether you're looking to tantalize taste buds with a selection of delicious food and beverages or want to bring out the smiles with fun activities, we’ve got you covered. Guests can enjoy face painting and yard games, pinatas and cupcake decorating, or pony rides and balloon twisting. We've accommodated DJ's, bounces and even mobile drink bars. From playful to artistic, we provide all the quirky touches to ensure your event is the talk of the town!",
         pdfName: "List of Add on Services",
         pdfUrl: addOnPDF,
         onsite: true,
