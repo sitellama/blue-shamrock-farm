@@ -147,3 +147,8 @@
 .slick-list {
   margin: 0 -10px;
 }
+
+/* checkboxes */
+[type='checkbox'], [type='radio'] {
+  color:#23374F;
+}

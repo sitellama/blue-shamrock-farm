@@ -1,6 +1,4 @@
 import { SEO } from "../../utils/seo";
-import { HeroImg } from "../4-library/hero-img";
-import barnWoodImg from "@/assets/farm-wood.webp";
 
 
 export function Privacy() {
@@ -8,7 +6,7 @@ export function Privacy() {
 
     return (
         <>
-            <SEO title="Animals Page" description="This is the Animals page" href="/" />
+            <SEO title="Animals Page" description="Blue Shamrock Farm privacy policy" href="/" />
 
             {/* <HeroImg hero={barnWoodImg} /> */}
 
@@ -48,7 +46,7 @@ export function Privacy() {
                 <h2 className="font-sans text-2xl font-bold">Contact us</h2>
                 <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at farmerkate225@gmail.com.</p>
                 <br></br>
-                <p><a href="/">Navigate back to home page</a></p>
+                <p><a href="/">Back to Home</a></p>
             </section>
 
         </>

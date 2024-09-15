@@ -10,7 +10,7 @@ export function SupportUs() {
                 <p className="subheading text-center">If you would like to send a thank you gift to any of the animals or grab some farm fresh goodies, please visit:</p>
             </div>
 
-            <div className="w-[95%] max-w-[1200px] mx-auto flex flex-col md:flex-row items-start justify-center gap-[5%]">
+            <div className="w-[95%] max-w-[1200px] mx-auto flex flex-col md:flex-row items-center md:items-start justify-center gap-[5%]">
                 <div className="flex flex-col items-center md:flex-[33%] mt-8">
                     <img src={cow} className="rounded-full border-solid border-4 border-white w-[292px]" />
                     <a href="https://www.amazon.com/hz/wishlist/ls/1KF35XP0KD1RI?ref_=wl_share" target="_blank" className="btn-a mx-auto text-center text-2xl">Amazon Wish List</a>
