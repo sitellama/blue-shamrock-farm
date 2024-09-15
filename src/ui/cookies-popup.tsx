@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 
 const rootClasses = "\
-fixed p-4 left-0 bottom-0 w-full z-[200] \
+fixed p-8 right-0 bottom-0 z-[200] \
 \
-text-white \
-bg-zinc-700 \
+text-white bg-brown \
+rounded-t-xl \
 \
 flex flex-col items-end gap-4";
 
 const buttonClasses = "\
 px-4 py-2 \
 border-transparent \
-bg-zinc-900 \
+bg-blue-dark \
 text-sm \
 rounded-md \
 shadow \
@@ -42,7 +42,7 @@ export function CookiesPopup() {
     return (
         <div className={rootClasses}>
             <div>
-                This website uses cookies to enhance the user experience.
+                <p>This website uses cookies to enhance user experience. <br className="hidden md:inline"></br>To learn more, please read our <a href="/privacy-policy" className="text-base">privacy policy</a>.</p>
             </div>
 
             <button className={buttonClasses} onClick={onClick}>
