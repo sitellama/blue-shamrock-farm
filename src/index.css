@@ -83,11 +83,11 @@
 
 /* slick slider  */
 .slick-prev {
-  @apply left-[-50px];
+  @apply left-[calc(-4%-52px)];
 }
 
 .slick-next {
-  @apply right-[-50px];
+  @apply right-[calc(-4%-52px)];
 }
 
 .slick-prev,
