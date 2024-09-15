@@ -8,7 +8,13 @@ import { classNames } from "@/utils";
 // ReactGA.initialize('G-XMXJ22G27Y', {
 //     gaAddress: "https://www.googletagmanager.com/gtag/js?id=G-XMXJ22G27Y",
 // });
+import { classNames } from "@/utils";
 
+// ReactGA.initialize('G-XMXJ22G27Y', {
+//     gaAddress: "https://www.googletagmanager.com/gtag/js?id=G-XMXJ22G27Y",
+// });
+
+const debugClasses = import.meta.env.PROD ? "" : "debug-screens";
 const debugClasses = import.meta.env.PROD ? "" : "debug-screens";
 
 export function Root() {

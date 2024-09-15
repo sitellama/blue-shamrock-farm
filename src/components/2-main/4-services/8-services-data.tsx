@@ -9,7 +9,7 @@ import waitstaffImg from "@/assets/animal-waiter.jpg";
 import waitstaffPDF from "@/assets/pdf/waitstaff.pdf";
 
 import partiesImg from "@/assets/birthday-parties.jpg";
-import partiesPDF from "@/assets/birthday-parties.jpg";
+import partiesPDF from "@/assets/pdf/mobile-party-package.pdf";
 
 import snuggleImg from "@/assets/animal-snuggling.jpg";
 import snugglePDF from "@/assets/pdf/snuggling.pdf";
@@ -18,7 +18,7 @@ import animalGramImg from "@/assets/holiday-parties.jpg";
 import animalGramPDF from "@/assets/pdf/animal-grams.pdf";
 
 import forSaleImg from "@/assets/Animals-for-sale.jpg";
-import forSalePDF from "@/assets/pdf/sale-animals.pdf";
+// import forSalePDF from "@/assets/pdf/sale-animals.pdf";
 
 import educationImg from "@/assets/educational-classes.jpg";
 import educationPDF from "@/assets/pdf/classes.pdf";
@@ -26,7 +26,7 @@ import educationPDF from "@/assets/pdf/classes.pdf";
 import photoshootImg from "@/assets/photoshoot.jpg";
 import photoshootPDF from "@/assets/pdf/photoshoot.pdf";
 
-import nativityImg from "@/assets/event-add-ons.jpg";
+import nativityImg from "@/assets/nativity.jpg";
 import nativityPDF from "@/assets/pdf/nativity.pdf";
 
 import ponyRidesImg from "@/assets/pony-rides.jpg";
@@ -93,7 +93,7 @@ const services: Service[] = [
         pdfName: "Animal Snuggling Details",
         pdfUrl: snugglePDF,
         onsite: true,
-        travel: true,
+        travel: false,
     },
     {
         image: animalGramImg,
@@ -108,7 +108,7 @@ const services: Service[] = [
         label: "Animals for Sale",
         content: "Discover the charm of our farm's baby animals for sale! From adorable piglets to fluffy chicks and playful kid goats, our farm offers the perfect opportunity to bring home a new furry or feathered friend. Raised with care and surrounded by the peaceful countryside, these lovable companions are ready to add joy and warmth to your family. Visit us to find your perfect match and experience the magic of bonding with our delightful baby animals!",
         pdfName: "View Current Animals for Sale",
-        pdfUrl: forSalePDF,
+        pdfUrl: "https://blue-shamrock-farm-llc.square.site/",
         onsite: true,
     },
     {
@@ -158,7 +158,7 @@ const services: Service[] = [
     {
         image: addOnImg,
         label: "Complete List of Add ons",
-        content: "Saddle up for excitement with pony rides at our farm! Perfect for young adventurers and pony enthusiasts alike, our rides offer a memorable experience trotting through scenic trails. Guided by our experienced staff, children can enjoy the thrill of riding gentle ponies in a safe and picturesque environment. Join us for a delightful journey on horseback and create lasting memories at our charming farm!",
+        content: "Add an extra sprinkle of fun with some creative add on options. Whether you're looking to tantalize taste buds with a selection of delicious food and beverages or want to bring out the smiles with fun activities, we’ve got you covered. Guests can enjoy face painting and yard games, pinatas and cupcake decorating, or pony rides and balloon twisting. We've accommodated DJ's, bounces and even mobile drink bars. From playful to artistic, we provide all the quirky touches to ensure your event is the talk of the town!",
         pdfName: "List of Add on Services",
         pdfUrl: addOnPDF,
         onsite: true,

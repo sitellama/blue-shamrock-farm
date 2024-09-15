@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import ogImg from "@/assets/og-image.jpg";
 
 export function SEO({ title, description, href }: { title: string; description: string; href: string; }) {
     return (
@@ -8,6 +9,7 @@ export function SEO({ title, description, href }: { title: string; description: 
             <meta name='description' content={description} />
             <meta name="title" content="Blue Shamrock Farm" data-react-helmet="true"></meta>
             <meta name="og:title" content="Blue Shamrock Farm" data-react-helmet="true"></meta>
+            <meta name="og:image" content={ogImg} data-react-helmet="true"></meta>
         </Helmet>
     );
 }

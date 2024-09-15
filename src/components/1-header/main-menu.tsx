@@ -31,14 +31,14 @@ export function MainMenu() {
 
     return (
         <div className="w-full">
-            <MenuBody className="hidden md:flex items-end justify-between text-center" loc={loc} />
+            <MenuBody className="hidden min-[1100px]:flex items-end justify-between text-center" loc={loc} />
 
 
             <div className="flex justify-between">
-                <a href="/" className="m-0"><img src={logoImg} alt="Blue Shamrock Farm" className="size-10 md:hidden" /></a>
+                <a href="/" className="m-0"><img src={logoImg} alt="Blue Shamrock Farm" className="size-10 min-[1100px]:hidden" /></a>
 
                 <button
-                    className="md:hidden z-50 relative"
+                    className="min-[1100px]:hidden z-50 relative"
                     onClick={() => setIsMenuOpen((v) => !v)}
                     role="navigation"
                     aria-label="Main Menu" // aria-state={isMenuOpen ? "open" : "closed"}
@@ -52,7 +52,7 @@ export function MainMenu() {
                 {isMenuOpen &&
                     createPortal(
                         <div ref={ref} className="w-full absolute right-0 top-0">
-                            <MenuBody className="w-full md:hidden bg-page-bg flex flex-col items-center pb-4" loc={loc} />
+                            <MenuBody className="w-full min-[1100px]:hidden bg-page-bg flex flex-col items-center pb-4" loc={loc} />
                         </div>, document.body
                     )
                 }
@@ -90,15 +90,17 @@ function MenuBody({ loc, className }: { loc: Location; className?: string; }) {
     return (
         <ul className={className}>
             {/* <OurLink label="Home" to="/" loc={loc} /> */}
+            <OurLink label="Home" to="/" loc={loc} />
             <OurLink label="Meet The Animals" to="/animals" loc={loc} />
             <OurLink label="Services & Events" to="/services" loc={loc} />
-            <figure className={`flex justify-center items-center -order-1 md:order-none`}>
+            <figure className={`flex justify-center items-center -order-1 min-[1100px]:order-none`}>
                 <a href="/" className="no-underline mb-0">
                     <img src={logoImg} alt="Blue Shamrock Farm" className="w-[50%] mx-auto mb-2" />
                     <figcaption>Blue Shamrock Farm</figcaption>
                 </a>
             </figure>
             <OurLink label="Shamrock Shop" to="https://blue-shamrock-farm-llc.square.site/" loc={loc} />
+            <OurLink label="FAQs" to="/faq" loc={loc} />
             <OurLink label="Get In Touch" to="#contact" loc={loc} />
         </ul>
     );

@@ -11,7 +11,7 @@ import { sections } from "@/components/4-library/sections-data";
 export function Animals() {
   return (
     <>
-      <SEO title="Animals Page" description="This is the Animals page" href="/" />
+      <SEO title="Meet the Animals" description="Meet the friendly farm animals available for events at Blue Shamrock Farm." href="/" />
 
       <HeroImg hero={hero} heroDiv={true} heroTitle="Welcome to the Barn" heroText="Please meet some of our friends" />
 
