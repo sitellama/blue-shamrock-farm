@@ -3,8 +3,13 @@ import { Location, Outlet, useLocation } from "react-router-dom";
 import ReactGA from 'react-ga';
 import { Header } from "../components/1-header";
 import { Footer } from "../components/3-footer";
+import { classNames } from "@/utils";
 
-ReactGA.initialize('UA-000000-01');
+// ReactGA.initialize('G-XMXJ22G27Y', {
+//     gaAddress: "https://www.googletagmanager.com/gtag/js?id=G-XMXJ22G27Y",
+// });
+
+const debugClasses = import.meta.env.PROD ? "" : "debug-screens";
 
 export function Root() {
     const loc = useLocation();
@@ -12,8 +17,11 @@ export function Root() {
     useEffect(() => reportGA(loc), [loc.pathname, loc.search]);
 
     return (<>
-        <Header />
-        <Outlet />
+        <div className={`relative bg-zinc-100 ${debugClasses}`}>
+            <Header className={classNames(loc.pathname === "/" && "absolute")} />
+            <Outlet />
+        </div>
+
         <Footer />
     </>);
 }
