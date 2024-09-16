@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-import { Location, useLocation } from "react-router-dom";
+import { Link, Location, useLocation } from "react-router-dom";
 import { useClickAway } from "react-use";
 import { classNames } from "@/utils";
 import { IconCross, IconHamburger } from "@/ui";
@@ -67,18 +67,27 @@ function OurLink({ label, to, loc }: { label: string; to: string; loc: Location;
     const isActive = to === loc.pathname;
     return (
         <li>
+            <Link
+                to={to}
+                className={classNames(liClasses, isActive && "!underline")}
+                aria-current={isActive ? "page" : undefined}
+            >
+                {label}
+            </Link>
+        </li>
+    );
+}
+
+function OurLinkInNewTab({ label, to, loc }: { label: string; to: string; loc: Location; }) {
+    const isActive = to === loc.pathname;
+    return (
+        <li>
             <a
                 href={to}
                 className={classNames(liClasses, isActive && "!underline")}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-current={isActive ? "page" : undefined}
-                onClick={(e) => {
-                    e.preventDefault();
-
-                    window.location.href = to;
-                }
-                }
             >
                 {label}
             </a>
@@ -99,7 +108,7 @@ function MenuBody({ loc, className }: { loc: Location; className?: string; }) {
                     <figcaption>Blue Shamrock Farm</figcaption>
                 </a>
             </figure>
-            <OurLink label="Shamrock Shop" to="https://blue-shamrock-farm-llc.square.site/" loc={loc} />
+            <OurLinkInNewTab label="Shamrock Shop" to="https://blue-shamrock-farm-llc.square.site/" loc={loc} />
             <OurLink label="FAQs" to="/faq" loc={loc} />
             <OurLink label="Get In Touch" to="#contact" loc={loc} />
         </ul>
