@@ -5,8 +5,7 @@ import { useClickAway } from "react-use";
 import { classNames } from "@/utils";
 import { IconCross, IconHamburger } from "@/ui";
 import { createPortal } from "react-dom";
-// import logoImg from "@/assets/logo-dark.png";
-import logoImg from "@/assets/logo-v2.png";
+import logoImg from "@/assets/logo.webp";
 import { isMenuOpenAtom } from "./isMenuOpenAtom";
 
 export function MainMenu() {
