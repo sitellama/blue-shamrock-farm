@@ -1,4 +1,5 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef } from "react";
+import { useAtom, useSetAtom } from "jotai";
 import { Link, Location, useLocation } from "react-router-dom";
 import { useClickAway } from "react-use";
 import { classNames } from "@/utils";
@@ -6,10 +7,11 @@ import { IconCross, IconHamburger } from "@/ui";
 import { createPortal } from "react-dom";
 // import logoImg from "@/assets/logo-dark.png";
 import logoImg from "@/assets/logo-v2.png";
+import { isMenuOpenAtom } from "./isMenuOpenAtom";
 
 export function MainMenu() {
     const loc = useLocation();
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useAtom(isMenuOpenAtom);
 
     const ref = useRef(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
@@ -65,12 +67,14 @@ const liClasses = "block px-3 py-2 m-0 text-lg no-underline select-none";
 
 function OurLink({ label, to, loc }: { label: string; to: string; loc: Location; }) {
     const isActive = to === loc.pathname;
+    const setIsMenuOpen = useSetAtom(isMenuOpenAtom);
     return (
         <li>
             <Link
                 to={to}
                 className={classNames(liClasses, isActive && "!underline")}
                 aria-current={isActive ? "page" : undefined}
+                onClick={() => setIsMenuOpen(false)}
             >
                 {label}
             </Link>
