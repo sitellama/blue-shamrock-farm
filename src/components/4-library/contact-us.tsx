@@ -1,5 +1,5 @@
 // @ts-nocheck
-import shamrock from "@/assets/shamrock-clovers.png";
+import shamrock from "@/assets/shamrock-clovers.webp";
 
 // export function ContactUs() {
 //     return (

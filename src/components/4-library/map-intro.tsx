@@ -1,4 +1,4 @@
-import oxfordMap from "@/assets/oxford-michigan.png";
+import oxfordMap from "@/assets/oxford-michigan.webp";
 
 export function MapIntro() {
     return (

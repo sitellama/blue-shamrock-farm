@@ -1,5 +1,5 @@
 import { SEO } from "../../utils/seo";
-import llamaFence from "@/assets/hero-faq.jpg";
+import llamaFence from "@/assets/hero-faq.webp";
 import { HeroImg } from "../4-library/hero-img";
 
 export function FAQs() {

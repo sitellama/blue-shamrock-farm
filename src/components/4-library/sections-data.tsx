@@ -1,17 +1,17 @@
-import goat from "@/assets/goat.jpg";
-import cattle from "@/assets/cattle.jpg";
-import sheep from "@/assets/sheep.jpg";
-import duck from "@/assets/ducks.jpg";
-import featureKerry from "@/assets/kerry-bog-pony.jpg";
-import pig from "@/assets/mini-pig.jpg";
-import alpaca from "@/assets/alpaca.jpg";
-import bunny from "@/assets/bunny.jpg";
-import peacock from "@/assets/peacock.jpg";
-import featureTornjak from "@/assets/tornjak.jpg";
-import guineaPig from "@/assets/guinea-pig.jpg";
-import chinchilla from "@/assets/chinchilla.jpg";
-import budgie from "@/assets/budgie-bird.jpg";
-import chicken from "@/assets/chicken.jpg";
+import goat from "@/assets/goat.webp";
+import cattle from "@/assets/cattle.webp";
+import sheep from "@/assets/sheep.webp";
+import duck from "@/assets/ducks.webp";
+import featureKerry from "@/assets/kerry-bog-pony.webp";
+import pig from "@/assets/mini-pig.webp";
+import alpaca from "@/assets/alpaca.webp";
+import bunny from "@/assets/bunny.webp";
+import peacock from "@/assets/peacock.webp";
+import featureTornjak from "@/assets/tornjak.webp";
+import guineaPig from "@/assets/guinea-pig.webp";
+import chinchilla from "@/assets/chinchilla.webp";
+import budgie from "@/assets/budgie-bird.webp";
+import chicken from "@/assets/chicken.webp";
 import { ReactNode } from "react";
 
 export type CellType = {

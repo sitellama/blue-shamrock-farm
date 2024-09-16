@@ -1,6 +1,6 @@
-import cow from "@/assets/support-the-farm.jpg";
-import pig from "@/assets/support-the-farm2.jpg";
-import soap from "@/assets/support-the-farm3.jpg";
+import cow from "@/assets/support-the-farm.webp";
+import pig from "@/assets/support-the-farm2.webp";
+import soap from "@/assets/support-the-farm3.webp";
 
 export function SupportUs() {
     return (

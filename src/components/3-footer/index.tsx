@@ -1,5 +1,4 @@
-// import logoImg from "@/assets/logo-light.png";
-import logoImg from "@/assets/logo-v2.png";
+import logoImg from "@/assets/logo.webp";
 
 
 
