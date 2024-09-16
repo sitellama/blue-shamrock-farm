@@ -1,42 +1,42 @@
-import pettingZooImg from "@/assets/petting-zoo-event.jpg";
+import pettingZooImg from "@/assets/petting-zoo-event.webp";
 import pettingZooPDF from "@/assets/pdf/mobile-petting-zoo.pdf";
 
-import goatYogaImg from "@/assets/goat-yoag.jpg";
+import goatYogaImg from "@/assets/goat-yoag.webp";
 import goatYogaPDF from "@/assets/pdf/yoga-on-the-farm.pdf";
 import goatYogaPDFTwo from "@/assets/pdf/mobile-goat-yoga.pdf";
 
-import waitstaffImg from "@/assets/animal-waiter.jpg";
+import waitstaffImg from "@/assets/animal-waiter.webp";
 import waitstaffPDF from "@/assets/pdf/waitstaff.pdf";
 
-import partiesImg from "@/assets/birthday-parties.jpg";
+import partiesImg from "@/assets/birthday-parties.webp";
 import partiesPDF from "@/assets/pdf/mobile-party-package.pdf";
 
-import snuggleImg from "@/assets/animal-snuggling.jpg";
+import snuggleImg from "@/assets/animal-snuggling.webp";
 import snugglePDF from "@/assets/pdf/snuggling.pdf";
 
-import animalGramImg from "@/assets/holiday-parties.jpg";
+import animalGramImg from "@/assets/holiday-parties.webp";
 import animalGramPDF from "@/assets/pdf/animal-grams.pdf";
 
-import forSaleImg from "@/assets/Animals-for-sale.jpg";
+import forSaleImg from "@/assets/Animals-for-sale.webp";
 // import forSalePDF from "@/assets/pdf/sale-animals.pdf";
 
-import educationImg from "@/assets/educational-classes.jpg";
+import educationImg from "@/assets/educational-classes.webp";
 import educationPDF from "@/assets/pdf/classes.pdf";
 
-import photoshootImg from "@/assets/photoshoot.jpg";
+import photoshootImg from "@/assets/photoshoot.webp";
 import photoshootPDF from "@/assets/pdf/photoshoot.pdf";
 
-import nativityImg from "@/assets/nativity.jpg";
+import nativityImg from "@/assets/nativity.webp";
 import nativityPDF from "@/assets/pdf/nativity.pdf";
 
-import ponyRidesImg from "@/assets/pony-rides.jpg";
+import ponyRidesImg from "@/assets/pony-rides.webp";
 import ponyRidesPDF from "@/assets/pdf/pony-rides.pdf";
 
-import addOnImg from "@/assets/event-add-ons.jpg";
+import addOnImg from "@/assets/event-add-ons.webp";
 import addOnPDF from "@/assets/pdf/add-ons.pdf";
 
 
-import popup from "@/assets/pop-up-shop.jpg";
+import popup from "@/assets/pop-up-shop.webp";
 import { atom } from "jotai";
 
 export type Service = {

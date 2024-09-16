@@ -1,6 +1,6 @@
-import chickens from "@/assets/petting-zoo-chickens.jpg";
-import goats from "@/assets/petting-zoo-goats.jpg";
-import doubleImg from "@/assets/petting-zoo-animals.png";
+import chickens from "@/assets/petting-zoo-chickens.webp";
+import goats from "@/assets/petting-zoo-goats.webp";
+import doubleImg from "@/assets/petting-zoo-animals.webp";
 
 export function PettingZoo() {
     return (

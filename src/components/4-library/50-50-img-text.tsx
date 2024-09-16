@@ -1,4 +1,4 @@
-import homeschool from "@/assets/outdoor-classes.jpg";
+import homeschool from "@/assets/outdoor-classes.webp";
 
 export function ImgText() {
     return (

@@ -1,4 +1,4 @@
-import facePainting from "@/assets/face-painting.jpg";
+import facePainting from "@/assets/face-painting.webp";
 
 export function TextImg() {
     return (

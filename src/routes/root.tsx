@@ -5,9 +5,20 @@ import { Header } from "../components/1-header";
 import { Footer } from "../components/3-footer";
 import { classNames } from "@/utils";
 
-// ReactGA.initialize('G-XMXJ22G27Y', {
-//     gaAddress: "https://www.googletagmanager.com/gtag/js?id=G-XMXJ22G27Y",
-// });
+ReactGA.initialize('G-V0YCCCVV8Y', {
+    gaAddress: "https://www.googletagmanager.com/gtag/js?id=G-V0YCCCVV8Y",
+});
+
+// <!-- Google tag (gtag.js) -->
+// <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0YCCCVV8Y"></script>
+// <script>
+//   window.dataLayer = window.dataLayer || [];
+//   function gtag(){dataLayer.push(arguments);}
+//   gtag('js', new Date());
+
+//   gtag('config', 'G-V0YCCCVV8Y');
+
+// </script >
 
 const debugClasses = import.meta.env.PROD ? "" : "debug-screens";
 

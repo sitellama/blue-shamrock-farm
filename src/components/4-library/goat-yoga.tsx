@@ -1,4 +1,4 @@
-import goatYoga from "@/assets/goat-yoga-classes.png";
+import goatYoga from "@/assets/goat-yoga-classes.webp";
 
 export function GoatYoga() {
     return (

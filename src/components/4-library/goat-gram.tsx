@@ -1,4 +1,4 @@
-import goatGram from "@/assets/goat-gram.png";
+import goatGram from "@/assets/goat-gram.webp";
 import barnWoodImg from "@/assets/farm-wood.webp";
 
 const barnWood = `url(${barnWoodImg})`;
