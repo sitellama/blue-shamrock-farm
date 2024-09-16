@@ -23,10 +23,10 @@ const routes: RouteObject[] = [
         path: "/faq",
         element: <FAQs />,
     },
-    // {
-    //     path: "/contact",
-    //     element: <Contact />,
-    // },
+    {
+        path: "contact",
+        element: <Contact />,
+    },
     {
         path: "/privacy-policy",
         element: <Privacy />,

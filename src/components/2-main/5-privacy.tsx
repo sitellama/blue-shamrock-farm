@@ -43,7 +43,7 @@ export function Privacy() {
                 <h2 className="font-sans text-2xl font-bold">Changes to this privacy policy</h2>
                 <p>We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. Any changes will be posted on this page with an updated effective date. We encourage you to review this Privacy Policy periodically.</p>
 
-                <h2 className="font-sans text-2xl font-bold">Contact us</h2>
+                <h2 className="font-sans text-2xl font-bold" id="contact">Contact us</h2>
                 <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at farmerkate225@gmail.com.</p>
                 <br></br>
                 <p className="m-0 pb-6"><a href="/">Back to Home</a></p>

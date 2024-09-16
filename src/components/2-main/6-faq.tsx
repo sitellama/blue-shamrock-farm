@@ -1,6 +1,7 @@
 import { SEO } from "../../utils/seo";
 import llamaFence from "@/assets/hero-faq.webp";
 import { HeroImg } from "../4-library/hero-img";
+import { ContactUs } from "../4-library/contact-us";
 
 export function FAQs() {
     const currentYear = new Date().getFullYear();
@@ -49,6 +50,8 @@ export function FAQs() {
                 <h2 className="font-sans text-2xl font-bold">Are other animals allowed to be around?</h2>
                 <p className="m-0 pb-6">For the safety of all animals, outside animals are not permitted to interact with our animals. Please ensure dogs, etc are contained and no outside animals "boop snoots".</p>
             </section>
+
+            <ContactUs />
         </>
     );
 }

@@ -81,15 +81,15 @@ function OurLink({ label, to, loc }: { label: string; to: string; loc: Location;
     );
 }
 
-function OurLinkInNewTab({ label, to, loc }: { label: string; to: string; loc: Location; }) {
+function OurLinkInNewTab({ label, to, loc, openNewPage }: { label: string; to: string; loc: Location; openNewPage?: boolean; }) {
     const isActive = to === loc.pathname;
     return (
         <li>
             <a
                 href={to}
                 className={classNames(liClasses, isActive && "!underline")}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={openNewPage ? "_blank" : undefined  }
+                rel={openNewPage ? "noopener noreferrer" : undefined}
                 aria-current={isActive ? "page" : undefined}
             >
                 {label}
@@ -111,9 +111,9 @@ function MenuBody({ loc, className }: { loc: Location; className?: string; }) {
                     <figcaption>Blue Shamrock Farm</figcaption>
                 </a>
             </figure>
-            <OurLinkInNewTab label="Shamrock Shop" to="https://blue-shamrock-farm-llc.square.site/" loc={loc} />
+            <OurLinkInNewTab label="Shamrock Shop" to="https://blue-shamrock-farm-llc.square.site/" loc={loc} openNewPage />
             <OurLink label="FAQs" to="/faq" loc={loc} />
-            <OurLink label="Get In Touch" to="#contact" loc={loc} />
+            <OurLinkInNewTab label="Get In Touch" to="#contact" loc={loc} />
         </ul>
     );
 }
