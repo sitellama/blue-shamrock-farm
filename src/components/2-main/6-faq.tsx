@@ -49,7 +49,7 @@ export function FAQs() {
                 <p>We will stay for about half an hour after the event to pack up and clean up. You may have some clean-up to do, such as vacuuming for an inside event or raking for an outside event. Animals do go to the bathroom, and we cannot clean up all the tiny amounts. We will do our best to clean up as much as possible.</p>
 
                 <h2 className="font-sans text-2xl font-bold">Are other animals allowed to be around?</h2>
-                <p className="pb-6">For the safety of all animals, outside animals are not permitted to interact with our animals. Please ensure dogs, etc are contained and no outside animals "boop snoots".</p>
+                <p className="m-0 pb-6">For the safety of all animals, outside animals are not permitted to interact with our animals. Please ensure dogs, etc are contained and no outside animals "boop snoots".</p>
             </section>
 
         </>
