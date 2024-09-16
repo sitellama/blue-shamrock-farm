@@ -38,6 +38,8 @@ export function Root() {
 }
 
 function reportGA(loc: Location) {
+    return;
+    
     ReactGA.pageview(loc.pathname + loc.search, undefined, "0-root-title");
 
     ReactGA.event({

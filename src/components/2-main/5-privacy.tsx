@@ -46,7 +46,7 @@ export function Privacy() {
                 <h2 className="font-sans text-2xl font-bold">Contact us</h2>
                 <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at farmerkate225@gmail.com.</p>
                 <br></br>
-                <p><a href="/">Back to Home</a></p>
+                <p className="m-0 pb-6"><a href="/">Back to Home</a></p>
             </section>
 
         </>
