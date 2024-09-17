@@ -29,17 +29,17 @@ export function ContactUs() {
             }
         );
 
-        console.log("--formData", checkboxes);
+        // console.log("--formData", checkboxes);
 
         const interestsName = "interests"
         formData.append(interestsName, JSON.stringify(checkboxes));
 
 
         // katie's access key in place
-        // formData.append("access_key", "405982dd-a7a4-40fe-bafb-ef718f3ffb52");
+        formData.append("access_key", "405982dd-a7a4-40fe-bafb-ef718f3ffb52");
 
         // sitellama key
-        formData.append("access_key", "a04f96ee-90d4-419a-98a1-81e984f2f3de");
+        // formData.append("access_key", "a04f96ee-90d4-419a-98a1-81e984f2f3de");
 
         try {
             const res = await fetch("https://api.web3forms.com/submit", {
@@ -57,7 +57,7 @@ export function ContactUs() {
             const resData = await res.json() as OurRes;
             resData.data[interestsName] = JSON.parse(resData.data[interestsName]);
 
-            setResult(`result ${JSON.stringify(resData.data, null, 2)}`);
+            setResult(`Your message has been sent.`);
         } catch (error) {
             console.error("Error", error);
             setResult(`result2 ${error}`);

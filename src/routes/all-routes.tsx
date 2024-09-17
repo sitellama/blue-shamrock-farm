@@ -1,4 +1,4 @@
-import { RouteObject, createBrowserRouter } from "react-router-dom";
+import { RouteObject, createBrowserRouter, Navigate } from "react-router-dom";
 import { Root } from "./root";
 import { Animals, Contact, Home, Services } from "@/components/2-main";
 import { FAQs } from "@/components/2-main/6-faq";
@@ -34,6 +34,10 @@ const routes: RouteObject[] = [
     {
         path: "/error",
         element: <ErrorPage />,
+    },
+    {
+        path: "/home",
+        element: <Navigate to="/" />,
     },
 ];
 
