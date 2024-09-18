@@ -15,7 +15,7 @@ export function Services() {
         <div className="mt-0 mb-20 bg-blue-dark text-white py-12">
             <h1 className="text-center">Event Details</h1>
             <p className="max-content text-center">
-                At Blue Shamrock Farm, we offer a variety of events. Below, you’ll find a detailed list of all events and outed details like what to expect and package options.</p>
+                At Blue Shamrock Farm, we offer a variety of events. Below, you’ll find a list of all events and links to details like what to expect, package options and pricing.</p>
         </div>
 
         <section className="max-content flex flex-col items-center">
@@ -25,7 +25,7 @@ export function Services() {
                 <ServicesList />
             </div>
         </section>
-        
+
         <SupportUs />
 
         <ContactUs />

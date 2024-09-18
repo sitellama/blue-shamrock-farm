@@ -108,7 +108,7 @@ const services: Service[] = [
         label: "Animals for Sale",
         content: "Discover the charm of our farm's baby animals for sale! From adorable piglets to fluffy chicks and playful kid goats, our farm offers the perfect opportunity to bring home a new furry or feathered friend. Raised with care and surrounded by the peaceful countryside, these lovable companions are ready to add joy and warmth to your family. Visit us to find your perfect match and experience the magic of bonding with our delightful baby animals!",
         pdfName: "View Current Animals for Sale",
-        pdfUrl: "https://blue-shamrock-farm-llc.square.site/",
+        pdfUrl: "https://blue-shamrock-farm-llc.square.site/animals",
         onsite: true,
     },
     {
@@ -130,7 +130,7 @@ const services: Service[] = [
     // },\
     {
         image: photoshootImg,
-        label: "Photoshoots with the Animals",
+        label: "Photoshoots",
         content: "Capture the magic of farm life with our exclusive photoshoots featuring our beloved animals! Snap beautiful moments with our friendly horses, goats, and more, creating lasting memories in a picturesque setting. Perfect for families and couples — book your session today!",
         pdfName: "List of Add on Services",
         pdfUrl: photoshootPDF,

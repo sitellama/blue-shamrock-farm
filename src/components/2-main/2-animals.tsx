@@ -15,8 +15,9 @@ export function Animals() {
 
       <HeroImg hero={hero} heroDiv={true} heroTitle="Welcome to the Barn" heroText="Please meet some of our friends" />
 
-
-      {/* <Sections sections={sections} /> */}
+      <div className="bg-gray">
+        <h2 className="mt-0 mx-auto p-4 max-content text-lg text-center font-['poppins']">If you’re interested in purchasing one of our animals, please take a look at our <a href="https://blue-shamrock-farm-llc.square.site/animals" target="_blank" className="text-lg font-['poppins']">current listings</a>. We also offer trial periods for select animals, giving you the opportunity to decide before making a purchase.</h2>
+      </div>
 
       <AnimalList />
 

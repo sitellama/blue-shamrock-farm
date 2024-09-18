@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import ogImg from "@/assets/og-image.webp";
+import ogImg from "../../public/og-image.webp";
 
 export function SEO({ title, description, href }: { title: string; description: string; href: string; }) {
     return (
@@ -13,3 +13,4 @@ export function SEO({ title, description, href }: { title: string; description: 
         </Helmet>
     );
 }
+
