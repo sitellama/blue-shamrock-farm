@@ -8,32 +8,30 @@ import { HeroImg } from "@/components/4-library/hero-img";
 import { MapIntro } from "@/components/4-library/map-intro";
 import { PettingZoo } from "@/components/4-library/petting-zoo";
 import { SEO } from "@/utils/seo";
-import heroHorse from "@/assets/hero-horse.webp"
+import heroHorse from "@/assets/hero-horse.webp";
 
 export function Home() {
-  return (
-    <>
-      <SEO title="Blue Shamrock Farm" description="This is the home page" href="/" />
+    return (
+        <>
+            <SEO title="Blue Shamrock Farm" description="This is the home page" href="/" />
 
-      <HeroImg hero={heroHorse} />
+            <HeroImg hero={heroHorse} />
 
-      <MapIntro />
+            <MapIntro />
 
-      <PettingZoo />
+            <PettingZoo />
 
-      <GoatYoga />
+            <GoatYoga />
 
-      <GoatGram />
+            <GoatGram />
 
-      <EventsSection />
+            <EventsSection />
 
-      <ImgText />
+            <ImgText />
 
-      <TextImg />
+            <TextImg />
 
-      <ContactUs />
-
-      {/* <WorkWithUs /> */}
-    </>
-  );
+            <ContactUs />
+        </>
+    );
 }

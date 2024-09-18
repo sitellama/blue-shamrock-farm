@@ -5,8 +5,6 @@ import hero from "@/assets/hero-barn-doors.webp";
 import { AnimalList } from "../4-library/amimal-list";
 import { ContactUs } from "../4-library/contact-us";
 import { SupportUs } from "../4-library/support-us";
-import { Sections } from "@/components/4-library/section";
-import { sections } from "@/components/4-library/sections-data";
 
 export function Animals() {
   return (
@@ -24,7 +22,6 @@ export function Animals() {
       <SupportUs />
 
       <ContactUs />
-
     </>
   );
 }
