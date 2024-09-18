@@ -39,13 +39,16 @@ const routes: RouteObject[] = [
         path: "/home",
         element: <Navigate to="/" />,
     },
+    {
+        path: "*",
+        element: <ErrorPage />,
+    },
 ];
 
 export const router = createBrowserRouter([
-    {
+      {
         path: "/",
         element: <Root />,
-        // errorElement: <ErrorPage />,
         errorElement: <ErrorPage />,
         children: routes,
     },

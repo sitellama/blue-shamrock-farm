@@ -48,7 +48,6 @@ export function Privacy() {
                 <br></br>
                 <p className="m-0 pb-6"><a href="/">Back to Home</a></p>
             </section>
-
         </>
     );
 }
