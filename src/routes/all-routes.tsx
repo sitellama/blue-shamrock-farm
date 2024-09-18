@@ -1,6 +1,6 @@
 import { RouteObject, createBrowserRouter, Navigate } from "react-router-dom";
 import { Root } from "./root";
-import { Animals, Contact, Home, Services } from "@/components/2-main";
+import { Animals, Home, Services } from "@/components/2-main";
 import { FAQs } from "@/components/2-main/6-faq";
 import { Privacy } from "@/components/2-main/5-privacy";
 import { ErrorPage } from "@/components/2-main/7-error";
@@ -24,10 +24,6 @@ const routes: RouteObject[] = [
         element: <FAQs />,
     },
     {
-        path: "contact",
-        element: <Contact />,
-    },
-    {
         path: "/privacy-policy",
         element: <Privacy />,
     },
@@ -46,7 +42,7 @@ const routes: RouteObject[] = [
 ];
 
 export const router = createBrowserRouter([
-      {
+    {
         path: "/",
         element: <Root />,
         errorElement: <ErrorPage />,
