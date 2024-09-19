@@ -17,7 +17,7 @@ function Copyright() {
 
                 <figure className="flex justify-center items-center">
                     <a href="/" className="my-0 no-underline">
-                        <img src={logoImg} alt="Blue Shamrock Farm" className="w-[50%] mx-auto mb-2" />
+                        <img src={logoImg} alt="logo" className="w-[50%] mx-auto mb-2" />
                         <figcaption>Blue Shamrock Farm</figcaption>
                     </a>
                 </figure>

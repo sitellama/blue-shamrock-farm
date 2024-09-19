@@ -5,7 +5,7 @@ export function GoatYoga() {
         <section >
             <div className="flex flex-col md:flex-row gap-[5%] w-[90%] max-w-[1000px] mx-auto">
                 <div className="md:w-[50%]">
-                    <img src={goatYoga} />
+                    <img src={goatYoga} alt="two women doing yoga while goats climb on them" />
                 </div>
                 <div className="md:w-[50%]  m-auto ">
                     <h2>Join Us for Goat Yoga</h2>

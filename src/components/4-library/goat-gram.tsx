@@ -9,7 +9,7 @@ export function GoatGram() {
             <div className="max-content btn-outer bg-blue-light lg:relative max-w-[90%] lg:max-w-[64%]">
                 <div className="btn-inner text-white text-center py-8 px-4 lg:px-32">
                     <div>
-                        <img src={goatGram} className="lg:absolute bottom-[-4rem] right-[-10rem] mx-auto max-w-[75%] md:max-w-[275px]" />
+                        <img src={goatGram} className="lg:absolute bottom-[-4rem] right-[-10rem] mx-auto max-w-[75%] md:max-w-[275px]" alt="happily surprised woman holding a goat in a tutu" />
                         <h2>Surprise! It's a Goat Gram!</h2>
                     </div>
                     <div>

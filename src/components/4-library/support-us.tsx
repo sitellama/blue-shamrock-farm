@@ -12,7 +12,7 @@ export function SupportUs() {
 
             <div className="w-[95%] max-w-[1200px] mx-auto flex flex-col md:flex-row items-center md:items-start justify-center gap-[5%]">
                 <div className="flex flex-col items-center md:flex-[33%] mt-8">
-                    <img src={cow} className="rounded-full border-solid border-4 border-white w-[292px]" alt="zoomed in snoot of a cow" />
+                    <img src={cow} className="rounded-full border-solid border-4 border-white w-[292px]" alt="close up image of a cows nose" alt="close up image of a cow's nose" />
                     <a
                         href="https://www.amazon.com/hz/wishlist/ls/1KF35XP0KD1RI?ref_=wl_share"
                         target="_blank"
@@ -23,7 +23,7 @@ export function SupportUs() {
                 </div>
 
                 <div className="flex flex-col items-center md:flex-[33%] mt-8">
-                    <img src={soap} className="rounded-full border-solid border-4 border-white w-[292px]" alt="colorful blocks of soap" />
+                    <img src={soap} className="rounded-full border-solid border-4 border-white w-[292px]" alt="handmade rainbow colored soap" alt="handmade rainbow colored soap" />
                     <a
                         href="https://blue-shamrock-farm-llc.square.site/"
                         target="_blank"
@@ -34,7 +34,7 @@ export function SupportUs() {
                 </div>
 
                 <div className="flex flex-col items-center md:flex-[33%] mt-8">
-                    <img src={pig} className="rounded-full border-solid border-4 border-white w-[292px]" alt="little white and brown pigs eating hay" />
+                    <img src={pig} className="rounded-full border-solid border-4 border-white w-[292px]" alt="a small pig in muddy water" alt="a small pig in muddy water" />
                     <a
                         href="#"
                         target="_blank"
