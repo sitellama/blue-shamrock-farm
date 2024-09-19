@@ -41,8 +41,8 @@ export function MainMenu() {
                 <button
                     className="min-[1100px]:hidden z-50 relative"
                     onClick={() => setIsMenuOpen((v) => !v)}
-                    role="navigation"
-                    aria-label="Main Menu" // aria-state={isMenuOpen ? "open" : "closed"}
+                    role="menu"
+                    aria-label="Main" // aria-state={isMenuOpen ? "open" : "closed"}
                 >
                     {isMenuOpen
                         ? <IconCross className="size-10 fill-black" />
@@ -88,7 +88,7 @@ function OurLinkInNewTab({ label, to, loc, openNewPage }: { label: string; to: s
             <a
                 href={to}
                 className={classNames(liClasses, isActive && "!underline")}
-                target={openNewPage ? "_blank" : undefined  }
+                target={openNewPage ? "_blank" : undefined}
                 rel={openNewPage ? "noopener noreferrer" : undefined}
                 aria-current={isActive ? "page" : undefined}
             >
@@ -107,7 +107,7 @@ function MenuBody({ loc, className }: { loc: Location; className?: string; }) {
             <OurLink label="Services & Events" to="/services" loc={loc} />
             <figure className={`flex justify-center items-center -order-1 min-[1100px]:order-none`}>
                 <a href="/" className="no-underline mb-0">
-                    <img src={logoImg} alt="Blue Shamrock Farm" className="w-[50%] mx-auto mb-2" />
+                    <img src={logoImg} alt="logo" className="w-[50%] mx-auto mb-2" />
                     <figcaption>Blue Shamrock Farm</figcaption>
                 </a>
             </figure>

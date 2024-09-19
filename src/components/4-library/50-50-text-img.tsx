@@ -4,7 +4,7 @@ export function TextImg() {
     return (
         <section className="max-content flex flex-col md:flex-row bg-blue-light mt-0">
             <div className="flex-1">
-                <img src={facePainting} className="object-cover h-full w-full max-h-[250px] md:max-h-full" />
+                <img src={facePainting} className="object-cover h-full w-full max-h-[250px] md:max-h-full" alt="a young girl getting her face painted" />
             </div>
 
             <div className="p-8 flex-1 text-white md:order-first">

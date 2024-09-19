@@ -48,7 +48,7 @@ export function EventsSection() {
     return (
         <section className="mt-0">
             <div className="bg-blue-dark pt-16 pb-40 -mb-24">
-                <img src={barn} className="mx-auto max-w-[300px]" />
+                <img src={barn} className="mx-auto max-w-[300px]" alt="sketch of a barn" />
                 <div className="max-content md:w-[50%] max-w-[900px] mx-auto text-white text-center">
                     <h2>Celebrations and Events</h2>
                     <p>Host your next party with us or let us bring the party to you!</p>
@@ -63,7 +63,7 @@ export function EventsSection() {
 
                     {/*Birthday Parties*/}
                     <div className="shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
-                        <img src={bday} />
+                        <img src={bday} alt="a couple taking a selfie with an alpaca" />
                         <div className="bg-white p-4 text-center h-[485px]">
                             <h3>Birthday Parties</h3>
                             <p>Both kids and adults can enjoy the charm of a country-themed birthday party.</p>
@@ -77,7 +77,7 @@ export function EventsSection() {
 
                     {/* Holiday Parties */}
                     <div className="shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
-                        <img src={holiday} />
+                        <img src={holiday} alt="a goat wearing a santa hat" />
                         <div className="bg-white p-4 text-center h-[485px]">
                             <h3>Holiday Parties</h3>
                             <p>Celebrate the holidays with rustic ambiance.</p>
@@ -91,7 +91,7 @@ export function EventsSection() {
 
                     {/* Fairs & Festivals */}
                     <div className="shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
-                        <img src={fair} />
+                        <img src={fair} alt="children gathered around a petting zoo at a fair" />
                         <div className="bg-white p-4 text-center h-[485px]">
                             <h3>Fairs & Festivals</h3>
                             <p>Be it medieval times or the annual state fair, our barnyard friends love making visitors smile.</p>
@@ -105,7 +105,7 @@ export function EventsSection() {
 
                     {/* Graduation Parties */}
                     <div className="shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
-                        <img src={graduation} />
+                        <img src={graduation} alt="someone throwing a graduation cap into the air" />
                         <div className="bg-white p-4 text-center h-[485px]">
                             <h3>Graduation Parties</h3>
                             <p>Graduations are a time for celebration between family and friends.</p>
@@ -119,7 +119,7 @@ export function EventsSection() {
 
                     {/* Neighborhood Block Parties */}
                     <div className="shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
-                        <img src={blockParty} />
+                        <img src={blockParty} alt="a group of women posing with an alpaca, goat and peacock" />
                         <div className="bg-white p-4 text-center h-[485px]">
                             <h3>Neighborhood Block Parties</h3>
                             <p> Guests love playing party games along side our silly critters and depending on the season, baby animals are available for snuggles. </p>
@@ -132,7 +132,7 @@ export function EventsSection() {
 
                     {/* School Functions */}
                     <div className="shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
-                        <img src={school} />
+                        <img src={school} alt="goats walking in front a school sports sign" />
                         <div className="bg-white p-4 text-center h-[485px]">
                             <h3>School Functions</h3>
                             <p>Quickly become the favorite parent within your child's school by booking with Blue Shamrock Farm.</p>
@@ -146,7 +146,7 @@ export function EventsSection() {
 
                     {/* Church Gatherings */}
                     <div className="shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
-                        <img src={church} />
+                        <img src={church} alt="a group of people petting a peacock" />
                         <div className="bg-white p-4 text-center h-[485px]">
                             <h3>Church Gatherings</h3>
                             <p>Enhance your church gathering with the joy and warmth of our mobile animal party!</p>
@@ -159,7 +159,7 @@ export function EventsSection() {
 
                     {/* Senior Center Visits */}
                     <div className="shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
-                        <img src={senior} />
+                        <img src={senior} alt="two senior women feeding goats in a petting zoo" />
                         <div className="bg-white p-4 text-center h-[485px]">
                             <h3>Senior Center Events</h3>
                             <p>Our animals love visiting senior communities!</p>
@@ -173,7 +173,7 @@ export function EventsSection() {
 
                     {/* Grand Openings */}
                     <div className="shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
-                        <img src={grandOpening} />
+                        <img src={grandOpening} alt="a large air balloon that says 'grand opening'" />
                         <div className="bg-white p-4 text-center h-[485px]">
                             <h3>Grand Openings</h3>
                             <p>Let our animals captivate guests of all ages for your special launch celebration.</p>

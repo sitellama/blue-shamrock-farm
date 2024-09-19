@@ -1,9 +1,9 @@
 import { Service } from "./8-services-data";
 
-export function ServicesEvents({ image, label, content, pdfName, pdfUrl, onsite, travel }: Service) {
+export function ServicesEvents({ image, imageAlt, label, content, pdfName, pdfUrl, onsite, travel }: Service) {
     return (
         <div className="flex flex-col md:flex-row bg-white">
-            <img src={image} className="object-cover md:max-w-sm lg:max-w-md" />
+            <img src={image} className="object-cover md:max-w-sm lg:max-w-md" alt={imageAlt} />
 
             <div className="p-4 text-black">
                 <h3>{label}</h3>

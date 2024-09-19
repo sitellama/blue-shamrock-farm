@@ -19,7 +19,7 @@ export function MapIntro() {
             </div>
 
             <div className="hidden flex-1 max-w-[500px] md:flex justify-center items-center">
-                <img src={oxfordMap} className="w-[85%]" />
+                <img src={oxfordMap} className="w-[85%]" alt="map of Michigan marked with Oxford's location." />
             </div>
         </section>
     );
