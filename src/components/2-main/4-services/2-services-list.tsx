@@ -11,6 +11,7 @@ export function ServicesList() {
                     <ServicesEvents
                         key={index}
                         image={service.image}
+                        imageAlt={service.imageAlt}
                         label={service.label}
                         content={service.content}
                         pdfName={service.pdfName}
