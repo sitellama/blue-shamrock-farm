@@ -62,7 +62,7 @@ export function MainMenu() {
     );
 }
 
-const liClasses = "block px-3 py-2 m-0 text-lg no-underline select-none";
+const liClasses = "block px-3 py-2 m-0 text-lg no-underline border-b-[1px] border-transparent select-none";
 
 function OurLink({ label, to, loc }: { label: string; to: string; loc: Location; }) {
     const isActive = to === loc.pathname;
@@ -71,7 +71,7 @@ function OurLink({ label, to, loc }: { label: string; to: string; loc: Location;
         <li>
             <Link
                 to={to}
-                className={classNames(liClasses, isActive && "!underline")}
+                className={classNames(liClasses, isActive && "!border-b-[1px] border-black")}
                 aria-current={isActive ? "page" : undefined}
                 onClick={() => setIsMenuOpen(false)}
             >
@@ -87,7 +87,7 @@ function OurLinkInNewTab({ label, to, loc, openNewPage }: { label: string; to: s
         <li>
             <a
                 href={to}
-                className={classNames(liClasses, isActive && "!underline")}
+                className={classNames(liClasses, isActive && "!!border-b-[1px] border-black")}
                 target={openNewPage ? "_blank" : undefined  }
                 rel={openNewPage ? "noopener noreferrer" : undefined}
                 aria-current={isActive ? "page" : undefined}
@@ -105,7 +105,7 @@ function MenuBody({ loc, className }: { loc: Location; className?: string; }) {
             <OurLink label="Home" to="/" loc={loc} />
             <OurLink label="Meet The Animals" to="/animals" loc={loc} />
             <OurLink label="Services & Events" to="/services" loc={loc} />
-            <figure className={`flex justify-center items-center -order-1 min-[1100px]:order-none`}>
+            <figure className={`flex justify-center items-center -order-1 min-[1100px]:order-none border-b-4 border-transparent select-none`}>
                 <a href="/" className="no-underline mb-0">
                     <img src={logoImg} alt="Blue Shamrock Farm" className="w-[50%] mx-auto mb-2" />
                     <figcaption>Blue Shamrock Farm</figcaption>

@@ -38,22 +38,22 @@ export function AnimalList() {
             <div className="mb-16 flex flex-col md:flex-row gap-[2rem]">
                 <div className="flex gap-[2rem]">
                     <div>
-                        <img src={goat} />
+                        <img src={goat} alt="black and white spotted goat in a petting zoo" />
                         <h3 className="animal-tag">Goats</h3>
                     </div>
                     <div>
-                        <img src={cattle} />
+                        <img src={cattle} alt="black cow in a petting zoo" />
                         <h3 className="animal-tag">Cattle</h3>
                     </div>
                 </div>
 
                 <div className="flex gap-[2rem]">
                     <div>
-                        <img src={sheep} />
+                        <img src={sheep} alt="white sheep in a petting zoo" />
                         <h3 className="animal-tag">Sheep</h3>
                     </div>
                     <div>
-                        <img src={duck} />
+                        <img src={duck} alt="two white ducks in a petting zoo" />
                         <h3 className="animal-tag">Ducks & Geese</h3>
                     </div>
                 </div>
@@ -69,7 +69,7 @@ export function AnimalList() {
                 </div>
 
                 <div className="flex-[1_1_33%] order-first">
-                    <img src={featureKerry} className="w-full h-[250px] md:h-full object-cover" />
+                    <img src={featureKerry} className="w-full h-[250px] md:h-full object-cover" alt="irish pony in a pasture" />
                 </div>
             </div>
 
@@ -78,22 +78,22 @@ export function AnimalList() {
             <div className="mb-16 flex flex-col md:flex-row gap-[2rem]">
                 <div className="flex gap-[2rem]">
                     <div>
-                        <img src={pig} />
+                        <img src={pig} alt="black and white pig on a farm" />
                         <h3 className="animal-tag">Pigs</h3>
                     </div>
                     <div>
-                        <img src={alpaca} />
+                        <img src={alpaca} alt="white alpaca being hand fed at a petting zoo" />
                         <h3 className="animal-tag">Alpaca</h3>
                     </div>
                 </div>
 
                 <div className="flex gap-[2rem]">
                     <div>
-                        <img src={bunny} />
+                        <img src={bunny} alt="tan rabbit looking at the camera" />
                         <h3 className="animal-tag">Rabbits</h3>
                     </div>
                     <div>
-                        <img src={peacock} />
+                        <img src={peacock} alt="colorful peacock with feathers spread" />
                         <h3 className="animal-tag">Peacock</h3>
                     </div>
                 </div>
@@ -109,7 +109,7 @@ export function AnimalList() {
                 </div>
 
                 <div className="flex-[1_1_33%] order-first md:order-last">
-                    <img src={featureTornjak} className="w-full h-[250px] md:h-full object-cover" />
+                    <img src={featureTornjak} className="w-full h-[250px] md:h-full object-cover" alt="livestock guardian dog protecting the farm" />
                 </div>
             </div>
 
@@ -117,22 +117,22 @@ export function AnimalList() {
             <div className="mb-16 flex flex-col md:flex-row gap-[2rem]">
                 <div className="flex gap-[2rem]">
                     <div>
-                        <img src={budgie} />
+                        <img src={budgie} alt="colorful bird sitting on woman's hand" />
                         <h3 className="animal-tag">Budgies</h3>
                     </div>
                     <div>
-                        <img src={guineaPig} />
+                        <img src={guineaPig} alt="guinea pig eating grass in a field" />
                         <h3 className="animal-tag">Guinea Pig</h3>
                     </div>
                 </div>
 
                 <div className="flex gap-[2rem]">
                     <div>
-                        <img src={donkey} />
+                        <img src={donkey} alt="donkey resting his head on a fence" />
                         <h3 className="animal-tag">Donkey</h3>
                     </div>
                     <div>
-                        <img src={chinchilla} />
+                        <img src={chinchilla} alt="charcoal chinchilla sitting on a table" />
                         <h3 className="animal-tag">Chinchillas</h3>
                     </div>
                 </div>
@@ -148,7 +148,7 @@ export function AnimalList() {
                 </div>
 
                 <div className="md:flex-[1_1_33%] order-first">
-                    <img src={featureGoat} className="w-full h-[250px] md:h-full object-cover" />
+                    <img src={featureGoat} className="w-full h-[250px] md:h-full object-cover" alt="nigerian dwarf goats cuddling next to a fence" />
                 </div>
             </div>
 
@@ -156,22 +156,22 @@ export function AnimalList() {
             <div className="mb-16 flex flex-col md:flex-row gap-[2rem]">
                 <div className="flex gap-[2rem]">
                     <div>
-                        <img src={horse} />
+                        <img src={horse} alt="mare and colt/foal in a pasture" />
                         <h3 className="animal-tag">Horses</h3>
                     </div>
                     <div>
-                        <img src={cat} />
+                        <img src={cat} alt="cat looking down at the camera outside on a fence" />
                         <h3 className="animal-tag">Cats</h3>
                     </div>
                 </div>
 
                 <div className="flex gap-[2rem]">
                     <div>
-                        <img src={chicken} />
+                        <img src={chicken} alt="closeup of red chickens" />
                         <h3 className="animal-tag">Chickens</h3>
                     </div>
                     <div>
-                        <img src={llama} />
+                        <img src={llama} alt="black and white llama in a field" />
                         <h3 className="animal-tag">Llamas</h3>
                     </div>
                 </div>
@@ -187,7 +187,7 @@ export function AnimalList() {
                 </div>
 
                 <div className="flex-[1_1_33%] order-first md:order-last">
-                    <img src={featureSheep} className="w-full h-[250px] md:h-full object-cover" />
+                    <img src={featureSheep} className="w-full h-[250px] md:h-full object-cover" alt="four sheep eating grass through a fence" />
                 </div>
             </div>
         </section>
