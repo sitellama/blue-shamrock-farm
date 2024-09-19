@@ -71,7 +71,7 @@ function OurLink({ label, to, loc }: { label: string; to: string; loc: Location;
         <li>
             <Link
                 to={to}
-                className={classNames(liClasses, isActive && "!border-b-[1px] border-black")}
+                className={classNames(liClasses, isActive && "!border-b-[1px] !border-black")}
                 aria-current={isActive ? "page" : undefined}
                 onClick={() => setIsMenuOpen(false)}
             >
@@ -87,7 +87,7 @@ function OurLinkInNewTab({ label, to, loc, openNewPage }: { label: string; to: s
         <li>
             <a
                 href={to}
-                className={classNames(liClasses, isActive && "!!border-b-[1px] border-black")}
+                className={classNames(liClasses, isActive && "!!border-b-[1px] !border-black")}
                 target={openNewPage ? "_blank" : undefined}
                 rel={openNewPage ? "noopener noreferrer" : undefined}
                 aria-current={isActive ? "page" : undefined}
