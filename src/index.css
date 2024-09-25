@@ -49,7 +49,7 @@
   }
 
   a {
-    @apply underline;
+    @apply text-base underline;
   }
 
   section {
@@ -80,6 +80,15 @@
     @apply w-[80%] mx-auto -mt-4 py-1 z-10 relative bg-gray text-center;
   }
 
+  .animal-tag a {
+    @apply font-headings text-3xl no-underline before:content-[""] before:block before:inset-0 before:absolute;
+  }
+
+  .animal-tag:focus, 
+  .animal-tag:hover {
+    @apply text-white bg-blue-light transition-colors;
+  }
+
   .footer-link a {
     @apply m-0 no-underline;
   }
@@ -88,7 +97,7 @@
     @apply underline;
   }
 
-  footer p, a {
+  footer p, footer a {
     @apply text-sm;
   }
 

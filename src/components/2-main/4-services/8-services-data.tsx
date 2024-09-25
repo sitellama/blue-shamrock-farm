@@ -1,39 +1,39 @@
 import pettingZooImg from "@/assets/petting-zoo-event.webp";
-import pettingZooPDF from "@/assets/pdf/mobile-petting-zoo.pdf";
+// import pettingZooPDF from "@/assets/pdf/mobile-petting-zoo.pdf";
 
 import goatYogaImg from "@/assets/goat-yoag.webp";
-import goatYogaPDF from "@/assets/pdf/yoga-on-the-farm.pdf";
-import goatYogaPDFTwo from "@/assets/pdf/mobile-goat-yoga.pdf";
+// import goatYogaPDF from "@/assets/pdf/yoga-on-the-farm.pdf";
+// import goatYogaPDFTwo from "@/assets/pdf/mobile-goat-yoga.pdf";
 
 import waitstaffImg from "@/assets/animal-waiter.webp";
-import waitstaffPDF from "@/assets/pdf/waitstaff.pdf";
+// import waitstaffPDF from "@/assets/pdf/waitstaff.pdf";
 
 import partiesImg from "@/assets/birthday-parties.webp";
-import partiesPDF from "@/assets/pdf/mobile-party-package.pdf";
+// import partiesPDF from "@/assets/pdf/mobile-party-package.pdf";
 
 import snuggleImg from "@/assets/animal-snuggling.webp";
-import snugglePDF from "@/assets/pdf/snuggling.pdf";
+// import snugglePDF from "@/assets/pdf/snuggling.pdf";
 
 import animalGramImg from "@/assets/holiday-parties.webp";
-import animalGramPDF from "@/assets/pdf/animal-grams.pdf";
+// import animalGramPDF from "@/assets/pdf/animal-grams.pdf";
 
 import forSaleImg from "@/assets/Animals-for-sale.webp";
 // import forSalePDF from "@/assets/pdf/sale-animals.pdf";
 
 import educationImg from "@/assets/educational-classes.webp";
-import educationPDF from "@/assets/pdf/classes.pdf";
+// import educationPDF from "@/assets/pdf/classes.pdf";
 
 import photoshootImg from "@/assets/photoshoot.webp";
-import photoshootPDF from "@/assets/pdf/photoshoot.pdf";
+// import photoshootPDF from "@/assets/pdf/photoshoot.pdf";
 
 import nativityImg from "@/assets/nativity.webp";
-import nativityPDF from "@/assets/pdf/nativity.pdf";
+// import nativityPDF from "@/assets/pdf/nativity.pdf";
 
 import ponyRidesImg from "@/assets/pony-rides.webp";
-import ponyRidesPDF from "@/assets/pdf/pony-rides.pdf";
+// import ponyRidesPDF from "@/assets/pdf/pony-rides.pdf";
 
 import addOnImg from "@/assets/event-add-ons.webp";
-import addOnPDF from "@/assets/pdf/add-ons.pdf";
+// import addOnPDF from "@/assets/pdf/add-ons.pdf";
 
 
 import popup from "@/assets/pop-up-shop.webp";
@@ -57,17 +57,17 @@ const services: Service[] = [
         label: "Petting Zoo",
         content: "A petting zoo is a fun and interactive attraction where visitors can get up close and personal with a variety of friendly animals. It typically features gentle, domesticated creatures like goats, sheep, rabbits, and chickens, allowing people to pet, feed, and sometimes even hold them. Petting zoos are popular for their educational and therapeutic benefits, offering a hands-on experience that fosters a connection with animals and promotes a sense of wonder and joy.",
         pdfName: "Petting Zoo Details",
-        pdfUrl: pettingZooPDF,
+        pdfUrl: "https://blueshamrockfarm.my.canva.site/mobile-petting-zoo",
         onsite: true,
         travel: true,
     },
     {
         image: goatYogaImg,
         imageAlt: "group of women standing on yoga mats surrounded by goats",
-        label: "Goat Yoga",
+        label: "Goat Yoga & Alpaca Yoga",
         content: "Goat yoga is a playful and unique fitness trend that combines traditional yoga practices with the company of friendly goats. In a typical session, participants perform yoga poses while goats roam freely around them, occasionally hopping onto their backs or snuggling up for some interaction. This blend of exercise and animal interaction aims to create a lighthearted, stress-relieving experience, enhancing the joy and relaxation of the yoga practice.",
         pdfName: "Goat Yoga Details",
-        pdfUrl: goatYogaPDF,
+        pdfUrl: "https://blueshamrockfarm.my.canva.site/animalyoga",
         onsite: true,
         travel: true,
     },
@@ -77,7 +77,7 @@ const services: Service[] = [
         label: "Animal Waitstaff",
         content: "Add a unique twist to your next event with our delightful animal waitstaff! Donkeys, llamas or ponies at your service. Imagine these charming friends gracefully serving hors d'oeuvres and drinks, bringing an unexpected touch of fun and cuteness to your wedding or gathering. With their friendly antics and impeccable service, our four-legged team is sure to make your event truly extraordinary!",
         pdfName: "Animal Waitstaff Details",
-        pdfUrl: waitstaffPDF,
+        pdfUrl: "https://blueshamrockfarm.my.canva.site/animal-waitstaff",
         onsite: false,
         travel: true,
     },
@@ -87,7 +87,7 @@ const services: Service[] = [
         label: "Parties",
         content: "Hosting parties on a farm offers a unique, charming setting that combines rustic appeal with natural beauty. Guests can enjoy open spaces, fresh air, and scenic views, while engaging in fun activities like hayrides, petting zoo visits, and bonfires. Whether it's a birthday, wedding, or corporate event, a farm setting provides a relaxed and memorable atmosphere, perfect for creating lasting memories in a picturesque countryside environment.",
         pdfName: "Party Details",
-        pdfUrl: partiesPDF,
+        pdfUrl: "https://blueshamrockfarm.my.canva.site/parties",
         onsite: true,
         travel: true,
     },
@@ -97,7 +97,7 @@ const services: Service[] = [
         label: "Animal Snuggling",
         content: "Visitors of all ages can enjoy gentle embraces with fluffy bunnies, soft lambs, and even serene goats under the guidance of our friendly staff. Surrounded by the serene beauty of rolling pastures and the sweet scent of hay, guests find solace and joy in the simple act of snuggling these gentle creatures.",
         pdfName: "Animal Snuggling Details",
-        pdfUrl: snugglePDF,
+        pdfUrl: "https://blueshamrockfarm.my.canva.site/snuggling",
         onsite: true,
         travel: false,
     },
@@ -107,7 +107,7 @@ const services: Service[] = [
         label: "Animal Grams",
         content: "Experience the joy of surprise with Animal Gram deliveries! Whether it's a fluffy bunny, a chirping parrot, or a cuddly kitten, our adorable deliveries bring smiles and warmth straight to your doorstep. Perfect for birthdays, celebrations, or just to brighten someone's day, Animal Grams make every occasion memorable with their furry and feathered charm.",
         pdfName: "Animal Gram Details",
-        pdfUrl: animalGramPDF,
+        pdfUrl: "https://blueshamrockfarm.my.canva.site/animalgrams",
         travel: true,
     },
     {
@@ -125,7 +125,7 @@ const services: Service[] = [
         label: "Educational Classes",
         content: "Explore and learn at our farm's educational classes! From understanding farm-to-table practices to hands-on experiences with animals, our classes offer enriching insights into agriculture and sustainability. Perfect for curious minds of all ages, these engaging sessions combine fun and learning amidst the tranquil beauty of our farm. Join us to cultivate knowledge and appreciation for the natural world right here on our educational farm!",
         pdfName: "Educational Details",
-        pdfUrl: educationPDF,
+        pdfUrl: "https://blueshamrockfarm.my.canva.site/classes",
         onsite: true,
         travel: true,
     },
@@ -143,8 +143,8 @@ const services: Service[] = [
         imageAlt: "artistic, professional photograph of a women an a horse cold weather",
         label: "Photoshoots",
         content: "Capture the magic of farm life with our exclusive photoshoots featuring our beloved animals! Snap beautiful moments with our friendly horses, goats, and more, creating lasting memories in a picturesque setting. Perfect for families and couples — book your session today!",
-        pdfName: "List of Add on Services",
-        pdfUrl: photoshootPDF,
+        pdfName: "Photoshoot Details",
+        pdfUrl: "https://blueshamrockfarm.my.canva.site/photoshoots",
         onsite: true,
         travel: true,
     },
@@ -153,8 +153,8 @@ const services: Service[] = [
         imageAlt: "barn animals gathered to eat hay",
         label: "Nativity Scenes",
         content: "Celebrate the season with our enchanting holiday nativity scenes featuring our farm animals! Enjoy a heartwarming experience as you gather with loved ones to create festive memories with our friendly animals in a magical, holiday setting. Perfect for capturing the spirit of the season!",
-        pdfName: "List of Add on Services",
-        pdfUrl: nativityPDF,
+        pdfName: "Nativity Details",
+        pdfUrl: "https://blueshamrockfarm.my.canva.site/nativity-scenes",
         onsite: true,
         travel: true,
     },
@@ -163,21 +163,21 @@ const services: Service[] = [
         imageAlt: "a young girl in a cowbot hat riding a pony",
         label: "Pony Rides",
         content: "Saddle up for excitement with pony rides at our farm! Perfect for young adventurers and pony enthusiasts alike, our rides offer a memorable experience trotting through scenic trails. Guided by our experienced staff, children can enjoy the thrill of riding gentle ponies in a safe and picturesque environment. Join us for a delightful journey on horseback and create lasting memories at our charming farm!",
-        pdfName: "List of Add on Services",
-        pdfUrl: ponyRidesPDF,
+        pdfName: "Pony Ride Details",
+        pdfUrl: "https://blueshamrockfarm.my.canva.site/pony-rides",
         onsite: true,
         travel: true,
     },
-    {
-        image: addOnImg,
-        imageAlt: "young girl getting her face painted",
-        label: "Complete List of Add ons",
-        content: "Add an extra sprinkle of fun with some creative add on options. Whether you're looking to tantalize taste buds with a selection of delicious food and beverages or want to bring out the smiles with fun activities, we’ve got you covered. Guests can enjoy face painting and yard games, pinatas and cupcake decorating, or pony rides and balloon twisting. We've accommodated DJ's, bounces and even mobile drink bars. From playful to artistic, we provide all the quirky touches to ensure your event is the talk of the town!",
-        pdfName: "List of Add on Services",
-        pdfUrl: addOnPDF,
-        onsite: true,
-        travel: true,
-    },
+    // {
+    //     image: addOnImg,
+    //     imageAlt: "young girl getting her face painted",
+    //     label: "Complete List of Add ons",
+    //     content: "Add an extra sprinkle of fun with some creative add on options. Whether you're looking to tantalize taste buds with a selection of delicious food and beverages or want to bring out the smiles with fun activities, we’ve got you covered. Guests can enjoy face painting and yard games, pinatas and cupcake decorating, or pony rides and balloon twisting. We've accommodated DJ's, bounces and even mobile drink bars. From playful to artistic, we provide all the quirky touches to ensure your event is the talk of the town!",
+    //     pdfName: "List of Add on Services",
+    //     pdfUrl: addOnPDF,
+    //     onsite: true,
+    //     travel: true,
+    // },
 ];
 
 export const servicesAtom = atom(services);
