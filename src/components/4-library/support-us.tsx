@@ -36,7 +36,7 @@ export function SupportUs() {
                 <div className="flex flex-col items-center md:flex-[33%] mt-8">
                     <img src={pig} className="rounded-full border-solid border-4 border-white w-[292px]" alt="a small pig in muddy water" />
                     <a
-                        href="#"
+                        href="https://blueshamrockfarm.my.canva.site/donate"
                         target="_blank"
                         className="btn-a mx-auto text-center text-2xl"
                     >
