@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useSetAtom } from "jotai";
 import { SupportUs } from "@/components/4-library/support-us";
 import { HeroImg } from "@/components/4-library/hero-img";
 import { SEO } from "../../../utils/seo";
@@ -5,8 +7,20 @@ import { DropdownSection } from "./1-dropdown-section";
 import { ServicesList } from "./2-services-list";
 import { ContactUs } from "@/components/4-library/contact-us";
 import flowerBarn from "@/assets/hero-barn-flowers.webp";
+import { dropdownSelectionAtom, onsiteAtom, travelAtom } from "./8-services-data";
 
 export function Services() {
+    const setDropdownSelection = useSetAtom(dropdownSelectionAtom);
+    const setOnsite = useSetAtom(onsiteAtom);
+    const setTravel = useSetAtom(travelAtom);
+
+    useEffect(() => {
+        setDropdownSelection("All");
+        setOnsite(true);
+        setTravel(true);
+    }, []);
+
+
     return (<>
         <SEO title="Services Page" description="This is the services page" href="/" />
 

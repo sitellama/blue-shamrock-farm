@@ -12,10 +12,10 @@ export function ServicesEvents({ image, imageAlt, label, content, pdfName, pdfUr
 
                 <a href={pdfUrl} target="_blank" className="subheading">{pdfName}</a>
 
-                <p className="flex gap-6 mb-0 ">
+                <div className="mt-4 mb-0 flex gap-6">
                     {onsite && <div className="px-5 py-1 bg-gray">Hosted on-site</div>}
                     {travel && <div className="px-5 py-1 bg-gray">Available for travel</div>}
-                </p>
+                </div>
             </div>
         </div>
     );
