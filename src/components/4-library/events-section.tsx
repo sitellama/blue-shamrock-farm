@@ -71,7 +71,7 @@ export function EventsSection() {
                             <p>With a track record of fantastic birthdays, we're eager to share the joy and fun with you!</p>
                         </div>
                         <div className="bg-blue-light">
-                            <img src={shamrock} className="mx-auto w-[25px] py-1" />
+                            <img src={shamrock} alt="" className="mx-auto w-[25px] py-1" />
                         </div>
                     </div>
 
@@ -85,7 +85,7 @@ export function EventsSection() {
                             <p> Discover the joy of holiday parties at Blue Shamrock Farm, where laughter, fun, and furry friends await!</p>
                         </div>
                         <div className="bg-blue-light">
-                            <img src={shamrock} className="mx-auto w-[25px] py-1" />
+                            <img src={shamrock} alt="" className="mx-auto w-[25px] py-1" />
                         </div>
                     </div>
 
@@ -99,7 +99,7 @@ export function EventsSection() {
                             <p>Our friendly staff ensures a safe and enjoyable experience, while our animals adds to the festive atmosphere.</p>
                         </div>
                         <div className="bg-blue-light">
-                            <img src={shamrock} className="mx-auto w-[25px] py-1" />
+                            <img src={shamrock} alt="" className="mx-auto w-[25px] py-1" />
                         </div>
                     </div>
 
@@ -113,7 +113,7 @@ export function EventsSection() {
                             <p>There's no better way to mark this milestone than with adorable, loveable animals that everyone will enjoy!</p>
                         </div>
                         <div className="bg-blue-light">
-                            <img src={shamrock} className="mx-auto w-[25px] py-1" />
+                            <img src={shamrock} alt="" className="mx-auto w-[25px] py-1" />
                         </div>
                     </div>
 
@@ -126,7 +126,7 @@ export function EventsSection() {
                             <p>With a track record of fantastic block parties we're eager to share the joy and fun with you!</p>
                         </div>
                         <div className="bg-blue-light">
-                            <img src={shamrock} className="mx-auto w-[25px] py-1" />
+                            <img src={shamrock} alt="" className="mx-auto w-[25px] py-1" />
                         </div>
                     </div>
 
@@ -140,7 +140,7 @@ export function EventsSection() {
                             <p>Time to make your child's school event a delightful mix of excitement and education!</p>
                         </div>
                         <div className="bg-blue-light">
-                            <img src={shamrock} className="mx-auto w-[25px] py-1" />
+                            <img src={shamrock} alt="" className="mx-auto w-[25px] py-1" />
                         </div>
                     </div>
 
@@ -153,7 +153,7 @@ export function EventsSection() {
                             <p>As families and children interact with our animals, they'll enjoy a fun, engaging, and wholesome activity that fosters connection and creates lasting memories. </p>
                         </div>
                         <div className="bg-blue-light">
-                            <img src={shamrock} className="mx-auto w-[25px] py-1" />
+                            <img src={shamrock} alt="" className="mx-auto w-[25px] py-1" />
                         </div>
                     </div>
 
@@ -167,7 +167,7 @@ export function EventsSection() {
                             <p>Book today to see why both residents and staff can't get enough of our delightful farm animals.</p>
                         </div>
                         <div className="bg-blue-light">
-                            <img src={shamrock} className="mx-auto w-[25px] py-1" />
+                            <img src={shamrock} alt="" className="mx-auto w-[25px] py-1" />
                         </div>
                     </div>
 
@@ -181,7 +181,7 @@ export function EventsSection() {
                             <p>Enhance your grand opening and leave a lasting impression on your future customers!</p>
                         </div>
                         <div className="bg-blue-light">
-                            <img src={shamrock} className="mx-auto w-[25px] py-1" />
+                            <img src={shamrock} alt="" className="mx-auto w-[25px] py-1" />
                         </div>
                     </div>
 
