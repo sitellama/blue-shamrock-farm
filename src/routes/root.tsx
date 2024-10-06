@@ -5,9 +5,9 @@ import { Header } from "../components/1-header";
 import { Footer } from "../components/3-footer";
 import { classNames } from "@/utils";
 
-ReactGA.initialize('G-V0YCCCVV8Y', {
-    gaAddress: "https://www.googletagmanager.com/gtag/js?id=G-V0YCCCVV8Y",
-});
+// ReactGA.initialize('G-V0YCCCVV8Y', {
+//     gaAddress: "https://www.googletagmanager.com/gtag/js?id=G-V0YCCCVV8Y",
+// });
 
 // <!-- Google tag (gtag.js) -->
 // <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0YCCCVV8Y"></script>

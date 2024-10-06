@@ -13,7 +13,7 @@ import heroHorse from "@/assets/hero-horse.webp";
 export function Home() {
     return (
         <>
-            <SEO title="Blue Shamrock Farm" description="This is the home page" href="/" />
+            <SEO title="Blue Shamrock Farm" description="This is the home page" href="https:blueshamrock.farm" />
 
             <HeroImg hero={heroHorse} />
 
