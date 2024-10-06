@@ -7,18 +7,17 @@ export function ServicesList() {
     return services.map(
         (service, index) => {
             return (
-                <div>
-                    <ServicesEvents
-                        key={index}
-                        image={service.image}
-                        imageAlt={service.imageAlt}
-                        label={service.label}
-                        content={service.content}
-                        pdfName={service.pdfName}
-                        pdfUrl={service.pdfUrl}
-                        onsite={service.onsite}
-                        travel={service.travel} />
-                </div>
+                <ServicesEvents
+                    key={index}
+                    image={service.image}
+                    imageAlt={service.imageAlt}
+                    label={service.label}
+                    content={service.content}
+                    pdfName={service.pdfName}
+                    pdfUrl={service.pdfUrl}
+                    onsite={service.onsite}
+                    travel={service.travel} 
+                />
             );
         }
     );

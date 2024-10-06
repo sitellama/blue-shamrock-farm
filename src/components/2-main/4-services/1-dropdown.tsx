@@ -11,7 +11,10 @@ export function DropdownList() {
     const services = useAtomValue(servicesAtom);
     const [selected, setSelected] = useAtom(dropdownSelectionAtom);
     return (<>
-        <span>Filter by event type:</span>
+        <span>
+            Filter by event type:
+        </span>
+
         <select
             className="mr-[5rem] p-2 rounded-md border border-gray"
             value={selected}
@@ -19,7 +22,7 @@ export function DropdownList() {
                 setSelected(event.target.value);
             }}
         >
-            <option selected>All</option>
+            <ServiceOptions value="All" label="All" />
 
             {services.map(
                 (service, index) => {
