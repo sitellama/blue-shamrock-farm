@@ -36,7 +36,7 @@ export function MainMenu() {
 
 
             <div className="flex justify-between">
-                <a href="/" className="m-0"><img src={logoImg} alt="Blue Shamrock Farm" className="size-10 min-[1100px]:hidden" /></a>
+                <a href="/" className="m-0"><img src={logoImg} alt="Blue Shamrock Farm" className="size-10 min-[1100px]:hidden min-h-[40px]" /></a>
 
                 <button
                     className="min-[1100px]:hidden z-50 relative"
@@ -105,12 +105,14 @@ function MenuBody({ loc, className }: { loc: Location; className?: string; }) {
             <OurLink label="Home" to="/" loc={loc} />
             <OurLink label="Meet The Animals" to="/animals" loc={loc} />
             <OurLink label="Services & Events" to="/services" loc={loc} />
-            <figure className={`flex justify-center items-center -order-1 min-[1100px]:order-none border-b-4 border-transparent select-none`}>
-                <a href="/" className="no-underline mb-0">
-                    <img src={logoImg} alt="logo" className="w-[50%] mx-auto mb-2" />
-                    <figcaption>Blue Shamrock Farm</figcaption>
-                </a>
-            </figure>
+            <li className={`flex justify-center items-center -order-1 min-[1100px]:order-none border-b-4 border-transparent select-none`}>
+                <figure>
+                    <a href="/" className="no-underline mb-0">
+                        <img src={logoImg} alt="logo" className="w-[50%] mx-auto mb-2 min-h-[84px]" />
+                        <figcaption>Blue Shamrock Farm</figcaption>
+                    </a>
+                </figure>
+            </li>
             <OurLinkInNewTab label="Shamrock Shop" to="https://blue-shamrock-farm-llc.square.site/" loc={loc} openNewPage />
             <OurLink label="FAQs" to="/faq" loc={loc} />
             <OurLinkInNewTab label="Get In Touch" to="#contact" loc={loc} />
