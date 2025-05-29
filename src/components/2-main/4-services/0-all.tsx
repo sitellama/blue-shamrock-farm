@@ -30,7 +30,7 @@ export function Services() {
             <h1 className="text-center">Upcoming Events</h1>
             <p className="max-content text-center">
                 At Blue Shamrock Farm there's always something happening — whether it's goat yoga, hosting a party, or cuddling with our animals.</p>
-            <p className="max-content text-center"><a href="https://blue-shamrock-farm-llc.square.site/upcoming-events" target="_blank">Check out our list of upcoming events.</a></p>
+            <p className="max-content text-center"><a href="https://bsf.simpletix.com/" target="_blank">Check out our list of upcoming events.</a></p>
         </div>
 
         <section className="max-content flex flex-col items-center">

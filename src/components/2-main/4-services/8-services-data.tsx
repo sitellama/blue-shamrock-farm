@@ -17,11 +17,13 @@ import snuggleImg from "@/assets/animal-snuggling.webp";
 import animalGramImg from "@/assets/holiday-parties.webp";
 // import animalGramPDF from "@/assets/pdf/animal-grams.pdf";
 
-import forSaleImg from "@/assets/Animals-for-sale.webp";
+// import forSaleImg from "@/assets/Animals-for-sale.webp";
 // import forSalePDF from "@/assets/pdf/sale-animals.pdf";
 
 import educationImg from "@/assets/educational-classes.webp";
 // import educationPDF from "@/assets/pdf/classes.pdf";
+
+import ovaImg from "@/assets/ova.webp";
 
 import photoshootImg from "@/assets/photoshoot.webp";
 // import photoshootPDF from "@/assets/pdf/photoshoot.pdf";
@@ -32,11 +34,11 @@ import nativityImg from "@/assets/nativity.webp";
 import ponyRidesImg from "@/assets/pony-rides.webp";
 // import ponyRidesPDF from "@/assets/pdf/pony-rides.pdf";
 
-import addOnImg from "@/assets/event-add-ons.webp";
+// import addOnImg from "@/assets/event-add-ons.webp";
 // import addOnPDF from "@/assets/pdf/add-ons.pdf";
 
 
-import popup from "@/assets/pop-up-shop.webp";
+// import popup from "@/assets/pop-up-shop.webp";
 import { atom } from "jotai";
 
 export type Service = {
@@ -57,7 +59,7 @@ const services: Service[] = [
         label: "Petting Zoo",
         content: "A petting zoo is a fun and interactive attraction where visitors can get up close and personal with a variety of friendly animals. It typically features gentle, domesticated creatures like goats, sheep, rabbits, and chickens, allowing people to pet, feed, and sometimes even hold them. Petting zoos are popular for their educational and therapeutic benefits, offering a hands-on experience that fosters a connection with animals and promotes a sense of wonder and joy.",
         pdfName: "Petting Zoo Details",
-        pdfUrl: "https://blueshamrockfarm.my.canva.site/mobile-petting-zoo",
+        pdfUrl: "https://sites.google.com/view/blueshamrockfarm/petting-zoo",
         onsite: true,
         travel: true,
     },
@@ -67,7 +69,7 @@ const services: Service[] = [
         label: "Goat Yoga & Alpaca Yoga",
         content: "Goat yoga is a playful and unique fitness trend that combines traditional yoga practices with the company of friendly goats. In a typical session, participants perform yoga poses while goats roam freely around them, occasionally hopping onto their backs or snuggling up for some interaction. This blend of exercise and animal interaction aims to create a lighthearted, stress-relieving experience, enhancing the joy and relaxation of the yoga practice.",
         pdfName: "Goat Yoga Details",
-        pdfUrl: "https://blueshamrockfarm.my.canva.site/animalyoga",
+        pdfUrl: "https://sites.google.com/view/blueshamrockfarm/goat-yoga",
         onsite: true,
         travel: true,
     },
@@ -77,7 +79,7 @@ const services: Service[] = [
         label: "Animal Waitstaff",
         content: "Add a unique twist to your next event with our delightful animal waitstaff! Donkeys, llamas or ponies at your service. Imagine these charming friends gracefully serving hors d'oeuvres and drinks, bringing an unexpected touch of fun and cuteness to your wedding or gathering. With their friendly antics and impeccable service, our four-legged team is sure to make your event truly extraordinary!",
         pdfName: "Animal Waitstaff Details",
-        pdfUrl: "https://blueshamrockfarm.my.canva.site/animal-waitstaff",
+        pdfUrl: "https://sites.google.com/view/blueshamrockfarm/animal-waitstaff",
         onsite: false,
         travel: true,
     },
@@ -87,7 +89,7 @@ const services: Service[] = [
         label: "Parties",
         content: "Hosting parties on a farm offers a unique, charming setting that combines rustic appeal with natural beauty. Guests can enjoy open spaces, fresh air, and scenic views, while engaging in fun activities like hayrides, petting zoo visits, and bonfires. Whether it's a birthday, wedding, or corporate event, a farm setting provides a relaxed and memorable atmosphere, perfect for creating lasting memories in a picturesque countryside environment.",
         pdfName: "Party Details",
-        pdfUrl: "https://blueshamrockfarm.my.canva.site/parties",
+        pdfUrl: "https://sites.google.com/view/blueshamrockfarm/parties",
         onsite: true,
         travel: true,
     },
@@ -97,7 +99,7 @@ const services: Service[] = [
         label: "Animal Snuggling",
         content: "Visitors of all ages can enjoy gentle embraces with fluffy bunnies, soft lambs, and even serene goats under the guidance of our friendly staff. Surrounded by the serene beauty of rolling pastures and the sweet scent of hay, guests find solace and joy in the simple act of snuggling these gentle creatures.",
         pdfName: "Animal Snuggling Details",
-        pdfUrl: "https://blueshamrockfarm.my.canva.site/snuggling",
+        pdfUrl: "https://sites.google.com/view/blueshamrockfarm/snuggling",
         onsite: true,
         travel: false,
     },
@@ -107,25 +109,35 @@ const services: Service[] = [
         label: "Animal Grams",
         content: "Experience the joy of surprise with Animal Gram deliveries! Whether it's a fluffy bunny, a chirping parrot, or a cuddly kitten, our adorable deliveries bring smiles and warmth straight to your doorstep. Perfect for birthdays, celebrations, or just to brighten someone's day, Animal Grams make every occasion memorable with their furry and feathered charm.",
         pdfName: "Animal Gram Details",
-        pdfUrl: "https://blueshamrockfarm.my.canva.site/animalgrams",
+        pdfUrl: "https://sites.google.com/view/blueshamrockfarm/animal-grams",
         travel: true,
     },
-    {
-        image: forSaleImg,
-        imageAlt: "a group of ducklings in the grass",
-        label: "Animals for Sale",
-        content: "Discover the charm of our farm's baby animals for sale! From adorable piglets to fluffy chicks and playful kid goats, our farm offers the perfect opportunity to bring home a new furry or feathered friend. Raised with care and surrounded by the peaceful countryside, these lovable companions are ready to add joy and warmth to your family. Visit us to find your perfect match and experience the magic of bonding with our delightful baby animals!",
-        pdfName: "View Current Animals for Sale",
-        pdfUrl: "https://blue-shamrock-farm-llc.square.site/animals",
-        onsite: true,
-    },
+    // {
+    //     image: forSaleImg,
+    //     imageAlt: "a group of ducklings in the grass",
+    //     label: "Animals for Sale",
+    //     content: "Discover the charm of our farm's baby animals for sale! From adorable piglets to fluffy chicks and playful kid goats, our farm offers the perfect opportunity to bring home a new furry or feathered friend. Raised with care and surrounded by the peaceful countryside, these lovable companions are ready to add joy and warmth to your family. Visit us to find your perfect match and experience the magic of bonding with our delightful baby animals!",
+    //     pdfName: "View Current Animals for Sale",
+    //     pdfUrl: "https://blue-shamrock-farm-llc.square.site/animals",
+    //     onsite: true,
+    // },
     {
         image: educationImg,
         imageAlt: "animal",
-        label: "Educational Classes",
+        label: "In-Person Classes",
         content: "Explore and learn at our farm's educational classes! From understanding farm-to-table practices to hands-on experiences with animals, our classes offer enriching insights into agriculture and sustainability. Perfect for curious minds of all ages, these engaging sessions combine fun and learning amidst the tranquil beauty of our farm. Join us to cultivate knowledge and appreciation for the natural world right here on our educational farm!",
-        pdfName: "Educational Details",
-        pdfUrl: "https://blueshamrockfarm.my.canva.site/classes",
+        pdfName: "Upcoming Classes",
+        pdfUrl: "https://bsf.simpletix.com/",
+        onsite: true,
+        travel: true,
+    },
+    {
+        image: ovaImg,
+        imageAlt: "Oxford Virtual Academy",
+        label: "Virtual Classes",
+        content: "Now offering online classes through Oxford Virtual Academy! Whether you're looking to learn about sustainable farming practices or animal care, Blue Shamrock Farm is ready to guide you from the comfort of your home. Enroll today and start your journey toward growing, nurturing, and cultivating with us!",
+        pdfName: "Oxford Virtual Academy",
+        pdfUrl: "https://sites.google.com/view/blueshamrockfarm/ova",
         onsite: true,
         travel: true,
     },
@@ -144,7 +156,7 @@ const services: Service[] = [
         label: "Photoshoots",
         content: "Capture the magic of farm life with our exclusive photoshoots featuring our beloved animals! Snap beautiful moments with our friendly horses, goats, and more, creating lasting memories in a picturesque setting. Perfect for families and couples — book your session today!",
         pdfName: "Photoshoot Details",
-        pdfUrl: "https://blueshamrockfarm.my.canva.site/photoshoots",
+        pdfUrl: "https://sites.google.com/view/blueshamrockfarm/photoshoot",
         onsite: true,
         travel: true,
     },
@@ -154,7 +166,7 @@ const services: Service[] = [
         label: "Nativity Scenes",
         content: "Celebrate the season with our enchanting holiday nativity scenes featuring our farm animals! Enjoy a heartwarming experience as you gather with loved ones to create festive memories with our friendly animals in a magical, holiday setting. Perfect for capturing the spirit of the season!",
         pdfName: "Nativity Details",
-        pdfUrl: "https://blueshamrockfarm.my.canva.site/nativity-scenes",
+        pdfUrl: "https://sites.google.com/view/blueshamrockfarm/nativity",
         onsite: true,
         travel: true,
     },
@@ -164,7 +176,7 @@ const services: Service[] = [
         label: "Pony Rides",
         content: "Saddle up for excitement with pony rides at our farm! Perfect for young adventurers and pony enthusiasts alike, our rides offer a memorable experience trotting through scenic trails. Guided by our experienced staff, children can enjoy the thrill of riding gentle ponies in a safe and picturesque environment. Join us for a delightful journey on horseback and create lasting memories at our charming farm!",
         pdfName: "Pony Ride Details",
-        pdfUrl: "https://blueshamrockfarm.my.canva.site/pony-rides",
+        pdfUrl: "https://sites.google.com/view/blueshamrockfarm/pony-rides",
         onsite: true,
         travel: true,
     },
