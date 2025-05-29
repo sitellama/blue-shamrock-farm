@@ -58,7 +58,7 @@ const services: Service[] = [
         imageAlt: "sheep getting pet at a petting zoo",
         label: "Petting Zoo",
         content: "A petting zoo is a fun and interactive attraction where visitors can get up close and personal with a variety of friendly animals. It typically features gentle, domesticated creatures like goats, sheep, rabbits, and chickens, allowing people to pet, feed, and sometimes even hold them. Petting zoos are popular for their educational and therapeutic benefits, offering a hands-on experience that fosters a connection with animals and promotes a sense of wonder and joy.",
-        pdfName: "Petting Zoo Details",
+        pdfName: "Petting Zoo Details and Pricing",
         pdfUrl: "https://sites.google.com/view/blueshamrockfarm/petting-zoo",
         onsite: true,
         travel: true,
