@@ -4,6 +4,7 @@ import { Animals, Home, Services } from "@/components/2-main";
 import { FAQs } from "@/components/2-main/6-faq";
 import { Privacy } from "@/components/2-main/5-privacy";
 import { ErrorPage } from "@/components/2-main/7-error";
+import { Tornjak } from "@/components/2-main/tornjaks";
 
 
 const routes: RouteObject[] = [
@@ -38,6 +39,10 @@ const routes: RouteObject[] = [
     {
         path: "*",
         element: <ErrorPage />,
+    },
+    {
+        path: "/tornjak",
+        element: <Tornjak />,
     },
 ];
 

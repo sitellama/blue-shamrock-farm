@@ -9,6 +9,7 @@ import { MapIntro } from "@/components/4-library/map-intro";
 import { PettingZoo } from "@/components/4-library/petting-zoo";
 import { SEO } from "@/utils/seo";
 import heroHorse from "@/assets/hero-horse.webp";
+import { PuppyBanner } from "@/components/4-library/puppy-banner";
 
 export function Home() {
     return (
@@ -16,6 +17,8 @@ export function Home() {
             <SEO title="Blue Shamrock Farm" description="This is the home page" href="https:blueshamrock.farm" />
 
             <HeroImg hero={heroHorse} />
+
+            <PuppyBanner pagelink={true} announcement={false} />
 
             <MapIntro />
 

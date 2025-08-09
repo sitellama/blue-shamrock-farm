@@ -108,7 +108,7 @@ export function AnimalList() {
                     <div>
                         <h3 className="text-5xl">Tornjaks</h3>
                         <p className="">Tornjaks are strong, loyal livestock guardian dogs from Bosnia and Herzegovina. They are known for their protective nature, sturdy build, and thick coats, making them ideal for guarding flocks in harsh conditions. Valued for their gentle temperament with both family and animals, Tornjaks remain a respected breed for their dependable guardianship.</p>
-                        <a href="https://sites.google.com/view/blueshamrockfarm/tornjak" target="_blank">More Info<span className="sr-only"> on tornjaks</span></a>
+                        <a href="/tornjak" target="_blank">More Info<span className="sr-only"> on tornjaks</span></a>
                     </div>
                 </div>
 
