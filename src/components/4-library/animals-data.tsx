@@ -35,8 +35,10 @@ type DrupalFormattedText = {
 type DrupalAnimalAttributes = {
     title?: string;
     field_field_description?: DrupalFormattedText;
-    field_field_link_url?: DrupalLinkField;
+    field_description?: DrupalFormattedText;
+    field_animal_page_url?: DrupalLinkField;
     field_field_featured?: boolean;
+    field_feature_animal?: boolean;
     field_field_sort_order?: number | null;
 };
 
@@ -57,6 +59,21 @@ const resolveUrl = (baseUrl: string, maybeUrl?: string): string => {
 const toText = (value?: string, fallback = ""): string => {
     if (typeof value !== "string") return fallback;
     return value.trim() || fallback;
+};
+
+const getAnimalDescription = (attrs: DrupalAnimalAttributes): string => {
+    return toText(attrs.field_field_description?.value || attrs.field_description?.value);
+};
+
+const getAnimalLinkUrl = (attrs: DrupalAnimalAttributes): string => {
+    const raw = toText(attrs.field_animal_page_url?.uri);
+    if (!raw) return "";
+    if (raw.startsWith("internal:")) return raw.replace(/^internal:/, "") || "/";
+    return raw;
+};
+
+const isFeaturedAnimal = (attrs: DrupalAnimalAttributes): boolean => {
+    return attrs.field_feature_animal === true || attrs.field_field_featured === true;
 };
 
 const getImage = (
@@ -89,19 +106,29 @@ const mapDrupalToAnimal = (
         name,
         image: imageUrl,
         imageAlt: toText(imageAlt, name),
-        linkUrl: toText(attrs.field_field_link_url?.uri),
-        description: toText(attrs.field_field_description?.value),
-        featured: attrs.field_field_featured === true,
+        linkUrl: getAnimalLinkUrl(attrs),
+        description: getAnimalDescription(attrs),
+        featured: isFeaturedAnimal(attrs),
         sortOrder: typeof attrs.field_field_sort_order === "number" ? attrs.field_field_sort_order : 999,
     };
 };
 
-const buildRequestUrl = (): string => {
+const buildRequestUrls = (): string[] => {
+    if (!drupalAnimalsEndpoint) return [];
+
     if (drupalAnimalsEndpoint.startsWith("http://") || drupalAnimalsEndpoint.startsWith("https://")) {
-        return drupalAnimalsEndpoint;
+        return [drupalAnimalsEndpoint];
     }
-    if (drupalAnimalsEndpoint.startsWith("/")) return drupalAnimalsEndpoint;
-    return resolveUrl(drupalBaseUrl, drupalAnimalsEndpoint);
+
+    const requestUrl = drupalAnimalsEndpoint.startsWith("/")
+        ? drupalAnimalsEndpoint
+        : resolveUrl(drupalBaseUrl, drupalAnimalsEndpoint);
+
+    const fallbackUrl = requestUrl.includes("/drupal-jsonapi/")
+        ? requestUrl.replace("/drupal-jsonapi/", "/jsonapi/")
+        : requestUrl;
+
+    return [...new Set([requestUrl, fallbackUrl])].filter(Boolean);
 };
 
 export const animalsAtom = atom<Animal[]>([]);
@@ -109,9 +136,9 @@ export const animalsLoadingAtom = atom<boolean>(false);
 export const animalsErrorAtom = atom<string | null>(null);
 
 export const fetchAnimalsAtom = atom(null, async (_get, set) => {
-    const requestUrl = buildRequestUrl();
+    const requestUrls = buildRequestUrls();
 
-    if (!requestUrl) {
+    if (!requestUrls.length) {
         set(animalsAtom, []);
         set(animalsErrorAtom, "Missing Drupal animals endpoint configuration.");
         set(animalsLoadingAtom, false);
@@ -122,15 +149,29 @@ export const fetchAnimalsAtom = atom(null, async (_get, set) => {
     set(animalsErrorAtom, null);
 
     try {
-        const response = await fetch(requestUrl, {
-            credentials: drupalIncludeCredentials ? "include" : "same-origin",
-            headers: { Accept: "application/vnd.api+json" },
-        });
+        let response: Response | null = null;
+        let lastError = "";
 
-        if (!response.ok) {
-            const body = await response.text().catch(() => "");
-            throw new Error(`Drupal request failed with status ${response.status}${body ? `: ${body.slice(0, 300)}` : ""}`);
+        for (const requestUrl of requestUrls) {
+            const candidate = await fetch(requestUrl, {
+                credentials: drupalIncludeCredentials ? "include" : "same-origin",
+                headers: { Accept: "application/vnd.api+json" },
+            });
+
+            if (candidate.ok) {
+                response = candidate;
+                break;
+            }
+
+            const body = await candidate.text().catch(() => "");
+            lastError = `Drupal request failed with status ${candidate.status}${body ? `: ${body.slice(0, 300)}` : ""}`;
+
+            if (candidate.status !== 404) {
+                throw new Error(lastError);
+            }
         }
+
+        if (!response) throw new Error(lastError || "Unable to load animals from Drupal.");
 
         const json = (await response.json()) as DrupalJsonApiResponse;
         const includedByKey = new Map<string, DrupalResource>(

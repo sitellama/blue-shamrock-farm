@@ -8,7 +8,7 @@ function AnimalCard({ animal }: { animal: Animal }) {
             {animal.image && <img src={animal.image} alt={animal.imageAlt} />}
             <h3 className="animal-tag">
                 {animal.linkUrl
-                    ? <a href={animal.linkUrl} target="_blank" rel="noreferrer">{animal.name}</a>
+                    ? <a href={animal.linkUrl}>{animal.name}</a>
                     : animal.name
                 }
             </h3>
@@ -32,7 +32,7 @@ function FeaturedAnimal({ animal, imageRight }: { animal: Animal; imageRight: bo
                     <h3 className="text-5xl">{animal.name}</h3>
                     {animal.description && <p>{animal.description}</p>}
                     {animal.linkUrl && (
-                        <a href={animal.linkUrl} target="_blank" rel="noreferrer">
+                        <a href={animal.linkUrl}>
                             More Info<span className="sr-only"> on {animal.name}</span>
                         </a>
                     )}
