@@ -48,6 +48,7 @@ export type TextBlock = {
 
 type TextBlockAttrs = {
     field_text_block?: { processed?: string };
+    field_animal_description_block?: { processed?: string };
     field_center_text?: boolean;
     field_color_theme?: string;
 };
@@ -56,24 +57,28 @@ const mapTextBlock = (r: DrupalResource): TextBlock => {
     const a = (r.attributes ?? {}) as TextBlockAttrs;
     return {
         id: r.id,
-        html: a.field_text_block?.processed ?? "",
+        html: a.field_text_block?.processed ?? a.field_animal_description_block?.processed ?? "",
         centerText: a.field_center_text ?? false,
         colorTheme: a.field_color_theme ?? "",
     };
 };
 
-// ─── img_left_text_right ─────────────────────────────────────────────────────
+// ─── new_animal_by_name ─────────────────────────────────────────────────────
 
 export type AnimalCard = {
     id: string;
     name: string;
     descriptionHtml: string;
     images: { url: string; alt: string }[];
+    species: string;
 };
 
 type AnimalCardAttrs = {
+    info?: string;
     field_animal_name?: string;
+    field_animal_description?: { processed?: string };
     field_text?: { processed?: string };
+    field_animal_species?: string;
 };
 
 type MediaRelData = { id: string; type: string };
@@ -104,14 +109,15 @@ const mapAnimalCard = (
 ): AnimalCard => {
     const a = (r.attributes ?? {}) as AnimalCardAttrs;
 
-    const rawMediaRels = r.relationships?.field_img_left?.data;
+    const rawMediaRels = r.relationships?.field_animal_images?.data;
     const mediaIds: MediaRelData[] = Array.isArray(rawMediaRels) ? rawMediaRels : [];
 
     return {
         id: r.id,
-        name: a.field_animal_name ?? "",
-        descriptionHtml: a.field_text?.processed ?? "",
+        name: a.field_animal_name ?? a.info ?? "",
+        descriptionHtml: a.field_animal_description?.processed ?? a.field_text?.processed ?? "",
         images: getImagesFromMedia(mediaIds, includedMap),
+        species: a.field_animal_species ?? "",
     };
 };
 
@@ -134,13 +140,13 @@ export const fetchAnimalBlocksAtom = atom(null, async (_get, set) => {
         const [textRes, cardRes] = await Promise.all([
             fetch(`${drupalPath}/jsonapi/block_content/text_block`, fetchOptions()),
             fetch(
-                `${drupalPath}/jsonapi/block_content/img_left_text_right?include=field_img_left,field_img_left.field_media_image`,
+                `${drupalPath}/jsonapi/block_content/new_animal_by_name?include=field_animal_images,field_animal_images.field_media_image`,
                 fetchOptions()
             ),
         ]);
 
         if (!textRes.ok) throw new Error(`text_block fetch failed: ${textRes.status}`);
-        if (!cardRes.ok) throw new Error(`img_left_text_right fetch failed: ${cardRes.status}`);
+        if (!cardRes.ok) throw new Error(`new_animal_by_name fetch failed: ${cardRes.status}`);
 
         const [textJson, cardJson] = await Promise.all([
             textRes.json() as Promise<{ data: DrupalResource[] }>,

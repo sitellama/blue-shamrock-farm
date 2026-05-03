@@ -5,6 +5,7 @@ import { SEO } from "@/utils/seo";
 import { animalsAtom, animalsErrorAtom, animalsLoadingAtom, fetchAnimalsAtom } from "@/components/4-library/animals-data";
 import {
     animalBlocksAtom,
+    animalBlocksErrorAtom,
     animalBlocksLoadingAtom,
     fetchAnimalBlocksAtom,
 } from "@/components/4-library/animal-blocks-data";
@@ -20,6 +21,7 @@ export function AnimalPage() {
 
     const { textBlocks, animalCards } = useAtomValue(animalBlocksAtom);
     const blocksLoading = useAtomValue(animalBlocksLoadingAtom);
+    const blocksError = useAtomValue(animalBlocksErrorAtom);
     const fetchBlocks = useSetAtom(fetchAnimalBlocksAtom);
 
     useEffect(() => {
@@ -58,6 +60,10 @@ export function AnimalPage() {
                 )}
             </div>
 
+            {blocksError && (
+                <p className="max-content mt-4 text-red-700">Error loading animal blocks: {blocksError}</p>
+            )}
+
             {!blocksLoading && (
                 <>
                     {textBlocks.map((block) => (
@@ -78,19 +84,22 @@ export function AnimalPage() {
                                             alt={card.images[0].alt}
                                             className="w-full h-auto object-cover rounded"
                                         />
+
                                     )}
-                                    <div>
-                                        {card.name && <h2 className="text-2xl mb-3">{card.name}</h2>}
-                                        {card.descriptionHtml && (
-                                            <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: card.descriptionHtml }} />
-                                        )}
-                                        {card.images.length > 1 && (
+                                    {card.images.length > 1 && (
                                             <div className="mt-4 flex flex-wrap gap-3">
                                                 {card.images.slice(1).map((img, i) => (
                                                     <img key={i} src={img.url} alt={img.alt} className="h-32 w-auto object-cover rounded" />
                                                 ))}
                                             </div>
                                         )}
+                                    <div>
+                                        {card.name && <h2 className="text-2xl mb-3">{card.name}</h2>}
+                                            {card.species && <p className="mb-2 opacity-70">{card.species}</p>}
+                                        {card.descriptionHtml && (
+                                            <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: card.descriptionHtml }} />
+                                        )}
+                                        
                                     </div>
                                 </article>
                             ))}

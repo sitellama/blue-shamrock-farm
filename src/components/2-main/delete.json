@@ -1,0 +1,280 @@
+{
+  "jsonapi": {
+    "version": "1.1",
+    "meta": {
+      "links": {
+        "self": {
+          "href": "http://jsonapi.org/format/1.1/"
+        }
+      }
+    }
+  },
+  "data": [
+    {
+      "type": "block_content--img_left_text_right",
+      "id": "e76b47a6-faae-48d8-9e4b-f62c3bb08514",
+      "links": {
+        "self": {
+          "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/e76b47a6-faae-48d8-9e4b-f62c3bb08514?resourceVersion=id%3A8"
+        },
+        "working-copy": {
+          "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/e76b47a6-faae-48d8-9e4b-f62c3bb08514?resourceVersion=rel%3Aworking-copy"
+        }
+      },
+      "attributes": {
+        "drupal_internal__id": 7,
+        "drupal_internal__revision_id": 8,
+        "langcode": "en",
+        "revision_created": "2026-05-03T15:51:36+00:00",
+        "revision_log": null,
+        "status": true,
+        "info": "Regina",
+        "changed": "2026-05-03T15:51:36+00:00",
+        "reusable": false,
+        "default_langcode": true,
+        "revision_translation_affected": true,
+        "field_animal_name": "Regina",
+        "field_text": {
+          "value": "\u003Cul type=\"disc\"\u003E\u003Cli dir=\"ltr\" data-list-item-id=\"e18f173377254dcda3198f096d5721f65\"\u003E\u003Cp dir=\"ltr\"\u003EHolland Lop\u003C/p\u003E\u003C/li\u003E\u003Cli dir=\"ltr\" data-list-item-id=\"e85d295e8368c5de87a0b35d300cfd904\"\u003E\u003Cp dir=\"ltr\"\u003Edoe (female)\u003C/p\u003E\u003C/li\u003E\u003Cli dir=\"ltr\" data-list-item-id=\"e46e53e75c20a37257940b7cacc2d7c7a\"\u003E\u003Cp dir=\"ltr\"\u003EMostly tan colored\u003C/p\u003E\u003C/li\u003E\u003Cli dir=\"ltr\" data-list-item-id=\"e14a01968ebdd9b0d46a20158da0e5419\"\u003E\u003Cp dir=\"ltr\"\u003EDOB: April 1, 2024\u003C/p\u003E\u003C/li\u003E\u003C/ul\u003E",
+          "format": "basic_html",
+          "processed": "\u003Cul type=\"disc\"\u003E\u003Cli dir=\"ltr\"\u003E\u003Cp dir=\"ltr\"\u003EHolland Lop\u003C/p\u003E\u003C/li\u003E\u003Cli dir=\"ltr\"\u003E\u003Cp dir=\"ltr\"\u003Edoe (female)\u003C/p\u003E\u003C/li\u003E\u003Cli dir=\"ltr\"\u003E\u003Cp dir=\"ltr\"\u003EMostly tan colored\u003C/p\u003E\u003C/li\u003E\u003Cli dir=\"ltr\"\u003E\u003Cp dir=\"ltr\"\u003EDOB: April 1, 2024\u003C/p\u003E\u003C/li\u003E\u003C/ul\u003E"
+        }
+      },
+      "relationships": {
+        "block_content_type": {
+          "data": {
+            "type": "block_content_type--block_content_type",
+            "id": "c9579f95-d487-4d29-8752-8344c082c498",
+            "meta": {
+              "drupal_internal__target_id": "img_left_text_right"
+            }
+          },
+          "links": {
+            "related": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/e76b47a6-faae-48d8-9e4b-f62c3bb08514/block_content_type?resourceVersion=id%3A8"
+            },
+            "self": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/e76b47a6-faae-48d8-9e4b-f62c3bb08514/relationships/block_content_type?resourceVersion=id%3A8"
+            }
+          }
+        },
+        "revision_user": {
+          "data": null,
+          "links": {
+            "related": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/e76b47a6-faae-48d8-9e4b-f62c3bb08514/revision_user?resourceVersion=id%3A8"
+            },
+            "self": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/e76b47a6-faae-48d8-9e4b-f62c3bb08514/relationships/revision_user?resourceVersion=id%3A8"
+            }
+          }
+        },
+        "field_img_left": {
+          "data": [
+            {
+              "type": "media--image",
+              "id": "247291ca-6a60-4240-a3b9-eeee6a3e8e56",
+              "meta": {
+                "drupal_internal__target_id": 12
+              }
+            },
+            {
+              "type": "media--image",
+              "id": "6790fc17-8fbd-455b-adfd-86c5c54868c7",
+              "meta": {
+                "drupal_internal__target_id": 11
+              }
+            },
+            {
+              "type": "media--image",
+              "id": "2a06ae8e-ce13-4642-adc9-e506576af81c",
+              "meta": {
+                "drupal_internal__target_id": 10
+              }
+            }
+          ],
+          "links": {
+            "related": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/e76b47a6-faae-48d8-9e4b-f62c3bb08514/field_img_left?resourceVersion=id%3A8"
+            },
+            "self": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/e76b47a6-faae-48d8-9e4b-f62c3bb08514/relationships/field_img_left?resourceVersion=id%3A8"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "block_content--img_left_text_right",
+      "id": "2ce41bcf-cfaa-490f-864f-8e0513dfee07",
+      "links": {
+        "self": {
+          "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/2ce41bcf-cfaa-490f-864f-8e0513dfee07?resourceVersion=id%3A9"
+        },
+        "working-copy": {
+          "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/2ce41bcf-cfaa-490f-864f-8e0513dfee07?resourceVersion=rel%3Aworking-copy"
+        }
+      },
+      "attributes": {
+        "drupal_internal__id": 8,
+        "drupal_internal__revision_id": 9,
+        "langcode": "en",
+        "revision_created": "2026-05-03T15:53:15+00:00",
+        "revision_log": null,
+        "status": true,
+        "info": "Karen",
+        "changed": "2026-05-03T15:53:15+00:00",
+        "reusable": false,
+        "default_langcode": true,
+        "revision_translation_affected": true,
+        "field_animal_name": "Karen",
+        "field_text": {
+          "value": "\u003Cul type=\"disc\"\u003E\u003Cli dir=\"ltr\" data-list-item-id=\"ea2955977e759053738757ce70bad0b38\"\u003E\u003Cp dir=\"ltr\"\u003EHolland Lop\u003C/p\u003E\u003C/li\u003E\u003Cli dir=\"ltr\" data-list-item-id=\"ec71fe39f8792e75346370708434abbdc\"\u003E\u003Cp dir=\"ltr\"\u003Edoe (female)\u003C/p\u003E\u003C/li\u003E\u003Cli dir=\"ltr\" data-list-item-id=\"eada8e67658b8eb4476f62938d2ff1a06\"\u003E\u003Cp dir=\"ltr\"\u003Edark ears\u003C/p\u003E\u003C/li\u003E\u003Cli dir=\"ltr\" data-list-item-id=\"e7ab291aa3114d57be7bfebefe5451af6\"\u003E\u003Cp dir=\"ltr\"\u003EDOB: April 1, 2024\u003C/p\u003E\u003C/li\u003E\u003C/ul\u003E",
+          "format": "basic_html",
+          "processed": "\u003Cul type=\"disc\"\u003E\u003Cli dir=\"ltr\"\u003E\u003Cp dir=\"ltr\"\u003EHolland Lop\u003C/p\u003E\u003C/li\u003E\u003Cli dir=\"ltr\"\u003E\u003Cp dir=\"ltr\"\u003Edoe (female)\u003C/p\u003E\u003C/li\u003E\u003Cli dir=\"ltr\"\u003E\u003Cp dir=\"ltr\"\u003Edark ears\u003C/p\u003E\u003C/li\u003E\u003Cli dir=\"ltr\"\u003E\u003Cp dir=\"ltr\"\u003EDOB: April 1, 2024\u003C/p\u003E\u003C/li\u003E\u003C/ul\u003E"
+        }
+      },
+      "relationships": {
+        "block_content_type": {
+          "data": {
+            "type": "block_content_type--block_content_type",
+            "id": "c9579f95-d487-4d29-8752-8344c082c498",
+            "meta": {
+              "drupal_internal__target_id": "img_left_text_right"
+            }
+          },
+          "links": {
+            "related": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/2ce41bcf-cfaa-490f-864f-8e0513dfee07/block_content_type?resourceVersion=id%3A9"
+            },
+            "self": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/2ce41bcf-cfaa-490f-864f-8e0513dfee07/relationships/block_content_type?resourceVersion=id%3A9"
+            }
+          }
+        },
+        "revision_user": {
+          "data": null,
+          "links": {
+            "related": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/2ce41bcf-cfaa-490f-864f-8e0513dfee07/revision_user?resourceVersion=id%3A9"
+            },
+            "self": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/2ce41bcf-cfaa-490f-864f-8e0513dfee07/relationships/revision_user?resourceVersion=id%3A9"
+            }
+          }
+        },
+        "field_img_left": {
+          "data": [
+            {
+              "type": "media--image",
+              "id": "27aab36c-9126-4a69-a1ff-75175b550b5c",
+              "meta": {
+                "drupal_internal__target_id": 5
+              }
+            },
+            {
+              "type": "media--image",
+              "id": "2c995e5e-88b4-422b-9a75-22969d7f3c3a",
+              "meta": {
+                "drupal_internal__target_id": 4
+              }
+            }
+          ],
+          "links": {
+            "related": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/2ce41bcf-cfaa-490f-864f-8e0513dfee07/field_img_left?resourceVersion=id%3A9"
+            },
+            "self": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/2ce41bcf-cfaa-490f-864f-8e0513dfee07/relationships/field_img_left?resourceVersion=id%3A9"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "block_content--img_left_text_right",
+      "id": "316ea7ae-983b-4528-823c-9021c9983c62",
+      "links": {
+        "self": {
+          "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/316ea7ae-983b-4528-823c-9021c9983c62?resourceVersion=id%3A11"
+        },
+        "working-copy": {
+          "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/316ea7ae-983b-4528-823c-9021c9983c62?resourceVersion=rel%3Aworking-copy"
+        }
+      },
+      "attributes": {
+        "drupal_internal__id": 10,
+        "drupal_internal__revision_id": 11,
+        "langcode": "en",
+        "revision_created": "2026-05-03T18:34:22+00:00",
+        "revision_log": null,
+        "status": true,
+        "info": "Peanut",
+        "changed": "2026-05-03T18:34:22+00:00",
+        "reusable": false,
+        "default_langcode": true,
+        "revision_translation_affected": true,
+        "field_animal_name": "Peanut",
+        "field_text": {
+          "value": "\u003Cul\u003E\u003Cli data-list-item-id=\"ed13ed2cb87a2deb549878373a3d0fb83\"\u003E\u003Cp dir=\"ltr\"\u003EPeanut is a miniature horse.&nbsp;\u003C/p\u003E\u003C/li\u003E\u003Cli data-list-item-id=\"ef85f528c96da20bdb95e53f23ef54865\"\u003E\u003Cp dir=\"ltr\"\u003EHe is a gelding.\u003C/p\u003E\u003C/li\u003E\u003C/ul\u003E",
+          "format": "basic_html",
+          "processed": "\u003Cul\u003E\u003Cli\u003E\u003Cp dir=\"ltr\"\u003EPeanut is a miniature horse.&nbsp;\u003C/p\u003E\u003C/li\u003E\u003Cli\u003E\u003Cp dir=\"ltr\"\u003EHe is a gelding.\u003C/p\u003E\u003C/li\u003E\u003C/ul\u003E"
+        }
+      },
+      "relationships": {
+        "block_content_type": {
+          "data": {
+            "type": "block_content_type--block_content_type",
+            "id": "c9579f95-d487-4d29-8752-8344c082c498",
+            "meta": {
+              "drupal_internal__target_id": "img_left_text_right"
+            }
+          },
+          "links": {
+            "related": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/316ea7ae-983b-4528-823c-9021c9983c62/block_content_type?resourceVersion=id%3A11"
+            },
+            "self": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/316ea7ae-983b-4528-823c-9021c9983c62/relationships/block_content_type?resourceVersion=id%3A11"
+            }
+          }
+        },
+        "revision_user": {
+          "data": null,
+          "links": {
+            "related": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/316ea7ae-983b-4528-823c-9021c9983c62/revision_user?resourceVersion=id%3A11"
+            },
+            "self": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/316ea7ae-983b-4528-823c-9021c9983c62/relationships/revision_user?resourceVersion=id%3A11"
+            }
+          }
+        },
+        "field_img_left": {
+          "data": [
+            {
+              "type": "media--image",
+              "id": "6790fc17-8fbd-455b-adfd-86c5c54868c7",
+              "meta": {
+                "drupal_internal__target_id": 11
+              }
+            }
+          ],
+          "links": {
+            "related": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/316ea7ae-983b-4528-823c-9021c9983c62/field_img_left?resourceVersion=id%3A11"
+            },
+            "self": {
+              "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right/316ea7ae-983b-4528-823c-9021c9983c62/relationships/field_img_left?resourceVersion=id%3A11"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "links": {
+    "self": {
+      "href": "https://blueshamrock.farm/drupal/jsonapi/block_content/img_left_text_right"
+    }
+  }
+}
