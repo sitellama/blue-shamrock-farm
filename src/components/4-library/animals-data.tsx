@@ -3,6 +3,7 @@ import { atom } from "jotai";
 export type Animal = {
     id: string;
     name: string;
+    species: string;
     image: string;
     imageAlt: string;
     linkUrl: string;
@@ -34,6 +35,7 @@ type DrupalFormattedText = {
 
 type DrupalAnimalAttributes = {
     title?: string;
+    field_animal_species?: string;
     field_field_description?: DrupalFormattedText;
     field_description?: DrupalFormattedText;
     field_animal_page_url?: DrupalLinkField;
@@ -104,6 +106,7 @@ const mapDrupalToAnimal = (
     return {
         id: resource.id,
         name,
+        species: toText(attrs.field_animal_species),
         image: imageUrl,
         imageAlt: toText(imageAlt, name),
         linkUrl: getAnimalLinkUrl(attrs),
