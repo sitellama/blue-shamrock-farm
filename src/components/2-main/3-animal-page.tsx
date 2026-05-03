@@ -3,6 +3,11 @@ import { useAtomValue, useSetAtom } from "jotai";
 import { useParams, Link } from "react-router-dom";
 import { SEO } from "@/utils/seo";
 import { animalsAtom, animalsErrorAtom, animalsLoadingAtom, fetchAnimalsAtom } from "@/components/4-library/animals-data";
+import {
+    animalBlocksAtom,
+    animalBlocksLoadingAtom,
+    fetchAnimalBlocksAtom,
+} from "@/components/4-library/animal-blocks-data";
 
 export function AnimalPage() {
     const { animalSlug = "" } = useParams();
@@ -13,8 +18,13 @@ export function AnimalPage() {
     const error = useAtomValue(animalsErrorAtom);
     const fetchAnimals = useSetAtom(fetchAnimalsAtom);
 
+    const { textBlocks, animalCards } = useAtomValue(animalBlocksAtom);
+    const blocksLoading = useAtomValue(animalBlocksLoadingAtom);
+    const fetchBlocks = useSetAtom(fetchAnimalBlocksAtom);
+
     useEffect(() => {
         if (!animals.length) void fetchAnimals();
+        if (!textBlocks.length && !animalCards.length) void fetchBlocks();
     }, []);
 
     if (isLoading) return <p className="max-content mt-16">Loading…</p>;
@@ -47,6 +57,47 @@ export function AnimalPage() {
                     </div>
                 )}
             </div>
+
+            {!blocksLoading && (
+                <>
+                    {textBlocks.map((block) => (
+                        <div
+                            key={block.id}
+                            className={`max-content my-8 ${block.centerText ? "text-center" : ""}`}
+                            dangerouslySetInnerHTML={{ __html: block.html }}
+                        />
+                    ))}
+
+                    {animalCards.length > 0 && (
+                        <section className="max-content mb-16 space-y-8">
+                            {animalCards.map((card) => (
+                                <article key={card.id} className="grid gap-6 md:grid-cols-[minmax(200px,320px)_1fr] items-start">
+                                    {card.images[0] && (
+                                        <img
+                                            src={card.images[0].url}
+                                            alt={card.images[0].alt}
+                                            className="w-full h-auto object-cover rounded"
+                                        />
+                                    )}
+                                    <div>
+                                        {card.name && <h2 className="text-2xl mb-3">{card.name}</h2>}
+                                        {card.descriptionHtml && (
+                                            <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: card.descriptionHtml }} />
+                                        )}
+                                        {card.images.length > 1 && (
+                                            <div className="mt-4 flex flex-wrap gap-3">
+                                                {card.images.slice(1).map((img, i) => (
+                                                    <img key={i} src={img.url} alt={img.alt} className="h-32 w-auto object-cover rounded" />
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                </article>
+                            ))}
+                        </section>
+                    )}
+                </>
+            )}
         </>
     );
 }

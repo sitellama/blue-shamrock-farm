@@ -13,6 +13,10 @@ export default defineConfig({
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/drupal-jsonapi/, '/drupal/jsonapi'),
             },
+            '/drupal': {
+                target: 'https://blueshamrock.farm',
+                changeOrigin: true,
+            },
         },
     },
     // build: {
