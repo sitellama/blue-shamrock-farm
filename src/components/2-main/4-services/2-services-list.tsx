@@ -1,9 +1,24 @@
 import { useAtomValue } from "jotai";
 import { ServicesEvents } from "./3-service-item";
-import { filteredServicesAtom } from "./8-services-data";
+import { filteredServicesAtom, servicesErrorAtom, servicesLoadingAtom } from "./8-services-data";
 
 export function ServicesList() {
     const services = useAtomValue(filteredServicesAtom);
+    const isLoading = useAtomValue(servicesLoadingAtom);
+    const error = useAtomValue(servicesErrorAtom);
+
+    if (isLoading) {
+        return <p>Loading services...</p>;
+    }
+
+    if (error) {
+        return <p>Unable to load services right now: {error}</p>;
+    }
+
+    if (!services.length) {
+        return <p>No services available.</p>;
+    }
+
     return services.map(
         (service, index) => {
             return (

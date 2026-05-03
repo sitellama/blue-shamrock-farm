@@ -7,17 +7,19 @@ import { DropdownSection } from "./1-dropdown-section";
 import { ServicesList } from "./2-services-list";
 import { ContactUs } from "@/components/4-library/contact-us";
 import flowerBarn from "@/assets/hero-barn-flowers.webp";
-import { dropdownSelectionAtom, onsiteAtom, travelAtom } from "./8-services-data";
+import { dropdownSelectionAtom, fetchServicesAtom, onsiteAtom, travelAtom } from "./8-services-data";
 
 export function Services() {
     const setDropdownSelection = useSetAtom(dropdownSelectionAtom);
     const setOnsite = useSetAtom(onsiteAtom);
     const setTravel = useSetAtom(travelAtom);
+    const fetchServices = useSetAtom(fetchServicesAtom);
 
     useEffect(() => {
         setDropdownSelection("All");
         setOnsite(true);
         setTravel(true);
+        void fetchServices();
     }, []);
 
 

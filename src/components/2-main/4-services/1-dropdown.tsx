@@ -16,7 +16,7 @@ export function DropdownList() {
         </span>
 
         <select
-            className="mr-[5rem] p-2 rounded-md border border-gray"
+            className="min-w-48 mr-[5rem] p-2 rounded-md border border-gray"
             value={selected}
             onChange={(event) => {
                 setSelected(event.target.value);

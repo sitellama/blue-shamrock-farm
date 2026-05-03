@@ -6,6 +6,15 @@ export default defineConfig({
     // base: '/blue-shamrock-farm/',
     base: '',
     plugins: [react()],
+    server: {
+        proxy: {
+            '/drupal-jsonapi': {
+                target: 'https://blueshamrock.farm',
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/drupal-jsonapi/, '/drupal/jsonapi'),
+            },
+        },
+    },
     // build: {
     //     minify: false,
     // },
