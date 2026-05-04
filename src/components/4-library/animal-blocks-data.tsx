@@ -72,6 +72,9 @@ export type AnimalCard = {
     images: { url: string; alt: string }[];
     species: string;
 };
+// referenceNodeId: UUID of the node--animal this block explicitly belongs to.
+// null means no explicit reference was set in Drupal.
+export type AnimalCardWithRef = AnimalCard & { referenceNodeId: string | null };
 
 type AnimalCardAttrs = {
     info?: string;
@@ -106,7 +109,7 @@ const getImagesFromMedia = (
 const mapAnimalCard = (
     r: DrupalResource,
     includedMap: Map<string, DrupalResource>
-): AnimalCard => {
+): AnimalCardWithRef => {
     const a = (r.attributes ?? {}) as AnimalCardAttrs;
 
     const rawMediaRels = r.relationships?.field_animal_images?.data;
@@ -118,6 +121,11 @@ const mapAnimalCard = (
         descriptionHtml: a.field_animal_description?.processed ?? a.field_text?.processed ?? "",
         images: getImagesFromMedia(mediaIds, includedMap),
         species: a.field_animal_species ?? "",
+        referenceNodeId: (() => {
+            const ref = r.relationships?.field_reference?.data;
+            if (!ref || Array.isArray(ref)) return null;
+            return ref.id ?? null;
+        })(),
     };
 };
 
@@ -125,7 +133,7 @@ const mapAnimalCard = (
 
 export type AnimalBlocks = {
     textBlocks: TextBlock[];
-    animalCards: AnimalCard[];
+    animalCards: AnimalCardWithRef[];
 };
 
 export const animalBlocksAtom = atom<AnimalBlocks>({ textBlocks: [], animalCards: [] });
@@ -157,7 +165,7 @@ export const fetchAnimalBlocksAtom = atom(null, async (_get, set) => {
 
         set(animalBlocksAtom, {
             textBlocks: (textJson.data ?? []).map(mapTextBlock),
-            animalCards: (cardJson.data ?? []).map((r) => mapAnimalCard(r, includedMap)),
+            animalCards: (cardJson.data ?? []).map((r) => mapAnimalCard(r, includedMap)) as AnimalCardWithRef[],
         });
     } catch (error) {
         const message = error instanceof Error ? error.message : "Unknown error loading animal blocks.";
