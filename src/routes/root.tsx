@@ -18,7 +18,6 @@ export function Root() {
     return (<>
         <div className={`relative bg-zinc-100 ${debugClasses}`}>
             <Header />
-            <Header />
             <Outlet />
         </div>
         <Footer />
