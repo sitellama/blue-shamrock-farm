@@ -8,18 +8,6 @@ import { classNames } from "@/utils";
 // ReactGA.initialize('G-V0YCCCVV8Y', {
 //     gaAddress: "https://www.googletagmanager.com/gtag/js?id=G-V0YCCCVV8Y",
 // });
-
-// <!-- Google tag (gtag.js) -->
-// <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0YCCCVV8Y"></script>
-// <script>
-//   window.dataLayer = window.dataLayer || [];
-//   function gtag(){dataLayer.push(arguments);}
-//   gtag('js', new Date());
-
-//   gtag('config', 'G-V0YCCCVV8Y');
-
-// </script >
-
 const debugClasses = import.meta.env.PROD ? "" : "debug-screens";
 
 export function Root() {
@@ -30,9 +18,9 @@ export function Root() {
     return (<>
         <div className={`relative bg-zinc-100 ${debugClasses}`}>
             <Header />
+            <Header />
             <Outlet />
         </div>
-
         <Footer />
     </>);
 }
