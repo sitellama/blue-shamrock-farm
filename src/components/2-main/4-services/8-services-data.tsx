@@ -38,7 +38,7 @@ type DrupalServiceAttributes = {
     title?: string;
     field_field_content?: DrupalFormattedText;
     field_field_pdf_name?: string;
-    field_animal_page_url?: DrupalLinkField;
+    field_field_pdf_url?: DrupalLinkField;
     field_field_onsite?: boolean;
     field_field_travel?: boolean;
     field_field_sort_order?: number | null;
@@ -112,13 +112,16 @@ const mapDrupalToService = (
     const content = toText(attrs.field_field_content?.value);
     const { url: imageUrl, alt: imageAltText } = getImageFromRelationship(resource, includedByKey);
 
+    console.log("Service attributes:", attrs);
+    console.log("field_field_pdf_url:", attrs.field_field_pdf_url);
+
     return {
         image: imageUrl,
         imageAlt: toText(imageAltText, title),
         label: title,
         content,
         pdfName: toText(attrs.field_field_pdf_name, "Learn more"),
-        pdfUrl: toText(attrs.field_animal_page_url?.uri),
+        pdfUrl: toText(attrs.field_field_pdf_url?.uri),
         onsite: attrs.field_field_onsite === true,
         travel: attrs.field_field_travel === true,
     };

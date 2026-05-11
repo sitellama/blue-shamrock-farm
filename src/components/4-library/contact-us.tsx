@@ -35,11 +35,7 @@ export function ContactUs() {
         formData.append(interestsName, JSON.stringify(checkboxes));
 
 
-        // katie's access key in place
-        formData.append("access_key", "405982dd-a7a4-40fe-bafb-ef718f3ffb52");
-
-        // sitellama key
-        // formData.append("access_key", "a04f96ee-90d4-419a-98a1-81e984f2f3de");
+        formData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
 
         try {
             const res = await fetch("https://api.web3forms.com/submit", {
