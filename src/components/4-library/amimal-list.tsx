@@ -68,7 +68,16 @@ export function AnimalList() {
         void fetchAnimals();
     }, []);
 
-    if (isLoading) return <p className="max-content mt-16">Loading animals...</p>;
+    if (isLoading) {
+        return (
+            <section className="max-content mt-16 space-y-16" aria-busy="true" aria-label="Loading animals">
+                <AnimalSkeletonRow />
+                <FeaturedAnimalSkeleton imageRight={false} />
+                <AnimalSkeletonRow />
+                <FeaturedAnimalSkeleton imageRight={true} />
+            </section>
+        );
+    }
     if (error) return <p className="max-content mt-16">Unable to load animals: {error}</p>;
     if (!animals.length) return <p className="max-content mt-16">No animals available.</p>;
 
@@ -83,5 +92,50 @@ export function AnimalList() {
                 </div>
             ))}
         </section>
+    );
+}
+
+function AnimalSkeletonRow() {
+    return (
+        <div className="mb-16 flex flex-col md:flex-row gap-[2rem] animate-pulse">
+            <div className="flex gap-[2rem]">
+                <div className="w-[160px] md:w-[220px]">
+                    <div className="h-[220px] bg-gray-200" />
+                    <div className="mt-4 h-7 w-28 bg-gray-200" />
+                </div>
+                <div className="w-[160px] md:w-[220px]">
+                    <div className="h-[220px] bg-gray-200" />
+                    <div className="mt-4 h-7 w-28 bg-gray-200" />
+                </div>
+            </div>
+            <div className="flex gap-[2rem]">
+                <div className="w-[160px] md:w-[220px]">
+                    <div className="h-[220px] bg-gray-200" />
+                    <div className="mt-4 h-7 w-28 bg-gray-200" />
+                </div>
+                <div className="w-[160px] md:w-[220px]">
+                    <div className="h-[220px] bg-gray-200" />
+                    <div className="mt-4 h-7 w-28 bg-gray-200" />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function FeaturedAnimalSkeleton({ imageRight }: { imageRight: boolean }) {
+    return (
+        <div className="mb-16 flex flex-col md:flex-row bg-blue-dark animate-pulse">
+            <div className="py-4 px-8 flex-[1_1_clamp(30%,50%,70%)] flex flex-col md:min-h-[400px] justify-center text-center text-white">
+                <div className="space-y-4">
+                    <div className="mx-auto h-12 w-2/3 bg-white/20" />
+                    <div className="mx-auto h-5 w-11/12 bg-white/20" />
+                    <div className="mx-auto h-5 w-10/12 bg-white/20" />
+                    <div className="mx-auto h-5 w-1/2 bg-white/20" />
+                </div>
+            </div>
+            <div className={`flex-[1_1_33%] ${imageRight ? "order-first md:order-last" : "order-first"}`}>
+                <div className="h-[250px] md:h-full bg-gray-200" />
+            </div>
+        </div>
     );
 }
