@@ -74,7 +74,11 @@ export type AnimalCard = {
 };
 // referenceNodeId: UUID of the node--animal this block explicitly belongs to.
 // null means no explicit reference was set in Drupal.
-export type AnimalCardWithRef = AnimalCard & { referenceNodeId: string | null };
+export type AnimalCardWithRef = AnimalCard & {
+    referenceNodeId: string | null;
+    referenceNodeType: string | null;
+    referenceNodeIds: string[];
+};
 
 type AnimalCardAttrs = {
     info?: string;
@@ -85,6 +89,13 @@ type AnimalCardAttrs = {
 };
 
 type MediaRelData = { id: string; type: string };
+
+const toRelationshipArray = (
+    data: { id: string; type: string } | { id: string; type: string }[] | null | undefined
+): { id: string; type: string }[] => {
+    if (!data) return [];
+    return Array.isArray(data) ? data : [data];
+};
 
 const getImagesFromMedia = (
     mediaIds: MediaRelData[],
@@ -114,6 +125,9 @@ const mapAnimalCard = (
 
     const rawMediaRels = r.relationships?.field_animal_images?.data;
     const mediaIds: MediaRelData[] = Array.isArray(rawMediaRels) ? rawMediaRels : [];
+    const rawReferenceRel = r.relationships?.field_reference?.data;
+    const referenceRels = toRelationshipArray(rawReferenceRel);
+    const referenceRel = referenceRels[0] ?? null;
 
     return {
         id: r.id,
@@ -121,11 +135,9 @@ const mapAnimalCard = (
         descriptionHtml: a.field_animal_description?.processed ?? a.field_text?.processed ?? "",
         images: getImagesFromMedia(mediaIds, includedMap),
         species: a.field_animal_species ?? "",
-        referenceNodeId: (() => {
-            const ref = r.relationships?.field_reference?.data;
-            if (!ref || Array.isArray(ref)) return null;
-            return ref.id ?? null;
-        })(),
+        referenceNodeId: referenceRel?.id ?? null,
+        referenceNodeType: referenceRel?.type ?? null,
+        referenceNodeIds: referenceRels.map((rel) => rel.id),
     };
 };
 
@@ -148,7 +160,7 @@ export const fetchAnimalBlocksAtom = atom(null, async (_get, set) => {
         const [textRes, cardRes] = await Promise.all([
             fetch(`${drupalPath}/jsonapi/block_content/text_block`, fetchOptions()),
             fetch(
-                `${drupalPath}/jsonapi/block_content/new_animal_by_name?include=field_animal_images,field_animal_images.field_media_image`,
+                `${drupalPath}/jsonapi/block_content/new_animal_by_name?include=field_animal_images,field_animal_images.field_media_image,field_reference`,
                 fetchOptions()
             ),
         ]);
