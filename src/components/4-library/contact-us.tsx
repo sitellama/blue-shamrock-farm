@@ -9,9 +9,15 @@ type OurRes = {
 
 export function ContactUs() {
     const [result, setResult] = React.useState("");
+    const web3formsAccessKey = (import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "").trim();
 
     const onSubmit = async (event: any) => {
         event.preventDefault();
+
+        if (!web3formsAccessKey) {
+            setResult("Contact form is not configured. Please set VITE_WEB3FORMS_ACCESS_KEY.");
+            return;
+        }
 
         setResult("Sending....");
 
@@ -35,7 +41,7 @@ export function ContactUs() {
         formData.append(interestsName, JSON.stringify(checkboxes));
 
 
-        formData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
+        formData.append("access_key", web3formsAccessKey);
 
         try {
             const res = await fetch("https://api.web3forms.com/submit", {
