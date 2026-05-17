@@ -5,7 +5,7 @@ import { HeroImg } from "@/components/4-library/hero-img";
 import { SEO } from "../../../utils/seo";
 import { DropdownSection } from "./1-dropdown-section";
 import { ServicesList } from "./2-services-list";
-import { ContactUs } from "@/components/4-library/puppy-banner";
+import { ContactUs } from "@/components/4-library/reach-out";
 import flowerBarn from "@/assets/hero-barn-flowers.webp";
 import { dropdownSelectionAtom, fetchServicesAtom, onsiteAtom, travelAtom } from "./8-services-data";
 
