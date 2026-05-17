@@ -62,7 +62,7 @@ function AnimalCardGallery({ images, name }: { images: CardImage[]; name: string
             <img
                 src={selected.url}
                 alt={selected.alt || name}
-                className="w-full aspect-square object-contain rounded"
+                className="w-full aspect-square object-cover rounded"
             />
 
             {images.length > 1 && (
@@ -159,20 +159,20 @@ export function AnimalPage() {
                     ))}
 
                     {cardsToRender.length > 0 && (
-                        <section className="max-content pb-16 space-y-8">
+                        <div className="max-content pb-16 space-y-8">
                             {cardsToRender.map((card) => (
-                                <article key={card.id} className="grid grid-cols-1 md:items-center gap-y-8 md:grid-cols-2 md:gap-x-16">
+                                <section key={card.id} className="grid grid-cols-1 gap-y-8 md:grid-cols-2 md:gap-x-16">
                                     <AnimalCardGallery images={card.images} name={card.name} />
                                     <div>
-                                        {card.name && <h2 className="text-2xl mb-3">{card.name}</h2>}
-                                        {card.species && <p className="mb-2 opacity-70">{card.species}</p>}
+                                        {card.name && <h2 className="mt-0">{card.name}</h2>}
+                                        {/* {card.species && <p className="mb-2 opacity-70">{card.species}</p>} */}
                                         {card.descriptionHtml && (
                                             <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: card.descriptionHtml }} />
                                         )}
                                     </div>
-                                </article>
+                                </section>
                             ))}
-                        </section>
+                        </div>
                     )}
                 </>
             )}
