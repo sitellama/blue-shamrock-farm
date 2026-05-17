@@ -9,6 +9,8 @@ import {
     animalBlocksLoadingAtom,
     fetchAnimalBlocksAtom,
 } from "@/components/4-library/animal-blocks-data";
+// import shamrock from "@/assets/blue-shamrock.webp";
+import shamrock from "@/assets/blue-shamrock-3.png";
 
 type CardImage = {
     url: string;
@@ -45,7 +47,7 @@ const matchesSlugAndSpecies = (slug: string, pageSpecies: string, cardSpecies: s
     return speciesMatch || slugMatch;
 };
 
-function AnimalCardGallery({ images, name }: { images: CardImage[]; name: string }) {
+function AnimalCardGallery({ images, name }: { images: CardImage[]; name: string; }) {
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     useEffect(() => {
@@ -56,11 +58,11 @@ function AnimalCardGallery({ images, name }: { images: CardImage[]; name: string
     if (!selected) return null;
 
     return (
-        <div>
+        <div className="w-full max-w-[450px] mx-auto">
             <img
                 src={selected.url}
                 alt={selected.alt || name}
-                className="w-full h-[320px] object-cover rounded"
+                className="w-full aspect-square object-contain rounded"
             />
 
             {images.length > 1 && (
@@ -70,7 +72,7 @@ function AnimalCardGallery({ images, name }: { images: CardImage[]; name: string
                             key={`${img.url}-${i}`}
                             type="button"
                             onClick={() => setSelectedIndex(i)}
-                            className={`rounded border-2 overflow-hidden ${i === selectedIndex ? "border-blue-dark" : "border-gray-300"}`}
+                            className={`rounded border-2 overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-dark focus-visible:ring-offset-2 focus-visible:ring-offset-white ${i === selectedIndex ? "border-blue-dark" : "border-gray-300"}`}
                             aria-label={`Show image ${i + 1} for ${name || "animal"}`}
                         >
                             <img src={img.url} alt={img.alt || name} className="h-20 w-20 object-cover" />
@@ -121,20 +123,25 @@ export function AnimalPage() {
                 href={`/${slug}`}
             />
 
-            <div className="mb-16 flex flex-col md:flex-row bg-blue-dark">
-                <div className="py-4 px-8 flex-[1_1_clamp(30%,50%,70%)] flex flex-col md:min-h-[400px] justify-center text-center text-white">
-                    <div>
-                        {animal.species && <p className="uppercase tracking-widest text-sm mb-2 opacity-70">{animal.species}</p>}
-                        <h1 className="text-5xl md:text-7xl my-4">{animal.name}</h1>
-                        {animal.description && <p>{animal.description}</p>}
-                        <p className="mt-6"><Link to="/animals" className="text-white">← Back to Animals</Link></p>
+            <div className="mb-16 bg-blue-dark max-h-[300px] ">
+                <div className="max-content flex max-h-[300px]">
+                    <div className="py-4 px-8 flex-[1_1_clamp(30%,50%,70%)] flex flex-col md:min-h-[200px] justify-center text-center text-white">
+                        <div>
+                            {animal.species && <p className="uppercase tracking-widest text-sm mb-2 opacity-70">{animal.species}</p>}
+                            <h1 className="text-5xl md:text-7xl my-4">{animal.name}</h1>
+                            {animal.description && <p>{animal.description}</p>}
+                            <p className="mt-6"><Link to="/animals" className="text-white">← Back to Animals</Link></p>
+                        </div>
                     </div>
+                    {animal.image && (
+                        <div className="flex-[1_1_33%] flex">
+                            <div className="p-4 h-full">
+                                <img src={animal.image} alt={animal.imageAlt} className="object-cover h-full rounded-full border-4 border-solid border-sky-200" />
+                            </div>
+                            <img src={shamrock} alt="" className="ml-[-4rem] h-[50%] pb-4 self-end" />
+                        </div>
+                    )}
                 </div>
-                {animal.image && (
-                    <div className="flex-[1_1_33%] order-first md:order-last">
-                        <img src={animal.image} alt={animal.imageAlt} className="w-full h-[250px] md:h-full object-cover" />
-                    </div>
-                )}
             </div>
 
             {blocksError && (
@@ -152,7 +159,7 @@ export function AnimalPage() {
                     ))}
 
                     {cardsToRender.length > 0 && (
-                        <section className="max-content mb-16 space-y-8">
+                        <section className="max-content pb-16 space-y-8">
                             {cardsToRender.map((card) => (
                                 <article key={card.id} className="grid grid-cols-1 md:items-center gap-y-8 md:grid-cols-2 md:gap-x-16">
                                     <AnimalCardGallery images={card.images} name={card.name} />
