@@ -30,21 +30,20 @@ const tokenSet = (value: string): Set<string> =>
     new Set(
         normalize(value)
             .split(/[-\s]+/)
-            .map((v) => singularize(v))
+            .map((token) => singularize(token))
             .filter(Boolean)
     );
 
-const matchesSlugAndSpecies = (slug: string, pageSpecies: string, cardSpecies: string): boolean => {
-    const slugTokens = tokenSet(slug);
-    const pageSpeciesTokens = tokenSet(pageSpecies);
+const matchesPageSpecies = (cardSpecies: string, pageSpecies: string, slug: string): boolean => {
+    if (!cardSpecies) return true;
+
     const cardSpeciesTokens = tokenSet(cardSpecies);
+    if (!cardSpeciesTokens.size) return true;
 
-    if (!slugTokens.size || !cardSpeciesTokens.size) return false;
+    const pageSpeciesTokens = tokenSet(pageSpecies);
+    const slugTokens = tokenSet(slug);
 
-    const speciesMatch = [...cardSpeciesTokens].some((token) => pageSpeciesTokens.has(token));
-    const slugMatch = [...cardSpeciesTokens].some((token) => slugTokens.has(token));
-
-    return speciesMatch || slugMatch;
+    return [...cardSpeciesTokens].some((token) => pageSpeciesTokens.has(token) || slugTokens.has(token));
 };
 
 function AnimalCardGallery({ images, name }: { images: CardImage[]; name: string; }) {
@@ -110,10 +109,23 @@ export function AnimalPage() {
 
     if (!animal) return <p className="max-content mt-16">Animal not found. <Link to="/animals">Back to animals</Link></p>;
 
-    const filteredAnimalCards = animalCards.filter((card) =>
-        matchesSlugAndSpecies(slug, animal.species || "", card.species || "")
+    const matchesReference = (card: { referenceNodeIds: string[]; referenceNodeId: string | null }): boolean =>
+        card.referenceNodeIds.length > 0
+            ? card.referenceNodeIds.includes(animal.id)
+            : card.referenceNodeId === animal.id;
+
+    const referenceMatchedCards = animalCards.filter((card) => {
+        if (!matchesReference(card)) return false;
+        return matchesPageSpecies(card.species, animal.species || "", slug);
+    });
+
+    const speciesFallbackCards = animalCards.filter((card) =>
+        matchesPageSpecies(card.species, animal.species || "", slug)
     );
-    const cardsToRender = filteredAnimalCards.length ? filteredAnimalCards : animalCards;
+
+    const cardsToRender = referenceMatchedCards.length > 0
+        ? referenceMatchedCards
+        : speciesFallbackCards;
 
     return (
         <>
