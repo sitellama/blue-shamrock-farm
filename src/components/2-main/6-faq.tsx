@@ -1,7 +1,7 @@
 import { SEO } from "../../utils/seo";
 import llamaFence from "@/assets/hero-faq.webp";
 import { HeroImg } from "../4-library/hero-img";
-import { ContactUs } from "../4-library/contact-form";
+import { ContactUs } from "../4-library/puppy-banner";
 
 export function FAQs() {
     const currentYear = new Date().getFullYear();
