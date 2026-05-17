@@ -3,7 +3,7 @@ import { HeroImg } from "@/components/4-library/hero-img";
 import hero from "@/assets/hero-barn-doors.webp";
 
 import { AnimalList } from "../4-library/amimal-list";
-import { ContactUs } from "../4-library/contact-us";
+import { ContactUs } from "../4-library/contact-form";
 import { SupportUs } from "../4-library/support-us";
 
 export function Animals() {

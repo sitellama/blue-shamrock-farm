@@ -31,15 +31,12 @@ export function ContactUs() {
                 if (checkbox.checked) {
                     formData.delete(checkbox.name);
                     checkboxes.push(checkbox.value);
-                } 
+                }
             }
         );
 
-        // console.log("--formData", checkboxes);
-
-        const interestsName = "interests"
+        const interestsName = "interests";
         formData.append(interestsName, JSON.stringify(checkboxes));
-
 
         formData.append("access_key", web3formsAccessKey);
 
@@ -59,7 +56,7 @@ export function ContactUs() {
             const resData = await res.json() as OurRes;
             resData.data[interestsName] = JSON.parse(resData.data[interestsName]);
 
-            setResult(`Your message has been sent.`);
+            setResult("Your message has been sent.");
         } catch (error) {
             console.error("Error", error);
             setResult(`result2 ${error}`);
@@ -78,9 +75,9 @@ export function ContactUs() {
                     <label>Interests. Select all that apply.</label>
                     <div className="columns-2" id="interests">
                         <InputCheckbox label="Petting Zoo" value="Petting Zoo" name="interest" />
-                        <InputCheckbox label="Goat Yoga"        /**/ value="Goat Yoga" />
+                        <InputCheckbox label="Goat Yoga" /**/ value="Goat Yoga" />
                         <InputCheckbox label="Animal Waitstaff" /**/ value="Animal Waitstaff" />
-                        <InputCheckbox label="Parties"          /**/ value="Parties" />
+                        <InputCheckbox label="Parties" /**/ value="Parties" />
                         <InputCheckbox label="Animal Snuggling" value="Animal Snuggling" />
                         <InputCheckbox label="Animal Gram" value="Animal Gram" />
                         <InputCheckbox label="Educational Classes" value="Educational Classes" />
@@ -94,8 +91,6 @@ export function ContactUs() {
                     <label htmlFor="dates">What dates are you interested in?</label>
                     <input type="text" id="dates" name="dates" />
 
-                    {/* <label htmlFor="message">Message *</label>
-                    <textarea id="message" name="message" required></textarea> */}
                     <InputWithLabel label="Message" name="message" required>
                         <textarea id="message" name="message" required />
                     </InputWithLabel>

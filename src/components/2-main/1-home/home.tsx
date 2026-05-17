@@ -1,6 +1,6 @@
 import { ImgText } from "@/components/4-library/50-50-img-text";
 import { TextImg } from "@/components/4-library/50-50-text-img";
-import { ContactUs } from "@/components/4-library/contact-us";
+import { ContactUs } from "@/components/4-library/contact-form";
 import { EventsSection } from "@/components/4-library/events-section";
 import { GoatGram } from "@/components/4-library/goat-gram";
 import { GoatYoga } from "@/components/4-library/goat-yoga";

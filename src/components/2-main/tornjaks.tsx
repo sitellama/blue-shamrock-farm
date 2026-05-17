@@ -1,5 +1,5 @@
 import { SEO } from "../../utils/seo";
-import { ContactUs } from "../4-library/contact-us";
+import { ContactUs } from "../4-library/contact-form";
 import { HeroImg } from "../4-library/hero-img";
 import { OurTornjaks } from "../4-library/our-tornjaks";
 import pluto from "../../assets/pluto-with-livestock.webp";
