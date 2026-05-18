@@ -99,7 +99,6 @@ export function AnimalPage() {
                 <div className="max-content flex max-h-[300px]">
                     <div className="py-4 px-8 flex-[1_1_clamp(30%,50%,70%)] flex flex-col md:min-h-[200px] justify-center text-center text-white">
                         <div>
-                            {animal.species && <p className="uppercase tracking-widest text-sm mb-2 opacity-70">{animal.species}</p>}
                             <h1 className="text-5xl md:text-7xl my-4">{animal.name}</h1>
                             {animal.description && <p>{animal.description}</p>}
                             <p className="mt-6"><Link to="/animals" className="text-white">← Back to Animals</Link></p>
