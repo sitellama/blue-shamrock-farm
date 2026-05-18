@@ -15,35 +15,6 @@ type CardImage = {
     alt: string;
 };
 
-const normalize = (value: string): string =>
-    value
-        .toLowerCase()
-        .replace(/[^a-z0-9\s-]/g, "")
-        .replace(/\s+/g, " ")
-        .trim();
-
-const singularize = (value: string): string => value.replace(/s$/, "");
-
-const tokenSet = (value: string): Set<string> =>
-    new Set(
-        normalize(value)
-            .split(/[-\s]+/)
-            .map((token) => singularize(token))
-            .filter(Boolean)
-    );
-
-const matchesPageSpecies = (cardSpecies: string, pageSpecies: string, slug: string): boolean => {
-    if (!cardSpecies) return true;
-
-    const cardSpeciesTokens = tokenSet(cardSpecies);
-    if (!cardSpeciesTokens.size) return true;
-
-    const pageSpeciesTokens = tokenSet(pageSpecies);
-    const slugTokens = tokenSet(slug);
-
-    return [...cardSpeciesTokens].some((token) => pageSpeciesTokens.has(token) || slugTokens.has(token));
-};
-
 function AnimalCardGallery({ images, name }: { images: CardImage[]; name: string }) {
     const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -112,18 +83,7 @@ export function AnimalPage() {
             ? card.referenceNodeIds.includes(animal.id)
             : card.referenceNodeId === animal.id;
 
-    const referenceMatchedCards = animalCards.filter((card) => {
-        if (!matchesReference(card)) return false;
-        return matchesPageSpecies(card.species, animal.species || "", slug);
-    });
-
-    const speciesFallbackCards = animalCards.filter((card) =>
-        matchesPageSpecies(card.species, animal.species || "", slug)
-    );
-
-    const cardsToRender = referenceMatchedCards.length > 0
-        ? referenceMatchedCards
-        : speciesFallbackCards;
+    const cardsToRender = animalCards.filter((card) => matchesReference(card));
 
     return (
         <>
