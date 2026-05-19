@@ -142,6 +142,12 @@ export function AnimalPage() {
 
             {!blocksLoading && (
                 <>
+                    {cardsToRender.length == 0 && (
+                        <div className="max-content space-y-8">
+                            <p className="text-center">We are working on gathering photos of the {selectedAnimal.name}. Please check back soon.</p>
+                        </div>
+                    )}
+
                     {textBlocksToRender.map((block) => (
                         <div
                             key={block.id}
@@ -149,12 +155,6 @@ export function AnimalPage() {
                             dangerouslySetInnerHTML={{ __html: block.html }}
                         />
                     ))}
-
-                    {cardsToRender.length == 0 && (
-                        <div className="max-content space-y-8">
-                            <p className="text-center">We are working on gathering photos of the {selectedAnimal.name}. Please check back soon.</p>
-                        </div>
-                    )}
 
                     {cardsToRender.length > 0 && (
                         <div className="max-content pb-16 space-y-8">
