@@ -14,6 +14,7 @@ import {
     contentBlocksLoadingAtom,
     fetchContentBlocksAtom,
 } from "@/components/4-library/content-blocks-data";
+import { RichTextContent } from "@/utils/render-rich-text";
 // import shamrock from "@/assets/blue-shamrock.webp";
 import shamrock from "@/assets/blue-shamrock-3.png";
 
@@ -153,7 +154,7 @@ export function AnimalPage() {
                             key={block.id}
                             className={`max-content my-8 ${block.centerText ? "text-center" : ""}`}
                         >
-                            <p className="whitespace-pre-line">{block.text}</p>
+                            <RichTextContent content={block.text} />
                         </div>
                     ))}
 
@@ -165,7 +166,7 @@ export function AnimalPage() {
                                     <div>
                                         {card.name && <h2 className="mt-0">{card.name}</h2>}
                                         {card.description && (
-                                            <p className="prose max-w-none whitespace-pre-line">{card.description}</p>
+                                            <RichTextContent content={card.description} className="prose max-w-none" />
                                         )}
                                     </div>
                                 </section>

@@ -23,6 +23,11 @@ type DrupalResource = {
     }>;
 };
 
+type DrupalFormattedText = {
+    value?: string;
+    processed?: string;
+};
+
 const resolveFileUrl = (rawUrl: string): string => {
     if (!rawUrl) return "";
     if (rawUrl.startsWith("http://") || rawUrl.startsWith("https://")) return rawUrl;
@@ -32,31 +37,16 @@ const resolveFileUrl = (rawUrl: string): string => {
 const buildIncludedMap = (included: DrupalResource[]): Map<string, DrupalResource> =>
     new Map(included.map((r) => [`${r.type}:${r.id}`, r]));
 
-const decodeHtmlEntities = (value: string): string =>
-    value
-        .replace(/&nbsp;/gi, " ")
-        .replace(/&amp;/gi, "&")
-        .replace(/&lt;/gi, "<")
-        .replace(/&gt;/gi, ">")
-        .replace(/&quot;/gi, '"')
-        .replace(/&#39;/gi, "'");
+const getFormattedContent = (field?: DrupalFormattedText): string => {
+    if (typeof field?.processed === "string" && field.processed.trim()) {
+        return field.processed;
+    }
 
-const toPlainText = (value?: string): string => {
-    if (!value || typeof value !== "string") return "";
+    if (typeof field?.value === "string") {
+        return field.value;
+    }
 
-    const withBreaks = value
-        .replace(/<\s*br\s*\/?>/gi, "\n")
-        .replace(/<\s*li[^>]*>/gi, "- ")
-        .replace(/<\/(p|div|li|h1|h2|h3|h4|h5|h6|ul|ol)>/gi, "\n");
-
-    const withoutTags = withBreaks.replace(/<[^>]*>/g, "");
-    const decoded = decodeHtmlEntities(withoutTags);
-
-    return decoded
-        .split("\n")
-        .map((line) => line.replace(/\s+/g, " ").trim())
-        .filter(Boolean)
-        .join("\n");
+    return "";
 };
 
 export type TextBlock = {
@@ -73,8 +63,8 @@ export type TextBlockWithRef = TextBlock & {
 };
 
 type TextBlockAttrs = {
-    field_text_block?: { value?: string };
-    field_animal_description_block?: { value?: string };
+    field_text_block?: DrupalFormattedText;
+    field_animal_description_block?: DrupalFormattedText;
     field_center_text?: boolean;
     field_color_theme?: string;
 };
@@ -94,7 +84,7 @@ const mapTextBlock = (r: DrupalResource): TextBlockWithRef => {
 
     return {
         id: r.id,
-        text: toPlainText(a.field_text_block?.value ?? a.field_animal_description_block?.value ?? ""),
+        text: getFormattedContent(a.field_text_block ?? a.field_animal_description_block),
         centerText: a.field_center_text ?? false,
         colorTheme: a.field_color_theme ?? "",
         referenceNodeId: referenceRel?.id ?? null,
@@ -120,9 +110,9 @@ type ContentCardAttrs = {
     info?: string;
     field_animal_name?: string;
     field_service_name?: string;
-    field_animal_description?: { value?: string };
-    field_service_description?: { value?: string };
-    field_text?: { value?: string };
+    field_animal_description?: DrupalFormattedText;
+    field_service_description?: DrupalFormattedText;
+    field_text?: DrupalFormattedText;
 };
 
 type MediaRelData = { id: string; type: string };
@@ -162,7 +152,7 @@ const mapContentCard = (
     return {
         id: r.id,
         name: a.field_animal_name ?? a.field_service_name ?? a.info ?? "",
-        description: toPlainText(a.field_animal_description?.value ?? a.field_service_description?.value ?? a.field_text?.value ?? ""),
+        description: getFormattedContent(a.field_animal_description ?? a.field_service_description ?? a.field_text),
         images: getImagesFromMedia(mediaIds, includedMap),
         referenceNodeId: referenceRel?.id ?? null,
         referenceNodeType: referenceRel?.type ?? null,

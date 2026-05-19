@@ -17,6 +17,7 @@ import {
     servicesErrorAtom,
     servicesLoadingAtom,
 } from "./8-services-data";
+import { RichTextContent } from "@/utils/render-rich-text";
 
 type CardImage = {
     url: string;
@@ -145,7 +146,7 @@ export function ServicePage() {
                                 key={block.id}
                                 className={`max-content my-8 ${block.centerText ? "text-center" : ""}`}
                             >
-                                <p className="whitespace-pre-line">{block.text}</p>
+                                <RichTextContent content={block.text} />
                             </div>
                         ))}
 
@@ -163,7 +164,7 @@ export function ServicePage() {
                                         <div>
                                             {card.name && <h2 className="mt-0">{card.name}</h2>}
                                             {card.description && (
-                                                <p className="prose max-w-none whitespace-pre-line">{card.description}</p>
+                                                <RichTextContent content={card.description} className="prose max-w-none" />
                                             )}
                                         </div>
                                     </section>
