@@ -136,6 +136,7 @@ export function AnimalPage() {
             : card.referenceNodeId === selectedAnimal.id;
 
     const cardsToRender = animalCards.filter((card) => matchesReference(card));
+    const textBlocksToRender = textBlocks.filter((block) => matchesReference(block));
 
     return (
         <>
@@ -171,7 +172,7 @@ export function AnimalPage() {
 
             {!blocksLoading && (
                 <>
-                    {textBlocks.map((block) => (
+                    {textBlocksToRender.map((block) => (
                         <div
                             key={block.id}
                             className={`max-content my-8 ${block.centerText ? "text-center" : ""}`}

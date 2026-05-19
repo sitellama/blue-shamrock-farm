@@ -161,3 +161,13 @@
 [type='checkbox'], [type='radio'] {
   color:#23374F;
 }
+
+/* fadeIn animation for staggered content loading */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -20,7 +20,7 @@ function FeaturedAnimal({ animal, imageRight }: { animal: Animal; imageRight: bo
     const imgEl = (
         <div className={`flex-[1_1_33%] ${imageRight ? "order-first md:order-last" : "order-first"}`}>
             {animal.image && (
-                <img src={animal.image} className="w-full h-[250px] md:h-full object-cover" alt={animal.imageAlt} />
+                <img src={animal.image} className="w-full h-[250px] md:h-full object-cover" alt={animal.imageAlt} loading="lazy" />
             )}
         </div>
     );
@@ -71,10 +71,18 @@ export function AnimalList() {
     if (isLoading) {
         return (
             <section className="max-content mt-16 space-y-16" aria-busy="true" aria-label="Loading animals">
-                <AnimalSkeletonRow />
-                <FeaturedAnimalSkeleton imageRight={false} />
-                <AnimalSkeletonRow />
-                <FeaturedAnimalSkeleton imageRight={true} />
+                <div className="animate-pulse" style={{ animationDelay: '0ms' }}>
+                    <AnimalSkeletonRow />
+                </div>
+                <div className="animate-pulse" style={{ animationDelay: '100ms' }}>
+                    <FeaturedAnimalSkeleton imageRight={false} />
+                </div>
+                <div className="animate-pulse" style={{ animationDelay: '200ms' }}>
+                    <AnimalSkeletonRow />
+                </div>
+                <div className="animate-pulse" style={{ animationDelay: '300ms' }}>
+                    <FeaturedAnimalSkeleton imageRight={true} />
+                </div>
             </section>
         );
     }
@@ -86,7 +94,14 @@ export function AnimalList() {
     return (
         <section className="max-content mt-16">
             {groups.map((group, index) => (
-                <div key={group.featured.id}>
+                <div
+                    key={group.featured.id}
+                    className="animate-fadeIn"
+                    style={{
+                        animation: 'fadeIn 0.6s ease-in-out forwards',
+                        animationDelay: `${index * 100}ms`,
+                    } as React.CSSProperties}
+                >
                     {group.regular.length > 0 && <RegularRow animals={group.regular} />}
                     <FeaturedAnimal animal={group.featured} imageRight={index % 2 !== 0} />
                 </div>
