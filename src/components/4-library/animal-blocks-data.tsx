@@ -46,6 +46,12 @@ export type TextBlock = {
     colorTheme: string;
 };
 
+export type TextBlockWithRef = TextBlock & {
+    referenceNodeId: string | null;
+    referenceNodeType: string | null;
+    referenceNodeIds: string[];
+};
+
 type TextBlockAttrs = {
     field_text_block?: { processed?: string };
     field_animal_description_block?: { processed?: string };
@@ -53,13 +59,20 @@ type TextBlockAttrs = {
     field_color_theme?: string;
 };
 
-const mapTextBlock = (r: DrupalResource): TextBlock => {
+const mapTextBlock = (r: DrupalResource): TextBlockWithRef => {
     const a = (r.attributes ?? {}) as TextBlockAttrs;
+    const rawReferenceRel = r.relationships?.field_reference?.data;
+    const referenceRels = toRelationshipArray(rawReferenceRel);
+    const referenceRel = referenceRels[0] ?? null;
+
     return {
         id: r.id,
         html: a.field_text_block?.processed ?? a.field_animal_description_block?.processed ?? "",
         centerText: a.field_center_text ?? false,
         colorTheme: a.field_color_theme ?? "",
+        referenceNodeId: referenceRel?.id ?? null,
+        referenceNodeType: referenceRel?.type ?? null,
+        referenceNodeIds: referenceRels.map((rel) => rel.id),
     };
 };
 
@@ -141,7 +154,7 @@ const mapAnimalCard = (
 // ─── Atoms ───────────────────────────────────────────────────────────────────
 
 export type AnimalBlocks = {
-    textBlocks: TextBlock[];
+    textBlocks: TextBlockWithRef[];
     animalCards: AnimalCardWithRef[];
 };
 
