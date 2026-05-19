@@ -36,7 +36,7 @@ export function MainMenu() {
 
 
             <div className="flex justify-between">
-                <a href="/" className="m-0"><img src={logoImg} alt="Blue Shamrock Farm" className="size-10 min-[1100px]:hidden min-h-[40px]" /></a>
+                <Link to="/" className="m-0"><img src={logoImg} alt="Blue Shamrock Farm" className="size-10 min-[1100px]:hidden min-h-[40px]" /></Link>
 
                 <button
                     className="min-[1100px]:hidden z-50 relative"
