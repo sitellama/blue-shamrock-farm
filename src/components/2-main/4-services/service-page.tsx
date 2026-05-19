@@ -125,7 +125,7 @@ export function ServicePage() {
                 <div className="max-content flex max-h-[300px]">
                     <div className="py-4 px-8 flex-[1_1_clamp(30%,50%,70%)] flex flex-col md:min-h-[200px] justify-center text-center text-white">
                         <div>
-                            <h1 className="text-5xl md:text-7xl my-4">{selectedService.label}</h1>
+                            <h1 className="text-5xl md:text-7xl my-4">{selectedService.linkText}</h1>
                             <p className="mt-6"><Link to="/animals" className="text-white">← Back to Services</Link></p>
                         </div>
                     </div>
@@ -156,11 +156,11 @@ export function ServicePage() {
                         )}
 
                         {cardsToRender.length > 0 && (
-                            <div className="max-content pb-16 space-y-8">
+                            <div className="max-content space-y-8">
                                 {cardsToRender.map((card) => (
-                                    <section key={card.id} className="grid grid-cols-1 gap-y-8 md:grid-cols-2 md:gap-x-16">
-                                        <ServiceCardGallery images={card.images} name={card.name} />
-                                        <div>
+                                    <section key={card.id} className="">
+                                        {/* <ServiceCardGallery images={card.images} name={card.name} /> */}
+                                        <div className="border border-l-[2rem] border-tan p-4 bg-white">
                                             {card.name && <h2 className="mt-0">{card.name}</h2>}
                                             {card.description && (
                                                 <p className="prose max-w-none whitespace-pre-line">{card.description}</p>
