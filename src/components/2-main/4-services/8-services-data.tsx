@@ -76,6 +76,13 @@ const toText = (value?: string, fallback = ""): string => {
     return trimmed || fallback;
 };
 
+const getServiceLinkUrl = (attrs: DrupalServiceAttributes): string => {
+    const raw = toText(attrs.field_field_pdf_url?.uri);
+    if (!raw) return "";
+    if (raw.startsWith("internal:")) return raw.replace(/^internal:/, "") || "/";
+    return raw;
+};
+
 const getImageFromRelationship = (
     resource: DrupalResource,
     includedByKey: Map<string, DrupalResource>
@@ -121,7 +128,7 @@ const mapDrupalToService = (
         label: title,
         content,
         pdfName: toText(attrs.field_field_pdf_name, "Learn more"),
-        pdfUrl: toText(attrs.field_field_pdf_url?.uri),
+        pdfUrl: getServiceLinkUrl(attrs),
         onsite: attrs.field_field_onsite === true,
         travel: attrs.field_field_travel === true,
     };

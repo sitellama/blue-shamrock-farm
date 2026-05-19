@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 import { useAtomValue, useSetAtom } from "jotai";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { SEO } from "@/utils/seo";
 import { animalsAtom, animalsErrorAtom, animalsLoadingAtom, fetchAnimalsAtom } from "@/components/4-library/animals-data";
+import {
+    fetchServicesAtom,
+    servicesAtom,
+    servicesErrorAtom,
+    servicesLoadingAtom,
+} from "./4-services/8-services-data";
 import {
     animalBlocksAtom,
     animalBlocksErrorAtom,
@@ -54,14 +60,33 @@ function AnimalCardGallery({ images, name }: { images: CardImage[]; name: string
     );
 }
 
+const normalizePath = (value?: string): string => {
+    if (!value) return "";
+    const raw = value.trim();
+    if (!raw) return "";
+
+    try {
+        const parsed = new URL(raw, window.location.origin);
+        return (parsed.pathname || "/").replace(/\/+$/, "") || "/";
+    } catch {
+        return (raw.startsWith("/") ? raw : `/${raw}`).replace(/\/+$/, "") || "/";
+    }
+};
+
 export function AnimalPage() {
     const { animalSlug = "" } = useParams();
     const slug = animalSlug.trim().toLowerCase();
+    const location = useLocation();
 
     const animals = useAtomValue(animalsAtom);
     const isLoading = useAtomValue(animalsLoadingAtom);
     const error = useAtomValue(animalsErrorAtom);
     const fetchAnimals = useSetAtom(fetchAnimalsAtom);
+
+    const services = useAtomValue(servicesAtom);
+    const servicesLoading = useAtomValue(servicesLoadingAtom);
+    const servicesError = useAtomValue(servicesErrorAtom);
+    const fetchServices = useSetAtom(fetchServicesAtom);
 
     const { textBlocks, animalCards } = useAtomValue(animalBlocksAtom);
     const blocksLoading = useAtomValue(animalBlocksLoadingAtom);
@@ -70,28 +95,63 @@ export function AnimalPage() {
 
     useEffect(() => {
         if (!animals.length) void fetchAnimals();
+        if (!services.length) void fetchServices();
         if (!textBlocks.length && !animalCards.length) void fetchBlocks();
     }, []);
 
-    if (isLoading) return <p className="max-content mt-16">Loading…</p>;
+    if (isLoading || servicesLoading) return <p className="max-content mt-16">Loading…</p>;
     if (error) return <p className="max-content mt-16">Error loading animal data: {error}</p>;
+    if (servicesError) return <p className="max-content mt-16">Error loading service data: {servicesError}</p>;
 
-    const animal = animals.find((a) => a.linkUrl === `/${slug}`);
+    const currentPath = normalizePath(`/${slug}`);
+    const animal = animals.find((a) => normalizePath(a.linkUrl) === currentPath);
+    const service = services.find((s) => normalizePath(s.pdfUrl) === currentPath);
+    const fromState = (location.state as { from?: string } | null)?.from || "";
+    const referrerPath = (() => {
+        if (!document.referrer) return "";
+        try {
+            const ref = new URL(document.referrer);
+            return ref.origin === window.location.origin ? ref.pathname : "";
+        } catch {
+            return "";
+        }
+    })();
+    const cameFromServices = fromState.startsWith("/services") || referrerPath.startsWith("/services");
+    const cameFromAnimals = fromState.startsWith("/animals") || referrerPath.startsWith("/animals");
 
-    if (!animal) return <p className="max-content mt-16">Animal not found. <Link to="/animals">Back to animals</Link></p>;
+    if (!animal && !service) {
+        const defaultToServices = cameFromServices && !cameFromAnimals;
+        const title = defaultToServices ? "Service not found." : "Animal not found.";
+        const backTo = defaultToServices ? "/services" : "/animals";
+        const backLabel = defaultToServices ? "Back to services" : "Back to animals";
+        return <p className="max-content mt-16">{title} <Link to={backTo}>{backLabel}</Link></p>;
+    }
+
+    if (!animal && service) {
+        return (
+            <div className="max-content mt-16">
+                <h1>{service.label}</h1>
+                {service.content && <p>{service.content}</p>}
+                <p><Link to="/services">Back to services</Link></p>
+            </div>
+        );
+    }
+
+    const selectedAnimal = animal;
+    if (!selectedAnimal) return null;
 
     const matchesReference = (card: { referenceNodeIds: string[]; referenceNodeId: string | null; }): boolean =>
         card.referenceNodeIds.length > 0
-            ? card.referenceNodeIds.includes(animal.id)
-            : card.referenceNodeId === animal.id;
+            ? card.referenceNodeIds.includes(selectedAnimal.id)
+            : card.referenceNodeId === selectedAnimal.id;
 
     const cardsToRender = animalCards.filter((card) => matchesReference(card));
 
     return (
         <>
             <SEO
-                title={`${animal.name} | Blue Shamrock Farm`}
-                description={animal.description || `Learn more about ${animal.name} at Blue Shamrock Farm.`}
+                title={`${selectedAnimal.name} | Blue Shamrock Farm`}
+                description={selectedAnimal.description || `Learn more about ${selectedAnimal.name} at Blue Shamrock Farm.`}
                 href={`/${slug}`}
             />
 
@@ -99,15 +159,15 @@ export function AnimalPage() {
                 <div className="max-content flex max-h-[300px]">
                     <div className="py-4 px-8 flex-[1_1_clamp(30%,50%,70%)] flex flex-col md:min-h-[200px] justify-center text-center text-white">
                         <div>
-                            <h1 className="text-5xl md:text-7xl my-4">{animal.name}</h1>
-                            {animal.description && <p>{animal.description}</p>}
+                            <h1 className="text-5xl md:text-7xl my-4">{selectedAnimal.name}</h1>
+                            {selectedAnimal.description && <p>{selectedAnimal.description}</p>}
                             <p className="mt-6"><Link to="/animals" className="text-white">← Back to Animals</Link></p>
                         </div>
                     </div>
-                    {animal.image && (
+                    {selectedAnimal.image && (
                         <div className="flex-[1_1_33%] flex">
                             <div className="p-4 h-full">
-                                <img src={animal.image} alt={animal.imageAlt} className="object-cover h-full rounded-full border-4 border-solid border-sky-200" />
+                                <img src={selectedAnimal.image} alt={selectedAnimal.imageAlt} className="object-cover h-full rounded-full border-4 border-solid border-sky-200" />
                             </div>
                             <img src={shamrock} alt="" className="ml-[-4rem] h-[50%] pb-4 self-end" />
                         </div>
