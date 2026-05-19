@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 import { useAtomValue, useSetAtom } from "jotai";
 import { useParams, Link, useLocation } from "react-router-dom";
 import { SEO } from "@/utils/seo";
+import {
+    getSameOriginReferrerPath,
+    inferContentOrigin,
+    normalizePath,
+    resolveContentPageState,
+} from "@/utils/content-not-found";
 import { animalsAtom, animalsErrorAtom, animalsLoadingAtom, fetchAnimalsAtom } from "@/components/4-library/animals-data";
 import {
     fetchServicesAtom,
@@ -60,19 +66,6 @@ function AnimalCardGallery({ images, name }: { images: CardImage[]; name: string
     );
 }
 
-const normalizePath = (value?: string): string => {
-    if (!value) return "";
-    const raw = value.trim();
-    if (!raw) return "";
-
-    try {
-        const parsed = new URL(raw, window.location.origin);
-        return (parsed.pathname || "/").replace(/\/+$/, "") || "/";
-    } catch {
-        return (raw.startsWith("/") ? raw : `/${raw}`).replace(/\/+$/, "") || "/";
-    }
-};
-
 export function AnimalPage() {
     const { animalSlug = "" } = useParams();
     const slug = animalSlug.trim().toLowerCase();
@@ -99,35 +92,32 @@ export function AnimalPage() {
         if (!textBlocks.length && !animalCards.length) void fetchBlocks();
     }, []);
 
-    if (isLoading || servicesLoading) return <p className="max-content mt-16">Loading…</p>;
-    if (error) return <p className="max-content mt-16">Error loading animal data: {error}</p>;
-    if (servicesError) return <p className="max-content mt-16">Error loading service data: {servicesError}</p>;
-
     const currentPath = normalizePath(`/${slug}`);
     const animal = animals.find((a) => normalizePath(a.linkUrl) === currentPath);
     const service = services.find((s) => normalizePath(s.pdfUrl) === currentPath);
     const fromState = (location.state as { from?: string } | null)?.from || "";
-    const referrerPath = (() => {
-        if (!document.referrer) return "";
-        try {
-            const ref = new URL(document.referrer);
-            return ref.origin === window.location.origin ? ref.pathname : "";
-        } catch {
-            return "";
-        }
-    })();
-    const cameFromServices = fromState.startsWith("/services") || referrerPath.startsWith("/services");
-    const cameFromAnimals = fromState.startsWith("/animals") || referrerPath.startsWith("/animals");
+    const referrerPath = getSameOriginReferrerPath(document.referrer, window.location.origin);
+    const origin = inferContentOrigin(fromState, referrerPath);
+    const pageState = resolveContentPageState({
+        animalsLoading: isLoading,
+        servicesLoading,
+        animalsError: error,
+        servicesError,
+        hasAnimal: !!animal,
+        hasService: !!service,
+        origin,
+    });
 
-    if (!animal && !service) {
-        const defaultToServices = cameFromServices && !cameFromAnimals;
-        const title = defaultToServices ? "Service not found." : "Animal not found.";
-        const backTo = defaultToServices ? "/services" : "/animals";
-        const backLabel = defaultToServices ? "Back to services" : "Back to animals";
+    if (pageState.kind === "loading" || pageState.kind === "error") {
+        return <p className="max-content mt-16">{pageState.message}</p>;
+    }
+
+    if (pageState.kind === "not-found") {
+        const { title, backTo, backLabel } = pageState.meta;
         return <p className="max-content mt-16">{title} <Link to={backTo}>{backLabel}</Link></p>;
     }
 
-    if (!animal && service) {
+    if (pageState.kind === "service" && service) {
         return (
             <div className="max-content mt-16">
                 <h1>{service.label}</h1>
