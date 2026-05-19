@@ -37,8 +37,8 @@ type DrupalLinkField = {
 type DrupalServiceAttributes = {
     title?: string;
     field_field_content?: DrupalFormattedText;
-    field_field_pdf_name?: string;
-    field_field_pdf_url?: DrupalLinkField;
+    field_service_link_text?: string;
+    field_service_link_url?: DrupalLinkField;
     field_field_onsite?: boolean;
     field_field_travel?: boolean;
     field_field_sort_order?: number | null;
@@ -91,7 +91,7 @@ const getServiceContent = (attrs: DrupalServiceAttributes): string => {
 };
 
 const getServicePdfName = (attrs: DrupalServiceAttributes): string => {
-    return toText(attrs.field_field_pdf_name || attrs.field_field_pdf_url?.title, "Learn more");
+    return toText(attrs.field_service_link_text || attrs.field_service_link_url?.title, "Learn more");
 };
 
 const getServiceSortOrder = (attrs: DrupalServiceAttributes): number => {
@@ -99,7 +99,7 @@ const getServiceSortOrder = (attrs: DrupalServiceAttributes): number => {
 };
 
 const getServiceLinkUrl = (attrs: DrupalServiceAttributes): string => {
-    const raw = toText(attrs.field_field_pdf_url?.uri);
+    const raw = toText(attrs.field_service_link_url?.uri);
     if (!raw) return "";
     if (raw.startsWith("internal:")) return raw.replace(/^internal:/, "") || "/";
     return raw;
