@@ -5,14 +5,9 @@ const drupalOrigin = (() => {
     try { return new URL(drupalBaseUrl).origin; } catch { return drupalBaseUrl; }
 })();
 const drupalIncludeCredentials = import.meta.env.VITE_DRUPAL_INCLUDE_CREDENTIALS === "true";
-
-// Derive a root-relative JSON:API path so requests go through the Vite dev
-// proxy (which maps /drupal → https://blueshamrock.farm/drupal) and stay
-// same-origin in production.
 const drupalPath = (() => {
     try { return new URL(drupalBaseUrl).pathname.replace(/\/$/, ""); } catch { return ""; }
 })();
-const JSONAPI_BASE = `${drupalPath}/jsonapi`;
 
 const fetchOptions = (): RequestInit => ({
     credentials: drupalIncludeCredentials ? "include" : "same-origin",
@@ -64,8 +59,6 @@ const toPlainText = (value?: string): string => {
         .join("\n");
 };
 
-// ─── text_block ───────────────────────────────────────────────────────────────
-
 export type TextBlock = {
     id: string;
     text: string;
@@ -86,9 +79,16 @@ type TextBlockAttrs = {
     field_color_theme?: string;
 };
 
+const toRelationshipArray = (
+    data: { id: string; type: string } | { id: string; type: string }[] | null | undefined
+): { id: string; type: string }[] => {
+    if (!data) return [];
+    return Array.isArray(data) ? data : [data];
+};
+
 const mapTextBlock = (r: DrupalResource): TextBlockWithRef => {
     const a = (r.attributes ?? {}) as TextBlockAttrs;
-    const rawReferenceRel = r.relationships?.field_reference?.data;
+    const rawReferenceRel = r.relationships?.field_reference?.data ?? r.relationships?.field_reference_service?.data;
     const referenceRels = toRelationshipArray(rawReferenceRel);
     const referenceRel = referenceRels[0] ?? null;
 
@@ -103,37 +103,29 @@ const mapTextBlock = (r: DrupalResource): TextBlockWithRef => {
     };
 };
 
-// ─── new_animal_by_name ─────────────────────────────────────────────────────
-
-export type AnimalCard = {
+export type ContentCard = {
     id: string;
     name: string;
     description: string;
     images: { url: string; alt: string }[];
 };
-// referenceNodeId: UUID of the node--animal this block explicitly belongs to.
-// null means no explicit reference was set in Drupal.
-export type AnimalCardWithRef = AnimalCard & {
+
+export type ContentCardWithRef = ContentCard & {
     referenceNodeId: string | null;
     referenceNodeType: string | null;
     referenceNodeIds: string[];
 };
 
-type AnimalCardAttrs = {
+type ContentCardAttrs = {
     info?: string;
     field_animal_name?: string;
+    field_service_name?: string;
     field_animal_description?: { value?: string };
+    field_service_description?: { value?: string };
     field_text?: { value?: string };
 };
 
 type MediaRelData = { id: string; type: string };
-
-const toRelationshipArray = (
-    data: { id: string; type: string } | { id: string; type: string }[] | null | undefined
-): { id: string; type: string }[] => {
-    if (!data) return [];
-    return Array.isArray(data) ? data : [data];
-};
 
 const getImagesFromMedia = (
     mediaIds: MediaRelData[],
@@ -155,22 +147,22 @@ const getImagesFromMedia = (
         return rawUrl ? [{ url: resolveFileUrl(rawUrl), alt }] : [];
     });
 
-const mapAnimalCard = (
+const mapContentCard = (
     r: DrupalResource,
     includedMap: Map<string, DrupalResource>
-): AnimalCardWithRef => {
-    const a = (r.attributes ?? {}) as AnimalCardAttrs;
+): ContentCardWithRef => {
+    const a = (r.attributes ?? {}) as ContentCardAttrs;
 
-    const rawMediaRels = r.relationships?.field_animal_images?.data;
+    const rawMediaRels = r.relationships?.field_animal_images?.data ?? r.relationships?.field_service_images?.data;
     const mediaIds: MediaRelData[] = Array.isArray(rawMediaRels) ? rawMediaRels : [];
-    const rawReferenceRel = r.relationships?.field_reference?.data;
+    const rawReferenceRel = r.relationships?.field_reference?.data ?? r.relationships?.field_reference_service?.data;
     const referenceRels = toRelationshipArray(rawReferenceRel);
     const referenceRel = referenceRels[0] ?? null;
 
     return {
         id: r.id,
-        name: a.field_animal_name ?? a.info ?? "",
-        description: toPlainText(a.field_animal_description?.value ?? a.field_text?.value ?? ""),
+        name: a.field_animal_name ?? a.field_service_name ?? a.info ?? "",
+        description: toPlainText(a.field_animal_description?.value ?? a.field_service_description?.value ?? a.field_text?.value ?? ""),
         images: getImagesFromMedia(mediaIds, includedMap),
         referenceNodeId: referenceRel?.id ?? null,
         referenceNodeType: referenceRel?.type ?? null,
@@ -178,48 +170,66 @@ const mapAnimalCard = (
     };
 };
 
-// ─── Atoms ───────────────────────────────────────────────────────────────────
-
-export type AnimalBlocks = {
+export type ContentBlocks = {
     textBlocks: TextBlockWithRef[];
-    animalCards: AnimalCardWithRef[];
+    cards: ContentCardWithRef[];
 };
 
-export const animalBlocksAtom = atom<AnimalBlocks>({ textBlocks: [], animalCards: [] });
-export const animalBlocksLoadingAtom = atom<boolean>(false);
-export const animalBlocksErrorAtom = atom<string | null>(null);
+export const contentBlocksAtom = atom<ContentBlocks>({ textBlocks: [], cards: [] });
+export const contentBlocksLoadingAtom = atom<boolean>(false);
+export const contentBlocksErrorAtom = atom<string | null>(null);
 
-export const fetchAnimalBlocksAtom = atom(null, async (_get, set) => {
-    set(animalBlocksLoadingAtom, true);
-    set(animalBlocksErrorAtom, null);
+export const fetchContentBlocksAtom = atom(null, async (_get, set) => {
+    set(contentBlocksLoadingAtom, true);
+    set(contentBlocksErrorAtom, null);
 
     try {
-        const [textRes, cardRes] = await Promise.all([
+        const [textRes, cardResults] = await Promise.all([
             fetch(`${drupalPath}/jsonapi/block_content/text_block`, fetchOptions()),
-            fetch(
-                `${drupalPath}/jsonapi/block_content/new_animal_by_name?include=field_animal_images,field_animal_images.field_media_image,field_reference`,
-                fetchOptions()
-            ),
+            Promise.allSettled([
+                fetch(
+                    `${drupalPath}/jsonapi/block_content/new_animal_by_name?include=field_animal_images,field_animal_images.field_media_image,field_reference`,
+                    fetchOptions()
+                ),
+                fetch(
+                    `${drupalPath}/jsonapi/block_content/new_service_by_name?include=field_service_images,field_service_images.field_media_image,field_reference`,
+                    fetchOptions()
+                ),
+                fetch(`${drupalPath}/jsonapi/block_content/service_details`, fetchOptions()),
+            ]),
         ]);
 
         if (!textRes.ok) throw new Error(`text_block fetch failed: ${textRes.status}`);
-        if (!cardRes.ok) throw new Error(`new_animal_by_name fetch failed: ${cardRes.status}`);
+        const successfulCardResponses = cardResults
+            .filter((r): r is PromiseFulfilledResult<Response> => r.status === "fulfilled")
+            .map((r) => r.value)
+            .filter((res) => res.ok);
 
-        const [textJson, cardJson] = await Promise.all([
+        if (!successfulCardResponses.length) {
+            const failureStatuses = cardResults.map((r) => {
+                if (r.status === "rejected") return "network-error";
+                return String(r.value.status);
+            }).join(", ");
+            throw new Error(`content card fetch failed: ${failureStatuses}`);
+        }
+
+        const [textJson, cardJsonList] = await Promise.all([
             textRes.json() as Promise<{ data: DrupalResource[] }>,
-            cardRes.json() as Promise<{ data: DrupalResource[]; included?: DrupalResource[] }>,
+            Promise.all(successfulCardResponses.map((res) => res.json() as Promise<{ data: DrupalResource[]; included?: DrupalResource[] }>)),
         ]);
 
-        const includedMap = buildIncludedMap(cardJson.included ?? []);
+        const mergedCardData = cardJsonList.flatMap((j) => j.data ?? []);
+        const mergedIncluded = cardJsonList.flatMap((j) => j.included ?? []);
+        const includedMap = buildIncludedMap(mergedIncluded);
 
-        set(animalBlocksAtom, {
+        set(contentBlocksAtom, {
             textBlocks: (textJson.data ?? []).map(mapTextBlock),
-            animalCards: (cardJson.data ?? []).map((r) => mapAnimalCard(r, includedMap)) as AnimalCardWithRef[],
+            cards: mergedCardData.map((r) => mapContentCard(r, includedMap)) as ContentCardWithRef[],
         });
     } catch (error) {
-        const message = error instanceof Error ? error.message : "Unknown error loading animal blocks.";
-        set(animalBlocksErrorAtom, message);
+        const message = error instanceof Error ? error.message : "Unknown error loading content blocks.";
+        set(contentBlocksErrorAtom, message);
     } finally {
-        set(animalBlocksLoadingAtom, false);
+        set(contentBlocksLoadingAtom, false);
     }
 });

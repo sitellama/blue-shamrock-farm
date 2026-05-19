@@ -61,8 +61,35 @@ const toText = (value?: string, fallback = ""): string => {
     return value.trim() || fallback;
 };
 
+const decodeHtmlEntities = (value: string): string =>
+    value
+        .replace(/&nbsp;/gi, " ")
+        .replace(/&amp;/gi, "&")
+        .replace(/&lt;/gi, "<")
+        .replace(/&gt;/gi, ">")
+        .replace(/&quot;/gi, '"')
+        .replace(/&#39;/gi, "'");
+
+const toPlainText = (value?: string): string => {
+    if (!value || typeof value !== "string") return "";
+
+    const withBreaks = value
+        .replace(/<\s*br\s*\/?>/gi, "\n")
+        .replace(/<\s*li[^>]*>/gi, "- ")
+        .replace(/<\/(p|div|li|h1|h2|h3|h4|h5|h6|ul|ol)>/gi, "\n");
+
+    const withoutTags = withBreaks.replace(/<[^>]*>/g, "");
+    const decoded = decodeHtmlEntities(withoutTags);
+
+    return decoded
+        .split("\n")
+        .map((line) => line.replace(/\s+/g, " ").trim())
+        .filter(Boolean)
+        .join("\n");
+};
+
 const getAnimalDescription = (attrs: DrupalAnimalAttributes): string => {
-    return toText(attrs.field_field_description?.value || attrs.field_description?.value);
+    return toPlainText(attrs.field_field_description?.value || attrs.field_description?.value);
 };
 
 const getAnimalLinkUrl = (attrs: DrupalAnimalAttributes): string => {

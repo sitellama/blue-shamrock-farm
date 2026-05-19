@@ -1,12 +1,13 @@
 import { atom } from "jotai";
 
 export type Service = {
+    id: string;
     image: string;
     imageAlt: string;
     label: string;
     content: string;
-    pdfName: string;
-    pdfUrl: string;
+    linkText: string;
+    linkUrl: string;
     onsite?: boolean;
     travel?: boolean;
 };
@@ -25,8 +26,6 @@ type DrupalJsonApiResponse = {
 
 type DrupalFormattedText = {
     value?: string;
-    processed?: string;
-    format?: string;
 };
 
 type DrupalLinkField = {
@@ -87,10 +86,10 @@ const toBoolean = (value: unknown): boolean => {
 };
 
 const getServiceContent = (attrs: DrupalServiceAttributes): string => {
-    return toText(attrs.field_field_content?.value || attrs.field_field_content?.processed);
+    return toText(attrs.field_field_content?.value);
 };
 
-const getServicePdfName = (attrs: DrupalServiceAttributes): string => {
+const getServiceLinkText = (attrs: DrupalServiceAttributes): string => {
     return toText(attrs.field_service_link_text || attrs.field_service_link_url?.title, "Learn more");
 };
 
@@ -142,12 +141,13 @@ const mapDrupalToService = (
     const { url: imageUrl, alt: imageAltText } = getImageFromRelationship(resource, includedByKey);
 
     return {
+        id: resource.id,
         image: imageUrl,
         imageAlt: toText(imageAltText, title),
         label: title,
         content,
-        pdfName: getServicePdfName(attrs),
-        pdfUrl: getServiceLinkUrl(attrs),
+        linkText: getServiceLinkText(attrs),
+        linkUrl: getServiceLinkUrl(attrs),
         onsite: toBoolean(attrs.field_field_onsite),
         travel: toBoolean(attrs.field_field_travel),
     };
