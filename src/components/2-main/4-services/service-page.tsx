@@ -121,9 +121,18 @@ export function ServicePage() {
                 href={`/${serviceSlug}`}
             />
 
+            <div className="mb-16 bg-blue-dark max-h-[300px] ">
+                <div className="max-content flex max-h-[300px]">
+                    <div className="py-4 px-8 flex-[1_1_clamp(30%,50%,70%)] flex flex-col md:min-h-[200px] justify-center text-center text-white">
+                        <div>
+                            <h1 className="text-5xl md:text-7xl my-4">{selectedService.label}</h1>
+                            <p className="mt-6"><Link to="/animals" className="text-white">← Back to Services</Link></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div className="max-content mt-16">
-                <h1>{selectedService.label}</h1>
-                {/* {selectedService.content && <p>{selectedService.content}</p>} */}
 
                 {blocksError && (
                     <p className="max-content mt-4 text-red-700">Error loading service blocks: {blocksError}</p>
@@ -164,7 +173,13 @@ export function ServicePage() {
                     </>
                 )}
 
-                <p><Link to="/services">Back to Services</Link></p>
+                <div className="py-16">
+                    <div className="btn-outer bg-blue-dark ">
+                        <div className="btn-inner">
+                            <Link to="/services" className="btn-a">Back to Services</Link>
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     );
