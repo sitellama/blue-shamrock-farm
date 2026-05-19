@@ -37,11 +37,17 @@ type DrupalLinkField = {
 type DrupalServiceAttributes = {
     title?: string;
     field_field_content?: DrupalFormattedText;
+    field_content?: DrupalFormattedText;
     field_field_pdf_name?: string;
+    field_pdf_name?: string;
     field_field_pdf_url?: DrupalLinkField;
+    field_pdf_url?: DrupalLinkField;
     field_field_onsite?: boolean;
+    field_onsite?: boolean;
     field_field_travel?: boolean;
+    field_travel?: boolean;
     field_field_sort_order?: number | null;
+    field_sort_order?: number | null;
 };
 
 const drupalBaseUrl = (import.meta.env.VITE_DRUPAL_BASE_URL || "").replace(/\/$/, "");
@@ -76,8 +82,31 @@ const toText = (value?: string, fallback = ""): string => {
     return trimmed || fallback;
 };
 
+const toBoolean = (value: unknown): boolean => {
+    if (typeof value === "boolean") return value;
+    if (typeof value === "number") return value === 1;
+    if (typeof value === "string") {
+        const normalized = value.trim().toLowerCase();
+        return normalized === "1" || normalized === "true" || normalized === "yes";
+    }
+    return false;
+};
+
+const getServiceContent = (attrs: DrupalServiceAttributes): string => {
+    return toText(attrs.field_field_content?.value || attrs.field_content?.value || attrs.field_field_content?.processed || attrs.field_content?.processed);
+};
+
+const getServicePdfName = (attrs: DrupalServiceAttributes): string => {
+    return toText(attrs.field_field_pdf_name || attrs.field_pdf_name || attrs.field_field_pdf_url?.title || attrs.field_pdf_url?.title, "Learn more");
+};
+
+const getServiceSortOrder = (attrs: DrupalServiceAttributes): number => {
+    const value = attrs.field_field_sort_order ?? attrs.field_sort_order;
+    return typeof value === "number" ? value : Number.MAX_SAFE_INTEGER;
+};
+
 const getServiceLinkUrl = (attrs: DrupalServiceAttributes): string => {
-    const raw = toText(attrs.field_field_pdf_url?.uri);
+    const raw = toText(attrs.field_field_pdf_url?.uri || attrs.field_pdf_url?.uri);
     if (!raw) return "";
     if (raw.startsWith("internal:")) return raw.replace(/^internal:/, "") || "/";
     return raw;
@@ -87,13 +116,13 @@ const getImageFromRelationship = (
     resource: DrupalResource,
     includedByKey: Map<string, DrupalResource>
 ): { url: string; alt: string } => {
-    const relation = resource.relationships?.field_field_image?.data;
+    const relation = resource.relationships?.field_field_image?.data || resource.relationships?.field_image?.data;
     if (!relation) {
         return { url: "", alt: "" };
     }
 
     const media = includedByKey.get(`${relation.type}:${relation.id}`);
-    const fileRelation = media?.relationships?.field_media_image?.data;
+    const fileRelation = media?.relationships?.field_media_image?.data || media?.relationships?.field_image?.data;
     if (!fileRelation) {
         return { url: "", alt: "" };
     }
@@ -116,21 +145,18 @@ const mapDrupalToService = (
 ): Service => {
     const attrs = (resource.attributes || {}) as DrupalServiceAttributes;
     const title = toText(attrs.title, "Service");
-    const content = toText(attrs.field_field_content?.value);
+    const content = getServiceContent(attrs);
     const { url: imageUrl, alt: imageAltText } = getImageFromRelationship(resource, includedByKey);
-
-    console.log("Service attributes:", attrs);
-    console.log("field_field_pdf_url:", attrs.field_field_pdf_url);
 
     return {
         image: imageUrl,
         imageAlt: toText(imageAltText, title),
         label: title,
         content,
-        pdfName: toText(attrs.field_field_pdf_name, "Learn more"),
+        pdfName: getServicePdfName(attrs),
         pdfUrl: getServiceLinkUrl(attrs),
-        onsite: attrs.field_field_onsite === true,
-        travel: attrs.field_field_travel === true,
+        onsite: toBoolean(attrs.field_field_onsite ?? attrs.field_onsite),
+        travel: toBoolean(attrs.field_field_travel ?? attrs.field_travel),
     };
 };
 
@@ -188,12 +214,12 @@ export const fetchServicesAtom = atom(null, async (_get, set) => {
                 const attrs = (item.attributes || {}) as DrupalServiceAttributes;
                 return {
                     service: mapDrupalToService(item, includedByKey),
-                    sortOrder: attrs.field_field_sort_order,
+                    sortOrder: getServiceSortOrder(attrs),
                 };
             })
             .sort((a, b) => {
-                const aOrder = typeof a.sortOrder === "number" ? a.sortOrder : Number.MAX_SAFE_INTEGER;
-                const bOrder = typeof b.sortOrder === "number" ? b.sortOrder : Number.MAX_SAFE_INTEGER;
+                const aOrder = a.sortOrder;
+                const bOrder = b.sortOrder;
                 if (aOrder !== bOrder) {
                     return aOrder - bOrder;
                 }
