@@ -95,7 +95,7 @@ export function AnimalPage() {
     const currentPath = normalizePath(`/${slug}`);
     const animal = animals.find((a) => normalizePath(a.linkUrl) === currentPath);
     const service = services.find((s) => normalizePath(s.pdfUrl) === currentPath);
-    const fromState = (location.state as { from?: string } | null)?.from || "";
+    const fromState = (location.state as { from?: string; } | null)?.from || "";
     const referrerPath = getSameOriginReferrerPath(document.referrer, window.location.origin);
     const origin = inferContentOrigin(fromState, referrerPath);
     const pageState = resolveContentPageState({
@@ -193,6 +193,11 @@ export function AnimalPage() {
                                     </div>
                                 </section>
                             ))}
+                            <div className="btn-outer bg-blue-dark ">
+                                <div className="btn-inner">
+                                    <Link to="/animals" className="btn-a">Back to Animals</Link>
+                                </div>
+                            </div>
                         </div>
                     )}
                 </>
