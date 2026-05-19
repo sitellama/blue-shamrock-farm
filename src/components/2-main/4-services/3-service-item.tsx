@@ -1,5 +1,6 @@
 import { Service } from "./8-services-data";
 import { Link } from "react-router-dom";
+import { RichTextContent } from "@/utils/render-rich-text";
 
 const isExternalUrl = (url: string): boolean => /^(https?:)?\/\//i.test(url);
 
@@ -13,7 +14,7 @@ export function ServicesEvents({ image, imageAlt, label, content, linkText, link
             <div className="p-4 text-black">
                 <h3>{label}</h3>
 
-                <p>{content}</p>
+                <RichTextContent content={content} className="prose max-w-none" />
 
                 {external ? (
                     <a href={linkUrl} target="_blank" rel="noreferrer" className="subheading">{linkText}</a>

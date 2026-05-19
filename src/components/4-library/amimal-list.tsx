@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useAtomValue, useSetAtom } from "jotai";
 import { animalsAtom, animalsErrorAtom, animalsLoadingAtom, fetchAnimalsAtom, groupAnimals, type Animal } from "./animals-data";
+import { RichTextContent } from "@/utils/render-rich-text";
 
 function AnimalCard({ animal }: { animal: Animal }) {
     return (
@@ -30,7 +31,7 @@ function FeaturedAnimal({ animal, imageRight }: { animal: Animal; imageRight: bo
             <div className="py-4 px-8 flex-[1_1_clamp(30%,50%,70%)] flex flex-col md:min-h-[400px] justify-center text-center text-white">
                 <div>
                     <h3 className="text-5xl">{animal.name}</h3>
-                    {animal.description && <p>{animal.description}</p>}
+                    {animal.description && <RichTextContent content={animal.description} className="prose prose-invert max-w-none" />}
                     {animal.linkUrl && (
                         <a href={animal.linkUrl}>
                             More Info<span className="sr-only"> on {animal.name}</span>
