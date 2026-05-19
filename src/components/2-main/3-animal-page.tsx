@@ -9,11 +9,11 @@ import {
 } from "@/utils/content-not-found";
 import { animalsAtom, animalsErrorAtom, animalsLoadingAtom, fetchAnimalsAtom } from "@/components/4-library/animals-data";
 import {
-    animalBlocksAtom,
-    animalBlocksErrorAtom,
-    animalBlocksLoadingAtom,
-    fetchAnimalBlocksAtom,
-} from "@/components/4-library/animal-blocks-data";
+    contentBlocksAtom,
+    contentBlocksErrorAtom,
+    contentBlocksLoadingAtom,
+    fetchContentBlocksAtom,
+} from "@/components/4-library/content-blocks-data";
 // import shamrock from "@/assets/blue-shamrock.webp";
 import shamrock from "@/assets/blue-shamrock-3.png";
 
@@ -69,14 +69,14 @@ export function AnimalPage() {
     const error = useAtomValue(animalsErrorAtom);
     const fetchAnimals = useSetAtom(fetchAnimalsAtom);
 
-    const { textBlocks, animalCards } = useAtomValue(animalBlocksAtom);
-    const blocksLoading = useAtomValue(animalBlocksLoadingAtom);
-    const blocksError = useAtomValue(animalBlocksErrorAtom);
-    const fetchBlocks = useSetAtom(fetchAnimalBlocksAtom);
+    const { textBlocks, cards } = useAtomValue(contentBlocksAtom);
+    const blocksLoading = useAtomValue(contentBlocksLoadingAtom);
+    const blocksError = useAtomValue(contentBlocksErrorAtom);
+    const fetchBlocks = useSetAtom(fetchContentBlocksAtom);
 
     useEffect(() => {
         if (!animals.length) void fetchAnimals();
-        if (!textBlocks.length && !animalCards.length) void fetchBlocks();
+        if (!textBlocks.length && !cards.length) void fetchBlocks();
     }, []);
 
     const currentPath = normalizePath(`/${slug}`);
@@ -106,7 +106,7 @@ export function AnimalPage() {
             ? card.referenceNodeIds.includes(selectedAnimal.id)
             : card.referenceNodeId === selectedAnimal.id;
 
-    const cardsToRender = animalCards.filter((card) => matchesReference(card));
+    const cardsToRender = cards.filter((card) => matchesReference(card));
     const textBlocksToRender = textBlocks.filter((block) => matchesReference(block));
 
     return (

@@ -5,7 +5,7 @@ import { animalsAtom, animalsLoadingAtom, fetchAnimalsAtom } from "@/components/
 import { servicesAtom, servicesLoadingAtom, fetchServicesAtom } from "./4-services/8-services-data";
 import { normalizePath } from "@/utils/content-not-found";
 import { AnimalPage } from "./3-animal-page";
-import { ServicePage } from "./4-services/service-page";
+import { ServicePage } from "./4-services/service-page.tsx";
 import { ErrorPage } from "./7-error";
 
 export function ContentPage() {
@@ -25,7 +25,7 @@ export function ContentPage() {
 
     const currentPath = normalizePath(`/${slug.trim().toLowerCase()}`);
     const isAnimal = animals.some((a) => normalizePath(a.linkUrl) === currentPath);
-    const isService = services.some((s) => normalizePath(s.pdfUrl) === currentPath);
+    const isService = services.some((s) => normalizePath(s.linkUrl) === currentPath);
 
     if (animalsLoading || servicesLoading) {
         return <p className="max-content mt-16">Loading...</p>;

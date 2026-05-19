@@ -34,8 +34,8 @@ export function ServicesList() {
                     imageAlt={service.imageAlt}
                     label={service.label}
                     content={service.content}
-                    pdfName={service.pdfName}
-                    pdfUrl={service.pdfUrl}
+                    linkText={service.linkText}
+                    linkUrl={service.linkUrl}
                     onsite={service.onsite}
                     travel={service.travel} 
                 />
