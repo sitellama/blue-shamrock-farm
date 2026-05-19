@@ -126,7 +126,7 @@ export function ServicePage() {
                     <div className="py-4 px-8 flex-[1_1_clamp(30%,50%,70%)] flex flex-col md:min-h-[200px] justify-center text-center text-white">
                         <div>
                             <h1 className="text-5xl md:text-7xl my-4">{selectedService.label}</h1>
-                            <p className="mt-6"><Link to="/animals" className="text-white">← Back to Services</Link></p>
+                            <p className="mt-6"><Link to="/services" className="text-white">← Back to Services</Link></p>
                         </div>
                     </div>
                 </div>
