@@ -122,7 +122,6 @@ export function AnimalPage() {
                     <div className="py-4 px-8 flex-[1_1_clamp(30%,50%,70%)] flex flex-col md:min-h-[200px] justify-center text-center text-white">
                         <div>
                             <h1 className="text-5xl md:text-7xl my-4">{selectedAnimal.name}</h1>
-                            {selectedAnimal.description && <p>{selectedAnimal.description}</p>}
                             <p className="mt-6"><Link to="/animals" className="text-white">← Back to Animals</Link></p>
                         </div>
                     </div>
@@ -152,6 +151,12 @@ export function AnimalPage() {
                         </div>
                     ))}
 
+                    {cardsToRender.length == 0 && (
+                        <div className="max-content space-y-8">
+                            <p className="text-center">We are working on gathering photos of the {selectedAnimal.name}. Please check back soon.</p>
+                        </div>
+                    )}
+
                     {cardsToRender.length > 0 && (
                         <div className="max-content pb-16 space-y-8">
                             {cardsToRender.map((card) => (
@@ -165,15 +170,18 @@ export function AnimalPage() {
                                     </div>
                                 </section>
                             ))}
-                            <div className="btn-outer bg-blue-dark ">
-                                <div className="btn-inner">
-                                    <Link to="/animals" className="btn-a">Back to Animals</Link>
-                                </div>
-                            </div>
                         </div>
                     )}
                 </>
             )}
+
+            <div className="py-16">
+                <div className="btn-outer bg-blue-dark ">
+                    <div className="btn-inner">
+                        <Link to="/animals" className="btn-a">Back to Animals</Link>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
