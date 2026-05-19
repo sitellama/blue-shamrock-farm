@@ -29,6 +29,7 @@ export function ServicesList() {
         (service, index) => {
             return (
                 <ServicesEvents
+                    id={service.id}
                     key={index}
                     image={service.image}
                     imageAlt={service.imageAlt}
