@@ -70,7 +70,6 @@ export type AnimalCard = {
     name: string;
     descriptionHtml: string;
     images: { url: string; alt: string }[];
-    species: string;
 };
 // referenceNodeId: UUID of the node--animal this block explicitly belongs to.
 // null means no explicit reference was set in Drupal.
@@ -85,7 +84,6 @@ type AnimalCardAttrs = {
     field_animal_name?: string;
     field_animal_description?: { processed?: string };
     field_text?: { processed?: string };
-    field_animal_species?: string;
 };
 
 type MediaRelData = { id: string; type: string };
@@ -134,7 +132,6 @@ const mapAnimalCard = (
         name: a.field_animal_name ?? a.info ?? "",
         descriptionHtml: a.field_animal_description?.processed ?? a.field_text?.processed ?? "",
         images: getImagesFromMedia(mediaIds, includedMap),
-        species: a.field_animal_species ?? "",
         referenceNodeId: referenceRel?.id ?? null,
         referenceNodeType: referenceRel?.type ?? null,
         referenceNodeIds: referenceRels.map((rel) => rel.id),

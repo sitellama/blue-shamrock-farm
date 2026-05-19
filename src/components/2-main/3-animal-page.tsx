@@ -186,7 +186,6 @@ export function AnimalPage() {
                                     <AnimalCardGallery images={card.images} name={card.name} />
                                     <div>
                                         {card.name && <h2 className="mt-0">{card.name}</h2>}
-                                        {/* {card.species && <p className="mb-2 opacity-70">{card.species}</p>} */}
                                         {card.descriptionHtml && (
                                             <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: card.descriptionHtml }} />
                                         )}
