@@ -37,17 +37,11 @@ type DrupalLinkField = {
 type DrupalServiceAttributes = {
     title?: string;
     field_field_content?: DrupalFormattedText;
-    field_content?: DrupalFormattedText;
     field_field_pdf_name?: string;
-    field_pdf_name?: string;
     field_field_pdf_url?: DrupalLinkField;
-    field_pdf_url?: DrupalLinkField;
     field_field_onsite?: boolean;
-    field_onsite?: boolean;
     field_field_travel?: boolean;
-    field_travel?: boolean;
     field_field_sort_order?: number | null;
-    field_sort_order?: number | null;
 };
 
 const drupalBaseUrl = (import.meta.env.VITE_DRUPAL_BASE_URL || "").replace(/\/$/, "");
@@ -93,20 +87,19 @@ const toBoolean = (value: unknown): boolean => {
 };
 
 const getServiceContent = (attrs: DrupalServiceAttributes): string => {
-    return toText(attrs.field_field_content?.value || attrs.field_content?.value || attrs.field_field_content?.processed || attrs.field_content?.processed);
+    return toText(attrs.field_field_content?.value || attrs.field_field_content?.processed);
 };
 
 const getServicePdfName = (attrs: DrupalServiceAttributes): string => {
-    return toText(attrs.field_field_pdf_name || attrs.field_pdf_name || attrs.field_field_pdf_url?.title || attrs.field_pdf_url?.title, "Learn more");
+    return toText(attrs.field_field_pdf_name || attrs.field_field_pdf_url?.title, "Learn more");
 };
 
 const getServiceSortOrder = (attrs: DrupalServiceAttributes): number => {
-    const value = attrs.field_field_sort_order ?? attrs.field_sort_order;
-    return typeof value === "number" ? value : Number.MAX_SAFE_INTEGER;
+    return typeof attrs.field_field_sort_order === "number" ? attrs.field_field_sort_order : Number.MAX_SAFE_INTEGER;
 };
 
 const getServiceLinkUrl = (attrs: DrupalServiceAttributes): string => {
-    const raw = toText(attrs.field_field_pdf_url?.uri || attrs.field_pdf_url?.uri);
+    const raw = toText(attrs.field_field_pdf_url?.uri);
     if (!raw) return "";
     if (raw.startsWith("internal:")) return raw.replace(/^internal:/, "") || "/";
     return raw;
@@ -116,13 +109,13 @@ const getImageFromRelationship = (
     resource: DrupalResource,
     includedByKey: Map<string, DrupalResource>
 ): { url: string; alt: string } => {
-    const relation = resource.relationships?.field_field_image?.data || resource.relationships?.field_image?.data;
+    const relation = resource.relationships?.field_field_image?.data;
     if (!relation) {
         return { url: "", alt: "" };
     }
 
     const media = includedByKey.get(`${relation.type}:${relation.id}`);
-    const fileRelation = media?.relationships?.field_media_image?.data || media?.relationships?.field_image?.data;
+    const fileRelation = media?.relationships?.field_media_image?.data;
     if (!fileRelation) {
         return { url: "", alt: "" };
     }
@@ -155,8 +148,8 @@ const mapDrupalToService = (
         content,
         pdfName: getServicePdfName(attrs),
         pdfUrl: getServiceLinkUrl(attrs),
-        onsite: toBoolean(attrs.field_field_onsite ?? attrs.field_onsite),
-        travel: toBoolean(attrs.field_field_travel ?? attrs.field_travel),
+        onsite: toBoolean(attrs.field_field_onsite),
+        travel: toBoolean(attrs.field_field_travel),
     };
 };
 
