@@ -37,11 +37,38 @@ const resolveFileUrl = (rawUrl: string): string => {
 const buildIncludedMap = (included: DrupalResource[]): Map<string, DrupalResource> =>
     new Map(included.map((r) => [`${r.type}:${r.id}`, r]));
 
+const decodeHtmlEntities = (value: string): string =>
+    value
+        .replace(/&nbsp;/gi, " ")
+        .replace(/&amp;/gi, "&")
+        .replace(/&lt;/gi, "<")
+        .replace(/&gt;/gi, ">")
+        .replace(/&quot;/gi, '"')
+        .replace(/&#39;/gi, "'");
+
+const toPlainText = (value?: string): string => {
+    if (!value || typeof value !== "string") return "";
+
+    const withBreaks = value
+        .replace(/<\s*br\s*\/?>/gi, "\n")
+        .replace(/<\s*li[^>]*>/gi, "- ")
+        .replace(/<\/(p|div|li|h1|h2|h3|h4|h5|h6|ul|ol)>/gi, "\n");
+
+    const withoutTags = withBreaks.replace(/<[^>]*>/g, "");
+    const decoded = decodeHtmlEntities(withoutTags);
+
+    return decoded
+        .split("\n")
+        .map((line) => line.replace(/\s+/g, " ").trim())
+        .filter(Boolean)
+        .join("\n");
+};
+
 // ─── text_block ───────────────────────────────────────────────────────────────
 
 export type TextBlock = {
     id: string;
-    html: string;
+    text: string;
     centerText: boolean;
     colorTheme: string;
 };
@@ -53,8 +80,8 @@ export type TextBlockWithRef = TextBlock & {
 };
 
 type TextBlockAttrs = {
-    field_text_block?: { processed?: string };
-    field_animal_description_block?: { processed?: string };
+    field_text_block?: { value?: string };
+    field_animal_description_block?: { value?: string };
     field_center_text?: boolean;
     field_color_theme?: string;
 };
@@ -67,7 +94,7 @@ const mapTextBlock = (r: DrupalResource): TextBlockWithRef => {
 
     return {
         id: r.id,
-        html: a.field_text_block?.processed ?? a.field_animal_description_block?.processed ?? "",
+        text: toPlainText(a.field_text_block?.value ?? a.field_animal_description_block?.value ?? ""),
         centerText: a.field_center_text ?? false,
         colorTheme: a.field_color_theme ?? "",
         referenceNodeId: referenceRel?.id ?? null,
@@ -81,7 +108,7 @@ const mapTextBlock = (r: DrupalResource): TextBlockWithRef => {
 export type AnimalCard = {
     id: string;
     name: string;
-    descriptionHtml: string;
+    description: string;
     images: { url: string; alt: string }[];
 };
 // referenceNodeId: UUID of the node--animal this block explicitly belongs to.
@@ -95,8 +122,8 @@ export type AnimalCardWithRef = AnimalCard & {
 type AnimalCardAttrs = {
     info?: string;
     field_animal_name?: string;
-    field_animal_description?: { processed?: string };
-    field_text?: { processed?: string };
+    field_animal_description?: { value?: string };
+    field_text?: { value?: string };
 };
 
 type MediaRelData = { id: string; type: string };
@@ -143,7 +170,7 @@ const mapAnimalCard = (
     return {
         id: r.id,
         name: a.field_animal_name ?? a.info ?? "",
-        descriptionHtml: a.field_animal_description?.processed ?? a.field_text?.processed ?? "",
+        description: toPlainText(a.field_animal_description?.value ?? a.field_text?.value ?? ""),
         images: getImagesFromMedia(mediaIds, includedMap),
         referenceNodeId: referenceRel?.id ?? null,
         referenceNodeType: referenceRel?.type ?? null,

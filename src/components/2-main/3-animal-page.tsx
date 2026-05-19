@@ -147,8 +147,9 @@ export function AnimalPage() {
                         <div
                             key={block.id}
                             className={`max-content my-8 ${block.centerText ? "text-center" : ""}`}
-                            dangerouslySetInnerHTML={{ __html: block.html }}
-                        />
+                        >
+                            <p className="whitespace-pre-line">{block.text}</p>
+                        </div>
                     ))}
 
                     {cardsToRender.length > 0 && (
@@ -158,8 +159,8 @@ export function AnimalPage() {
                                     <AnimalCardGallery images={card.images} name={card.name} />
                                     <div>
                                         {card.name && <h2 className="mt-0">{card.name}</h2>}
-                                        {card.descriptionHtml && (
-                                            <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: card.descriptionHtml }} />
+                                        {card.description && (
+                                            <p className="prose max-w-none whitespace-pre-line">{card.description}</p>
                                         )}
                                     </div>
                                 </section>

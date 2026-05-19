@@ -25,8 +25,6 @@ type DrupalJsonApiResponse = {
 
 type DrupalFormattedText = {
     value?: string;
-    processed?: string;
-    format?: string;
 };
 
 type DrupalLinkField = {
@@ -87,7 +85,7 @@ const toBoolean = (value: unknown): boolean => {
 };
 
 const getServiceContent = (attrs: DrupalServiceAttributes): string => {
-    return toText(attrs.field_field_content?.value || attrs.field_field_content?.processed);
+    return toText(attrs.field_field_content?.value);
 };
 
 const getServicePdfName = (attrs: DrupalServiceAttributes): string => {
