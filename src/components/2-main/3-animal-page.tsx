@@ -6,15 +6,8 @@ import {
     getSameOriginReferrerPath,
     inferContentOrigin,
     normalizePath,
-    resolveContentPageState,
 } from "@/utils/content-not-found";
 import { animalsAtom, animalsErrorAtom, animalsLoadingAtom, fetchAnimalsAtom } from "@/components/4-library/animals-data";
-import {
-    fetchServicesAtom,
-    servicesAtom,
-    servicesErrorAtom,
-    servicesLoadingAtom,
-} from "./4-services/8-services-data";
 import {
     animalBlocksAtom,
     animalBlocksErrorAtom,
@@ -67,19 +60,14 @@ function AnimalCardGallery({ images, name }: { images: CardImage[]; name: string
 }
 
 export function AnimalPage() {
-    const { animalSlug = "" } = useParams();
-    const slug = animalSlug.trim().toLowerCase();
+    const { slug = "" } = useParams();
+    const animalSlug = slug.trim().toLowerCase();
     const location = useLocation();
 
     const animals = useAtomValue(animalsAtom);
     const isLoading = useAtomValue(animalsLoadingAtom);
     const error = useAtomValue(animalsErrorAtom);
     const fetchAnimals = useSetAtom(fetchAnimalsAtom);
-
-    const services = useAtomValue(servicesAtom);
-    const servicesLoading = useAtomValue(servicesLoadingAtom);
-    const servicesError = useAtomValue(servicesErrorAtom);
-    const fetchServices = useSetAtom(fetchServicesAtom);
 
     const { textBlocks, animalCards } = useAtomValue(animalBlocksAtom);
     const blocksLoading = useAtomValue(animalBlocksLoadingAtom);
@@ -88,47 +76,30 @@ export function AnimalPage() {
 
     useEffect(() => {
         if (!animals.length) void fetchAnimals();
-        if (!services.length) void fetchServices();
         if (!textBlocks.length && !animalCards.length) void fetchBlocks();
     }, []);
 
     const currentPath = normalizePath(`/${slug}`);
     const animal = animals.find((a) => normalizePath(a.linkUrl) === currentPath);
-    const service = services.find((s) => normalizePath(s.pdfUrl) === currentPath);
     const fromState = (location.state as { from?: string; } | null)?.from || "";
     const referrerPath = getSameOriginReferrerPath(document.referrer, window.location.origin);
     const origin = inferContentOrigin(fromState, referrerPath);
-    const pageState = resolveContentPageState({
-        animalsLoading: isLoading,
-        servicesLoading,
-        animalsError: error,
-        servicesError,
-        hasAnimal: !!animal,
-        hasService: !!service,
-        origin,
-    });
 
-    if (pageState.kind === "loading" || pageState.kind === "error") {
-        return <p className="max-content mt-16">{pageState.message}</p>;
+    if (isLoading) {
+        return <p className="max-content mt-16">Loading...</p>;
     }
 
-    if (pageState.kind === "not-found") {
-        const { title, backTo, backLabel } = pageState.meta;
-        return <p className="max-content mt-16">{title} <Link to={backTo}>{backLabel}</Link></p>;
+    if (error) {
+        return <p className="max-content mt-16">Error loading animals: {error}</p>;
     }
 
-    if (pageState.kind === "service" && service) {
-        return (
-            <div className="max-content mt-16">
-                <h1>{service.label}</h1>
-                {service.content && <p>{service.content}</p>}
-                <p><Link to="/services">Back to services</Link></p>
-            </div>
-        );
+    if (!animal) {
+        const backTo = origin === "services" ? "/services" : "/animals";
+        const backLabel = origin === "services" ? "Back to Services" : "Back to Animals";
+        return <p className="max-content mt-16">Animal not found <Link to={backTo}>{backLabel}</Link></p>;
     }
 
     const selectedAnimal = animal;
-    if (!selectedAnimal) return null;
 
     const matchesReference = (card: { referenceNodeIds: string[]; referenceNodeId: string | null; }): boolean =>
         card.referenceNodeIds.length > 0
@@ -143,7 +114,7 @@ export function AnimalPage() {
             <SEO
                 title={`${selectedAnimal.name} | Blue Shamrock Farm`}
                 description={selectedAnimal.description || `Learn more about ${selectedAnimal.name} at Blue Shamrock Farm.`}
-                href={`/${slug}`}
+                href={`/${animalSlug}`}
             />
 
             <div className="mb-16 bg-blue-dark max-h-[300px] ">
