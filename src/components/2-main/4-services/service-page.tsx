@@ -113,7 +113,8 @@ export function ServicePage() {
     const fallbackCards = serviceCards.filter((card) => isUnreferenced(card));
     const fallbackTextBlocks = textBlocks.filter((block) => isUnreferenced(block));
 
-    const cardsToRender = referencedCards.length > 0 ? referencedCards : fallbackCards;
+    const sortCards = (cards: typeof referencedCards) => [...cards].sort((a, b) => a.sortOrder - b.sortOrder);
+    const cardsToRender = sortCards(referencedCards.length > 0 ? referencedCards : fallbackCards);
     const textBlocksToRender = referencedTextBlocks.length > 0 ? referencedTextBlocks : fallbackTextBlocks;
 
     return (

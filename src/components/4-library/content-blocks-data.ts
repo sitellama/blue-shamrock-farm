@@ -98,6 +98,7 @@ export type ContentCard = {
     name: string;
     description: string;
     images: { url: string; alt: string }[];
+    sortOrder: number;
 };
 
 export type ContentCardWithRef = ContentCard & {
@@ -113,6 +114,7 @@ type ContentCardAttrs = {
     field_animal_description?: DrupalFormattedText;
     field_service_description?: DrupalFormattedText;
     field_text?: DrupalFormattedText;
+    field_sort_order?: number | null;
 };
 
 type MediaRelData = { id: string; type: string };
@@ -154,6 +156,7 @@ const mapContentCard = (
         name: a.field_animal_name ?? a.field_service_name ?? a.info ?? "",
         description: getFormattedContent(a.field_animal_description ?? a.field_service_description ?? a.field_text),
         images: getImagesFromMedia(mediaIds, includedMap),
+        sortOrder: typeof a.field_sort_order === "number" ? a.field_sort_order : Number.MAX_SAFE_INTEGER,
         referenceNodeId: referenceRel?.id ?? null,
         referenceNodeType: referenceRel?.type ?? null,
         referenceNodeIds: referenceRels.map((rel) => rel.id),
