@@ -17,6 +17,8 @@ import {
 import { RichTextContent } from "@/utils/render-rich-text";
 // import shamrock from "@/assets/blue-shamrock.webp";
 import shamrock from "@/assets/blue-shamrock-3.png";
+import { SupportUs } from "../4-library/support-us";
+import { ContactUs } from "../4-library/reach-out";
 
 type CardImage = {
     url: string;
@@ -183,6 +185,10 @@ export function AnimalPage() {
                     </div>
                 </div>
             </div>
+
+            <SupportUs />
+
+            <ContactUs />
         </>
     );
 }

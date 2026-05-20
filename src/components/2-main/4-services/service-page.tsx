@@ -18,6 +18,8 @@ import {
     servicesLoadingAtom,
 } from "./8-services-data";
 import { RichTextContent } from "@/utils/render-rich-text";
+import { SupportUs } from "../../4-library/support-us";
+import { ContactUs } from "../../4-library/reach-out";
 
 type CardImage = {
     url: string;
@@ -182,6 +184,10 @@ export function ServicePage() {
                     </div>
                 </div>
             </div>
+
+            <SupportUs />
+
+            <ContactUs />
         </>
     );
 }
