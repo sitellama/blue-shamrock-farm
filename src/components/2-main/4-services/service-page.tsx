@@ -18,7 +18,6 @@ import {
     servicesLoadingAtom,
 } from "./8-services-data";
 import { RichTextContent } from "@/utils/render-rich-text";
-import { SupportUs } from "../../4-library/support-us";
 import { ContactUs } from "../../4-library/reach-out";
 
 type CardImage = {
@@ -185,7 +184,13 @@ export function ServicePage() {
                 </div>
             </div>
 
-            <SupportUs />
+            {/* upcoming events */}
+            <div className="mt-0 mb-20 bg-blue-light text-white py-12">
+                <h1 className="text-center">Upcoming Events</h1>
+                <p className="max-content text-center">
+                    At Blue Shamrock Farm there's always something happening — whether it's goat yoga, hosting a party, or cuddling with our animals.</p>
+                <p className="max-content text-center"><a href="https://bsf.simpletix.com/" target="_blank">Check out our list of upcoming events.</a></p>
+            </div>
 
             <ContactUs />
         </>
