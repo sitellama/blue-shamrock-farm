@@ -114,7 +114,7 @@ function MenuBody({ loc, className }: { loc: Location; className?: string; }) {
                 </figure>
             </li>
             <OurLink label="Shamrock Shop" to="/shamrock-shop" loc={loc} />
-            <OurLink label="FAQs" to="/faq" loc={loc} />
+            <OurLink label="Breeding" to="/breeding" loc={loc} />
             <OurLinkInNewTab label="Get In Touch" to="#contact" loc={loc} />
         </ul>
     );

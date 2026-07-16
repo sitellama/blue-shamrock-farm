@@ -5,6 +5,7 @@ import { FAQs } from "@/components/2-main/6-faq";
 import { Privacy } from "@/components/2-main/5-privacy";
 import { ErrorPage } from "@/components/2-main/7-error";
 import { Tornjak } from "@/components/2-main/tornjaks";
+import { Breeding } from "@/components/2-main/8-breeding";
 
 
 const routes: RouteObject[] = [
@@ -20,9 +21,17 @@ const routes: RouteObject[] = [
         path: "/services",
         element: <Services />,
     },
+    // {
+    //     path: "/faq",
+    //     element: <FAQs />,
+    // },
     {
         path: "/faq",
         element: <FAQs />,
+    },
+    {
+        path: "/breeding",
+        element: <Breeding />,
     },
     {
         path: "/privacy-policy",
