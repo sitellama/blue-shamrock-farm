@@ -9,7 +9,7 @@ import { PuppyBanner } from "../4-library/puppy-banner";
 export function Tornjak() {
     return (
         <>
-            <SEO title="Tornjak Page" description="View the most recent information about our tornjaks" href="/" />
+            <SEO title="Tornjak Page" description="View the most recent information about our tornjaks" href="/tornjaks" />
             <HeroImg hero={pluto} />
             <PuppyBanner pagelink={false} announcement={true} />
             <OurTornjaks />

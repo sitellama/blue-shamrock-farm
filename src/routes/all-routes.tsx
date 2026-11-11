@@ -6,6 +6,7 @@ import { Privacy } from "@/components/2-main/5-privacy";
 import { ErrorPage } from "@/components/2-main/7-error";
 import { Tornjak } from "@/components/2-main/tornjaks";
 import { Breeding } from "@/components/2-main/8-breeding";
+import { CroatianSheepdogs } from "@/components/2-main/croatian-sheepdogs";
 
 
 const routes: RouteObject[] = [
@@ -56,6 +57,10 @@ const routes: RouteObject[] = [
     {
         path: "/tornjak",
         element: <Tornjak />,
+    },
+    {
+        path: "/croatian-sheepdog",
+        element: <CroatianSheepdogs />,
     },
 ];
 
