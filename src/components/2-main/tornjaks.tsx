@@ -11,7 +11,7 @@ export function Tornjak() {
         <>
             <SEO title="Tornjak Page" description="View the most recent information about our tornjaks" href="/tornjaks" />
             <HeroImg hero={pluto} />
-            <PuppyBanner pagelink={false} announcement={true} />
+            <PuppyBanner pagelink={false} announcement={true} description={true}/>
             <OurTornjaks />
             <ContactUs />
         </>

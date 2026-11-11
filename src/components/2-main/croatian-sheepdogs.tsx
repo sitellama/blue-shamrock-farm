@@ -11,7 +11,7 @@ export function CroatianSheepdogs() {
         <>
             <SEO title="Croatian Sheepdog Page" description="View the most recent information about our Croatian Sheepdogs." href="/croatian-sheepdogs" />
             <HeroImg hero={pluto} />
-            <PuppyBanner pagelink={false} announcement={true} />
+            <PuppyBanner pagelink={false} announcement={true} description={true}/>
             <OurTornjaks />
             <ContactUs />
         </>
