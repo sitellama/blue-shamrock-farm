@@ -35,16 +35,16 @@ export function ContactUs() {
                     <label>Interests. Select all that apply.</label>
                     <div className="columns-2" id="interests">
                         <InputCheckbox label="Petting Zoo" value="Petting Zoo" name="interests[]" />
-                        <InputCheckbox label="Goat Yoga" value="Goat Yoga" name="interests[]" />
-                        <InputCheckbox label="Animal Waitstaff" value="Animal Waitstaff" name="interests[]" />
-                        <InputCheckbox label="Parties" value="Parties" name="interests[]" />
-                        <InputCheckbox label="Animal Snuggling" value="Animal Snuggling" name="interests[]" />
+                        <InputCheckbox label="Heath Care Visits" value="Heath Care Visits" name="interests[]" />
                         <InputCheckbox label="Animal Gram" value="Animal Gram" name="interests[]" />
+                        <InputCheckbox label="Animal Snuggling" value="Animal Snuggling" name="interests[]" />
+                        <InputCheckbox label="Animal Waitstaff" value="Animal Waitstaff" name="interests[]" />
+                        <InputCheckbox label="Goat/Alpaca Yoga" value="Goat Yoga" name="interests[]" />
+                        <InputCheckbox label="Parties" value="Parties" name="interests[]" />
                         <InputCheckbox label="Educational Classes" value="Educational Classes" name="interests[]" />
-                        <InputCheckbox label="Photoshoot" value="Photoshoot" name="interests[]" />
                         <InputCheckbox label="Nativity Scene" value="Nativity Scene" name="interests[]" />
-                        <InputCheckbox label="Pony Rides" value="Pony Rides" name="interests[]" />
-                        <InputCheckbox label="Add Ons" value="Add Ons" name="interests[]" />
+                        <InputCheckbox label="Photoshoot" value="Photoshoot" name="interests[]" />
+                        <InputCheckbox label="Puppies" value="Puppies" name="interests[]" />
                         <InputCheckbox label="Something Else" value="Something Else" name="interests[]" />
                     </div>
 
