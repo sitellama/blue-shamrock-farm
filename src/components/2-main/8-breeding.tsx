@@ -46,7 +46,7 @@ export function Breeding() {
                             <Link to="/croatian-sheepdog">More Info<span className="sr-only"> on Croatian Sheepdog breeding</span></Link>
                         </div>
                     </div>
-                    <div className="flex-[1_1_33%] order-first md:order-last">
+                    <div className="flex-[1_1_33%]">
                         <img src={imageCSD} className="w-full h-[250px] md:h-full object-cover" alt="livestock guardian dog protecting the farm" loading="lazy"></img>
                     </div>
                 </div>
@@ -57,7 +57,7 @@ export function Breeding() {
                         <div>
                             <h3 className="text-5xl">Livestock</h3>
                             <div className="space-y-4 prose prose-invert max-w-none">
-                                <p className="whitespace-pre-line">Tornjaks are strong, loyal livestock guardian dogs from Croatia and Bosnia and Herzegovina. They are known for their protective nature, sturdy build, and thick coats, making them ideal for guarding flocks in harsh conditions. Valued for their gentle temperament with both family and animals, Tornjaks remain a respected breed for their dependable guardianship.</p>
+                                <p className="whitespace-pre-line">Our breeding program is dedicated to raising healthy, well-tempered heritage and small-scale livestock with sound conformation and breed-true characteristics. Every animal is raised right here at home with daily hands-on care, good food, room to roam, and thoughtfully planned pairings. We pay close attention to long-term health and gentle temperaments, because we want every animal to have a great start in life. Whether you’re looking for a family companion, a fiber producer, or a foundation for your own herd or flock, we’d love to help you find your next favorite critter.</p>
                             </div>
                             <Link to="/shamrock-shop">More Info<span className="sr-only"> on livestock breeding</span></Link>
                         </div>

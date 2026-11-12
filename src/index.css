@@ -28,7 +28,7 @@
   font-weight: normal;
   src: url("@/assets/fonts/Porcelain.otf") format("opentype");
 }
-
+ 
 @layer components {
   h1 {
     @apply font-headings text-5xl md:text-7xl my-6;
