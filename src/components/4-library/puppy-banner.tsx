@@ -224,6 +224,13 @@ export function PuppyBanner({
         return null;
     }
 
+    console.log("PuppyBanner debug:", {
+        currentPath,
+        bannerEnabled,
+        litters,
+        filteredLitters,
+    });
+
     return (
         <div
             className="block bg-blue-dark text-center text-white"
@@ -267,22 +274,19 @@ export function PuppyBanner({
                             </Link>
                         )}
 
-                        {announcement && litter.imageUrl && (
+                        {announcement && (
                             <>
-                                <span>{litter.announcement}</span>
-                                <img
-                                    src={litter.imageUrl}
-                                    className="mx-auto"
-                                    alt={`${litter.breed} litter announcement`}
-                                    loading="lazy"
-                                />
-                            </>
-                        )}
+                                {litter.imageUrl && (
+                                    <img
+                                        src={litter.imageUrl}
+                                        className="mx-auto"
+                                        alt={`${litter.breed} litter announcement`}
+                                        loading="lazy"
+                                    />
+                                )}
 
-                        {description && litter.description && (
-                            <p className="mb-8">
-                                {litter.description}
-                            </p>
+                                <p className="mb-8">{litter.announcement}</p>
+                            </>
                         )}
                     </div>
                 ))}
