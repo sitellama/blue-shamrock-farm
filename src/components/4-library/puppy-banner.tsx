@@ -2,228 +2,245 @@
 import { useEffect, useState } from "react";
 import icon from "../../assets/ultrasound-icon.webp";
 import background from "../../assets/puppy-banner-background.webp";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const API = "/drupal/jsonapi";
 const DRUPAL_ORIGIN = "https://blueshamrock.farm";
 
 type PuppyBannerProps = {
-  pagelink: boolean;
-  announcement: boolean;
-  description: boolean;
+    pagelink: boolean;
+    announcement: boolean;
+    description: boolean;
 };
 
 type ResourceIdentifier = {
-  type: string;
-  id: string;
+    type: string;
+    id: string;
 };
 
 type DrupalResource = ResourceIdentifier & {
-  attributes?: {
-    status?: boolean;
-    field_activate_on_puppy_banner?: boolean;
-    field_puppy_breed?: string[] | null;
-    field_litter_announcement_desc?: string | null;
-    field_litter_description?: string | null;
-    uri?: {
-      url?: string;
+    attributes?: {
+        status?: boolean;
+        field_activate_on_puppy_banner?: boolean;
+        field_puppy_breed?: string[] | null;
+        field_litter_announcement_desc?: string | null;
+        field_litter_description?: string | null;
+        uri?: {
+            url?: string;
+        };
     };
-  };
-  relationships?: {
-    field_litter_announcement_poster?: {
-      data?: ResourceIdentifier | null;
+    relationships?: {
+        field_litter_announcement_poster?: {
+            data?: ResourceIdentifier | null;
+        };
+        field_media_image?: {
+            data?: ResourceIdentifier | null;
+        };
     };
-    field_media_image?: {
-      data?: ResourceIdentifier | null;
-    };
-  };
 };
 
 type DrupalResponse = {
-  data: DrupalResource[];
-  included?: DrupalResource[];
+    data: DrupalResource[];
+    included?: DrupalResource[];
 };
 
 type Litter = {
-  id: string;
-  breed: string;
-  url: string;
-  announcement: string;
-  description: string;
-  imageUrl: string | null;
+    id: string;
+    breed: string;
+    url: string;
+    announcement: string;
+    description: string;
+    imageUrl: string | null;
 };
 
-const breedMap: Record<string, { name: string; url: string }> = {
-  tornjak: {
-    name: "Tornjak",
-    url: "/tornjak",
-  },
-  croatian_sheepdog: {
-    name: "Croatian Sheepdog",
-    url: "/croatian-sheepdog",
-  },
+const breedMap: Record<string, { name: string; url: string; }> = {
+    tornjak: {
+        name: "Tornjak",
+        url: "/tornjak",
+    },
+    croatian_sheepdog: {
+        name: "Croatian Sheepdog",
+        url: "/croatian-sheepdog",
+    },
 };
 
 export function PuppyBanner({
-  pagelink,
-  announcement,
-  description,
+    pagelink,
+    announcement,
+    description,
 }: PuppyBannerProps) {
-  const [litters, setLitters] = useState<Litter[]>([]);
+    const [litters, setLitters] = useState<Litter[]>([]);
 
-  useEffect(() => {
-    const controller = new AbortController();
+    const { pathname } = useLocation();
 
-    async function loadLitters() {
-      try {
-        const response = await fetch(
-          `${API}/node/puppy_litters?include=field_litter_announcement_poster.field_media_image`,
-          { signal: controller.signal }
-        );
+    const currentPath = pathname.replace(/\/+$/, "") || "/";
 
-        if (!response.ok) {
-          throw new Error(
-            `Drupal returned HTTP ${response.status}`
-          );
+    const filteredLitters = litters.filter((litter) => {
+        // Homepage: show all active litters.
+        if (currentPath === "/") {
+            return true;
         }
 
-        const json: DrupalResponse = await response.json();
-        const included = json.included ?? [];
+        // Breed pages: only show matching litters.
+        return litter.url === currentPath;
+    });
 
-        const findIncluded = (
-          identifier: ResourceIdentifier | null | undefined
-        ) =>
-          identifier
-            ? included.find(
-                (item) =>
-                  item.id === identifier.id &&
-                  item.type === identifier.type
-              )
-            : undefined;
+    useEffect(() => {
+        const controller = new AbortController();
 
-        const activeLitters: Litter[] = [];
+        async function loadLitters() {
+            try {
+                const response = await fetch(
+                    `${API}/node/puppy_litters?include=field_litter_announcement_poster.field_media_image`,
+                    { signal: controller.signal }
+                );
 
-        for (const item of json.data ?? []) {
-          const attrs = item.attributes;
+                if (!response.ok) {
+                    throw new Error(
+                        `Drupal returned HTTP ${response.status}`
+                    );
+                }
 
-          if (
-            attrs?.status !== true ||
-            attrs.field_activate_on_puppy_banner !== true
-          ) {
-            continue;
-          }
+                const json: DrupalResponse = await response.json();
+                const included = json.included ?? [];
 
-          const media = findIncluded(
-            item.relationships
-              ?.field_litter_announcement_poster?.data
-          );
+                const findIncluded = (
+                    identifier: ResourceIdentifier | null | undefined
+                ) =>
+                    identifier
+                        ? included.find(
+                            (item) =>
+                                item.id === identifier.id &&
+                                item.type === identifier.type
+                        )
+                        : undefined;
 
-          const file = findIncluded(
-            media?.relationships?.field_media_image?.data
-          );
+                const activeLitters: Litter[] = [];
 
-          const relativeImageUrl = file?.attributes?.uri?.url;
+                for (const item of json.data ?? []) {
+                    const attrs = item.attributes;
 
-          const imageUrl = relativeImageUrl
-            ? new URL(relativeImageUrl, DRUPAL_ORIGIN).href
-            : null;
+                    if (
+                        attrs?.status !== true ||
+                        attrs.field_activate_on_puppy_banner !== true
+                    ) {
+                        continue;
+                    }
 
-          for (const breedKey of attrs.field_puppy_breed ?? []) {
-            const breed = breedMap[breedKey];
+                    const media = findIncluded(
+                        item.relationships
+                            ?.field_litter_announcement_poster?.data
+                    );
 
-            if (!breed) continue;
+                    const file = findIncluded(
+                        media?.relationships?.field_media_image?.data
+                    );
 
-            activeLitters.push({
-              id: `${item.id}-${breedKey}`,
-              breed: breed.name,
-              url: breed.url,
-              announcement:
-                attrs.field_litter_announcement_desc ?? "",
-              description:
-                attrs.field_litter_description ?? "",
-              imageUrl,
-            });
-          }
+                    const relativeImageUrl = file?.attributes?.uri?.url;
+
+                    const imageUrl = relativeImageUrl
+                        ? new URL(relativeImageUrl, DRUPAL_ORIGIN).href
+                        : null;
+
+                    for (const breedKey of attrs.field_puppy_breed ?? []) {
+                        const breed = breedMap[breedKey];
+
+                        if (!breed) continue;
+
+                        activeLitters.push({
+                            id: `${item.id}-${breedKey}`,
+                            breed: breed.name,
+                            url: breed.url,
+                            announcement:
+                                attrs.field_litter_announcement_desc ?? "",
+                            description:
+                                attrs.field_litter_description ?? "",
+                            imageUrl,
+                        });
+                    }
+                }
+
+                if (!controller.signal.aborted) {
+                    setLitters(activeLitters);
+                }
+            } catch (error) {
+                if (!controller.signal.aborted) {
+                    console.error(
+                        "Error loading puppy litters:",
+                        error
+                    );
+                }
+            }
         }
 
-        if (!controller.signal.aborted) {
-          setLitters(activeLitters);
-        }
-      } catch (error) {
-        if (!controller.signal.aborted) {
-          console.error(
-            "Error loading puppy litters:",
-            error
-          );
-        }
-      }
-    }
+        loadLitters();
 
-    loadLitters();
+        return () => controller.abort();
+    }, []);
 
-    return () => controller.abort();
-  }, []);
+    return (
+        <div
+            className="block bg-blue-dark text-center text-white"
+            style={{ backgroundImage: `url(${background})` }}
+        >
+            <div className="max-content sm:w-[40rem] py-4 sm:py-8">
+                <img src={icon} alt="" className="h-20 mx-auto" />
 
-  return (
-    <div
-      className="block bg-blue-dark text-center text-white"
-      style={{ backgroundImage: `url(${background})` }}
-    >
-      <div className="max-content sm:w-[40rem] py-4 sm:py-8">
-        <img src={icon} alt="" className="h-20 mx-auto" />
+                <div className="my-6">
+                    <h1 className="text-5xl mb-0">
+                        We have puppies !
+                    </h1>
 
-        <div className="my-6">
-          <h1 className="text-5xl mb-0">
-            We have puppies !
-          </h1>
+                    <p className="mt-0 subheading">
+                        Please reach out via{" "}
+                        <a href="https://www.facebook.com/blueshamrockfarm">
+                            facebook
+                        </a>{" "}
+                        or our{" "}
+                        <a href="#contact">
+                            contact form
+                        </a>{" "}
+                        for more information.
+                    </p>
+                </div>
 
-          <p className="mt-0 subheading">
-            Please reach out via{" "}
-            <a href="https://www.facebook.com/blueshamrockfarm">
-              facebook
-            </a>{" "}
-            or our{" "}
-            <a href="#contact">
-              contact form
-            </a>{" "}
-            for more information.
-          </p>
+                {filteredLitters.map((litter) => (
+                    <div key={litter.id}>
+                        {pagelink && (
+                            <Link
+                                to={litter.url}
+                                className="no-underline"
+                            >
+                                <p className="mb-8">
+                                    &#10084;{" "}
+                                    <span className="uppercase underline my-1">
+                                        {litter.breed} Puppies:
+                                    </span>{" "}
+                                    {litter.announcement}
+                                </p>
+                            </Link>
+                        )}
+
+                        {announcement && litter.imageUrl && (
+                            <>
+                                <span>{litter.announcement}</span>
+                                <img
+                                    src={litter.imageUrl}
+                                    className="mx-auto"
+                                    alt={`${litter.breed} litter announcement`}
+                                    loading="lazy"
+                                />
+                            </>
+                        )}
+
+                        {description && litter.description && (
+                            <p className="mb-8">
+                                {litter.description}
+                            </p>
+                        )}
+                    </div>
+                ))}
+            </div>
         </div>
-
-        {litters.map((litter) => (
-          <div key={litter.id}>
-            {pagelink && (
-              <Link
-                to={litter.url}
-                className="no-underline"
-              >
-                <p className="mb-8">
-                  &#10084;{" "}
-                  <span className="uppercase underline my-1">
-                    {litter.breed} Puppies:
-                  </span>{" "}
-                  {litter.announcement}
-                </p>
-              </Link>
-            )}
-
-            {announcement && litter.imageUrl && (
-              <img
-                src={litter.imageUrl}
-                className="mx-auto"
-                alt={`${litter.breed} litter announcement`}
-                loading="lazy"
-              />
-            )}
-
-            {description && litter.description && (
-              <p className="mb-8">
-                {litter.description}
-              </p>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+    );
 }
