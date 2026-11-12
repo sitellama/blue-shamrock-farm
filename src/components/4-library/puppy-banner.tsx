@@ -21,6 +21,7 @@ type ResourceIdentifier = {
 type DrupalResource = ResourceIdentifier & {
     attributes?: {
         status?: boolean;
+        field_activate_puppy_banner?: boolean;
         field_activate_on_puppy_banner?: boolean;
         field_puppy_breed?: string[] | null;
         field_litter_announcement_desc?: string | null;
@@ -71,6 +72,8 @@ export function PuppyBanner({
 }: PuppyBannerProps) {
     const [litters, setLitters] = useState<Litter[]>([]);
 
+    const [bannerEnabled, setBannerEnabled] = useState(false);
+
     const { pathname } = useLocation();
 
     const currentPath = pathname.replace(/\/+$/, "") || "/";
@@ -87,6 +90,37 @@ export function PuppyBanner({
 
     useEffect(() => {
         const controller = new AbortController();
+
+        async function loadBannerSettings() {
+            try {
+                const response = await fetch(
+                    `${API}/node/puppy_banner`,
+                    { signal: controller.signal }
+                );
+
+                if (!response.ok) {
+                    throw new Error(
+                        `Drupal banner settings returned HTTP ${response.status}`
+                    );
+                }
+
+                const json: DrupalResponse = await response.json();
+
+                const enabled = json.data.some(
+                    (item) =>
+                        item.attributes?.status === true &&
+                        item.attributes?.field_activate_puppy_banner === true
+                );
+
+                if (!controller.signal.aborted) {
+                    setBannerEnabled(enabled);
+                }
+            } catch (error) {
+                if (!controller.signal.aborted) {
+                    console.error("Error loading puppy banner settings:", error);
+                }
+            }
+        }
 
         async function loadLitters() {
             try {
@@ -173,15 +207,19 @@ export function PuppyBanner({
             }
         }
 
+        loadBannerSettings();
         loadLitters();
 
         return () => controller.abort();
     }, []);
 
     if (
-        (currentPath === "/tornjak" ||
-            currentPath === "/croatian-sheepdog") &&
-        filteredLitters.length === 0
+        !bannerEnabled ||
+        (
+            (currentPath === "/tornjak" ||
+                currentPath === "/croatian-sheepdog") &&
+            filteredLitters.length === 0
+        )
     ) {
         return null;
     }
