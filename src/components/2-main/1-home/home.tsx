@@ -18,7 +18,7 @@ export function Home() {
 
             <HeroImg hero={heroHorse} />
 
-            <PuppyBanner pagelink={true} announcement={false} />
+            <PuppyBanner pagelink={true} announcement={false} description={false} />
 
             <MapIntro />
 
