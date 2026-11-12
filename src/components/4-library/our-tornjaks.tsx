@@ -11,7 +11,7 @@ export function OurTornjaks() {
                 <div>
                     <h2>Our Tornjaks</h2>
                     <p >The Tornjak is a livestock guardian dog originating from Bosnia and Herzegovina and Croatia. The task of protecting all of Blue Shamrock Farm's precious animals falls to our Tornjaks. Whether it is on the farm or at the show ring, we are always proud to introduce our beautiful working dogs!</p>
-                    <hr className="h-1 border-0 bg-blue-dark  max-content mt-16 mx-auto"></hr>
+                    <hr className="h-1 border-0 bg-blue-dark w-full mt-16 mx-auto"></hr>
                 </div>
             </section>
 
