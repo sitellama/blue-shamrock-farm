@@ -178,6 +178,14 @@ export function PuppyBanner({
         return () => controller.abort();
     }, []);
 
+    if (
+        (currentPath === "/tornjak" ||
+            currentPath === "/croatian-sheepdog") &&
+        filteredLitters.length === 0
+    ) {
+        return null;
+    }
+
     return (
         <div
             className="block bg-blue-dark text-center text-white"
