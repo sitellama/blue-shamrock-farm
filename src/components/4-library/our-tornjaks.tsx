@@ -3,10 +3,70 @@ import plutoImg from "../../assets/pluto-with-goat.webp";
 import nikaImg from "../../assets/nika-with-goats.webp";
 import ariImg from "../../assets/ari-with-llamas.webp";
 import { ExpandableContent } from "./expandable-content";
+import { useEffect, useState } from "react";
 
 export function OurTornjaks() {
+    type TornjakProfile = {
+        id: string;
+        attributes: {
+            title: string;
+            status: boolean;
+            field_tornjak_profile_summary: string;
+            field_tornjak_titles_earned?: string;
+            field_tornjak_pedigree_link: {
+                uri: string;
+                title: string;
+                options: unknown[];
+            } | null;
+            field_tornjak_ofa_link: {
+                uri: string;
+                title: string;
+                options: unknown[];
+            } | null;
+            field_tornjak_dna_testing: {
+                uri: string;
+                title: string;
+                options: unknown[];
+            } | null;
+            field_tornjak_animals_list: string;
+            field_field_tornjak_fun_facts?: string[];
+        };
+    };
+
+    const [profiles, setProfiles] = useState<TornjakProfile[]>([]);
+
+    useEffect(() => {
+        async function loadProfiles() {
+            try {
+                const response = await fetch(
+                    "/drupal/jsonapi/node/tornjak_profiles"
+                );
+
+                if (!response.ok) {
+                    throw new Error(`Drupal returned ${response.status}`);
+                }
+
+                const json = await response.json();
+
+                setProfiles(json.data);
+
+                console.log("Tornjak profiles:", json.data);
+            } catch (error) {
+                console.error("Error loading Tornjak profiles:", error);
+            }
+        }
+
+        loadProfiles();
+    }, []);
+
     return (
         <div>
+            {profiles
+                .filter((profile) => profile.attributes.status)
+                .map((profile) => (
+                    <p key={profile.id}>{profile.attributes.title}</p>
+                ))}
+
             <section className="max-content text-center">
                 <div>
                     <h2>Our Tornjaks</h2>
@@ -19,45 +79,66 @@ export function OurTornjaks() {
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:items-center gap-y-8 md:grid-cols-2 md:gap-x-16">
 
-                    <div className="">
+                        <div className="">
                             <img className="w-full max-w-lg mx-auto" src={plutoImg} alt="" />
                         </div>
 
-                    <div>
-                        <h2>Pluto</h2>
-                        <p >Pluto's offical name is Pluto Dalmatinski Vrisak. He is a vigilant but gentle guardian for his animals. He is constantly checking his flock to make sure everyone is healthy. He helps ensure that all of the babies get appropriate food by blocking some of the more assertive animals. Pluto also alerts me to predators but is able to handle situations by himself if needed.</p>
+                        <div>
+                            <h2>{profiles[0]?.attributes.title}</h2>
+                            <p>{profiles[0]?.attributes.field_tornjak_profile_summary}</p>
+                        </div>
                     </div>
-                </div>
 
-                <ExpandableContent title="Pluto's Details">
-                    <p className="mt-0"><span className="subheading mb-0">Full Registered Name: </span>Pluto Dalmatinski Vrisak</p>
+                    <ExpandableContent title={`${profiles[0]?.attributes.title}'s Details`}>
+                        <p className="mt-0"><span className="subheading mb-0">Full Registered Name: </span>Pluto Dalmatinski Vrisak</p>
 
-                    <p className="subheading mb-0">Titles Earned</p>
-                    <p className="mt-0">
-                        UKC Emerald Grand Champion, UKC Dash, UKC RACEA, AKC Certificate of Merit
-                    </p>
+                        <p className="subheading mb-0">Titles Earned</p>
+                        {profiles[0]?.attributes.field_tornjak_titles_earned && (
+                            <p className="mt-0">
+                                {profiles[0]?.attributes.field_tornjak_titles_earned}
+                            </p>
+                        )}
 
-                    <p><a href="https://tornjak.pedigre.net/details.php?id=6513" target="_blank">Pedigree</a></p>
-                    {/* if there is no value, default to a non link "OFA testing - Not old enough yet" */}
-                    <p><a href="https://ofa.org/advanced-search/?appnum=2584059" target="_blank">OFA testing</a></p>
+                        <p>
+                            <a href={profiles[0]?.attributes.field_tornjak_pedigree_link?.uri} target="_blank" rel="noopener noreferrer">Pedigree</a>
+                        </p>
 
-                    <p className="subheading mb-0">Animals Worked With</p>
-                    <p className="mt-0">
-                        Cows, horses, ponies, miniature horses, donkeys, llamas, alpacas, sheep, goats, miniature pigs, rabbits, guinea pigs, peafowl, geese, ducks, chickens, quail, barn cats
-                    </p>
+                        {/* if there is no value, default to a non link "OFA testing - Not old enough yet" */}
+                        {profiles[0]?.attributes.field_tornjak_ofa_link?.uri ? (
+                            <p>
+                                <a
+                                    href={profiles[0].attributes.field_tornjak_ofa_link.uri}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    OFA testing
+                                </a>
+                            </p>
+                        ) : (
+                            <p>OFA testing - Not old enough yet</p>
+                        )}
 
-                    <p className="subheading mb-0">Fun Facts</p>
+                        <p>
+                            <a href={profiles[0]?.attributes.field_tornjak_dna_testing?.uri} target="_blank" rel="noopener noreferrer">
+                                {profiles[0]?.attributes.field_tornjak_dna_testing?.title}
+                            </a>
+                        </p>
+
+                        <p className="subheading mb-0">Animals Worked With</p>
+
+                        <p className="mt-0">
+                            {profiles[0]?.attributes.field_tornjak_animals_list}
+                        </p>
+
+                        <p className="subheading mb-0">Fun Facts</p>
                         <ul className="list-disc list-inside ml-4">
-                            <li>Pluto alerts me to predators. He handles the situation by himself if needed, but works with me if I am available.</li>
-                            <li>Pluto identifies illnesses in animals and checks to make sure everyone is healthy.</li>
-                            <li>Pluto guards the animals' food so other animals do not eat it.</li>
-                            <li>He watches the rabbit food so I can feed the rabbits without the other animals eating the food</li>
-                            <li>He lets baby animals eat their food while he pushes back the other animals, so that the babies can eat in peace. </li>
-                            <li>Pluto helps me fill hay nets - He puts his front feet on the hay to help stuff it down into the net</li>
-                            <li>Pluto has helped herd animals into the barn</li>
-                            <li>Pluto guards over animals that need space, and gently tells the other animals to stay back.</li>
+                            {profiles[0]?.attributes.field_field_tornjak_fun_facts?.map(
+                                (fact, index) => (
+                                    <li key={index}>{fact}</li>
+                                )
+                            )}
                         </ul>
-                </ExpandableContent>
+                    </ExpandableContent>
 
                 </div>
             </section>
