@@ -220,11 +220,6 @@ export function OurTornjaks() {
                     );
                 })}
 
-            {/* <div className="btn-outer bg-blue-dark ">
-                <div className="btn-inner">
-                    <a href="https://sites.google.com/view/blueshamrockfarm/tornjak" target="_blank" className="btn-a">More Tornjak Details</a>
-                </div>
-            </div> */}
             <hr className="h-1 border-0 bg-blue-dark  max-content mt-16 mx-auto"></hr>
         </div>
     );

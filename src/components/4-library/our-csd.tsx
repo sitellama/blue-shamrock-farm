@@ -3,10 +3,11 @@ import aryaImg from "../../assets/arya-profile-pic.webp";
 import { ExpandableContent } from "./expandable-content";
 import { useEffect, useState } from "react";
 
-const profileImages: Record<string, string> = {
-    Cigo: cigoImg,
-    Arya: aryaImg,
-};
+type DrupalLink = {
+    uri: string;
+    title: string;
+    options: unknown[];
+} | null;
 
 export function OurCroatianSheepdogs() {
     type CSDProfile = {
@@ -17,25 +18,23 @@ export function OurCroatianSheepdogs() {
             field_csd_registered_name?: string | null;
             field_csd_profile_summary: string;
             field_csd_titles_earned?: string;
-            field_csd_pedigree_link: {
-                uri: string;
-                title: string;
-                options: unknown[];
-            } | null;
-            field_csd_ofa_link: {
-                uri: string;
-                title: string;
-                options: unknown[];
-            } | null;
-            field_csd_dna_testing: {
-                uri: string;
-                title: string;
-                options: unknown[];
-            } | null;
+            field_csd_pedigree_link: DrupalLink;
+            field_csd_ofa_link: DrupalLink;
+            field_csd_dna_testing: DrupalLink;
             field_csd_animals_list: string;
             field_field_csd_fun_facts?: string[];
         };
+        relationships: {
+            field_csd_profile_image?: {
+                data: {
+                    id: string;
+                    type: string;
+                } | null;
+            };
+        };
+        imageUrl?: string | null;
     };
+
 
     const [profiles, setProfiles] = useState<CSDProfile[]>([]);
 
@@ -43,7 +42,7 @@ export function OurCroatianSheepdogs() {
         async function loadProfiles() {
             try {
                 const response = await fetch(
-                    "/drupal/jsonapi/node/csd_profiles"
+                    "/drupal/jsonapi/node/csd_profiles?include=field_csd_profile_image.field_media_image"
                 );
 
                 if (!response.ok) {
@@ -52,9 +51,38 @@ export function OurCroatianSheepdogs() {
 
                 const json = await response.json();
 
-                setProfiles(json.data);
+                const included = json.included ?? [];
 
-                console.log("CSD profiles:", json.data);
+                const profilesWithImages = json.data.map((profile: CSDProfile) => {
+                    const mediaId =
+                        profile.relationships.field_csd_profile_image?.data?.id;
+
+                    const media = included.find(
+                        (item: any) =>
+                            item.type === "media--image" &&
+                            item.id === mediaId
+                    );
+
+                    const fileId = media?.relationships?.field_media_image?.data?.id;
+
+                    const file = included.find(
+                        (item: any) =>
+                            item.type === "file--file" &&
+                            item.id === fileId
+                    );
+
+                    const imagePath = file?.attributes?.uri?.url;
+
+                    return {
+                        ...profile,
+                        imageUrl: imagePath
+                            ? new URL(imagePath, "https://blueshamrock.farm").href
+                            : null,
+                    };
+                });
+
+                setProfiles(profilesWithImages);
+
             } catch (error) {
                 console.error("Error loading CSD profiles:", error);
             }
@@ -62,6 +90,7 @@ export function OurCroatianSheepdogs() {
 
         loadProfiles();
     }, []);
+
     
     return (
         <div>
@@ -77,16 +106,16 @@ export function OurCroatianSheepdogs() {
                 .filter((profile) => profile.attributes.status)
                 .map((profile, index) => {
                     const dog = profile.attributes;
-                    const image = profileImages[dog.title];
+                    const image = profile.imageUrl;
                     const reversed = index % 2 === 1;
 
                     return (
                         <section
                             key={profile.id}
-                            className="py-12 sm:py-16 lg:py-20"
+                            className="py-12 sm:py-16"
                         >
                             <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                                <div className="grid grid-cols-1 md:items-center gap-y-8 md:grid-cols-2 md:gap-x-16">
+                                <div className="grid grid-cols-1 md:items-center md:gap-y-8 md:grid-cols-2 md:gap-x-16">
 
                                     <div className={reversed ? "md:order-2" : ""}>
                                         {image && (
@@ -113,7 +142,7 @@ export function OurCroatianSheepdogs() {
                                             {dog.field_csd_registered_name}
                                         </p>
                                     )}
-                                    
+
                                     {dog.field_csd_titles_earned && (
                                         <>
                                             <p className="subheading mb-0">
