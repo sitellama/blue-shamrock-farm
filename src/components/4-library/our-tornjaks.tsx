@@ -1,4 +1,3 @@
-import meetTornjaks from "../../assets/pluto-and-ari.webp";
 import plutoImg from "../../assets/pluto-with-goat.webp";
 import nikaImg from "../../assets/nika-with-goats.webp";
 import ariImg from "../../assets/ari-with-llamas.webp";
@@ -86,10 +85,10 @@ export function OurTornjaks() {
                     return (
                         <section
                             key={profile.id}
-                            className="py-12 sm:py-16 lg:py-20"
+                            className="py-12 sm:py-16"
                         >
                             <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                                <div className="grid grid-cols-1 md:items-center gap-y-8 md:grid-cols-2 md:gap-x-16">
+                                <div className="grid grid-cols-1 md:items-center md:gap-y-8 md:grid-cols-2 md:gap-x-16">
 
                                     <div className={reversed ? "md:order-2" : ""}>
                                         {image && (
