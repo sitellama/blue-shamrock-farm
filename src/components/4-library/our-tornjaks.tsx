@@ -1,15 +1,11 @@
-import meetTornjaks from "../../assets/pluto-and-ari.webp";
-import plutoImg from "../../assets/pluto-with-goat.webp";
-import nikaImg from "../../assets/nika-with-goats.webp";
-import ariImg from "../../assets/ari-with-llamas.webp";
 import { ExpandableContent } from "./expandable-content";
 import { useEffect, useState } from "react";
 
-const profileImages: Record<string, string> = {
-    Pluto: plutoImg,
-    Nika: nikaImg,
-    Ariela: ariImg,
-};
+type DrupalLink = {
+    uri: string;
+    title: string;
+    options: unknown[];
+} | null;
 
 export function OurTornjaks() {
     type TornjakProfile = {
@@ -20,24 +16,21 @@ export function OurTornjaks() {
             field_tornjak_registered_name?: string | null;
             field_tornjak_profile_summary: string;
             field_tornjak_titles_earned?: string;
-            field_tornjak_pedigree_link: {
-                uri: string;
-                title: string;
-                options: unknown[];
-            } | null;
-            field_tornjak_ofa_link: {
-                uri: string;
-                title: string;
-                options: unknown[];
-            } | null;
-            field_tornjak_dna_testing: {
-                uri: string;
-                title: string;
-                options: unknown[];
-            } | null;
+            field_tornjak_pedigree_link: DrupalLink;
+            field_tornjak_ofa_link: DrupalLink;
+            field_tornjak_dna_testing: DrupalLink;
             field_tornjak_animals_list: string;
             field_field_tornjak_fun_facts?: string[];
         };
+        relationships: {
+            field_tornjak_profile_image?: {
+                data: {
+                    id: string;
+                    type: string;
+                } | null;
+            };
+        };
+        imageUrl?: string | null;
     };
 
     const [profiles, setProfiles] = useState<TornjakProfile[]>([]);
@@ -46,7 +39,7 @@ export function OurTornjaks() {
         async function loadProfiles() {
             try {
                 const response = await fetch(
-                    "/drupal/jsonapi/node/tornjak_profiles"
+                    "/drupal/jsonapi/node/tornjak_profiles?include=field_tornjak_profile_image.field_media_image"
                 );
 
                 if (!response.ok) {
@@ -55,9 +48,38 @@ export function OurTornjaks() {
 
                 const json = await response.json();
 
-                setProfiles(json.data);
+                const included = json.included ?? [];
 
-                console.log("Tornjak profiles:", json.data);
+                const profilesWithImages = json.data.map((profile: TornjakProfile) => {
+                    const mediaId =
+                        profile.relationships.field_tornjak_profile_image?.data?.id;
+
+                    const media = included.find(
+                        (item: any) =>
+                            item.type === "media--image" &&
+                            item.id === mediaId
+                    );
+
+                    const fileId = media?.relationships?.field_media_image?.data?.id;
+
+                    const file = included.find(
+                        (item: any) =>
+                            item.type === "file--file" &&
+                            item.id === fileId
+                    );
+
+                    const imagePath = file?.attributes?.uri?.url;
+
+                    return {
+                        ...profile,
+                        imageUrl: imagePath
+                            ? new URL(imagePath, "https://blueshamrock.farm").href
+                            : null,
+                    };
+                });
+
+                setProfiles(profilesWithImages);
+
             } catch (error) {
                 console.error("Error loading Tornjak profiles:", error);
             }
@@ -80,7 +102,7 @@ export function OurTornjaks() {
                 .filter((profile) => profile.attributes.status)
                 .map((profile, index) => {
                     const dog = profile.attributes;
-                    const image = profileImages[dog.title];
+                    const image = profile.imageUrl;
                     const reversed = index % 2 === 1;
 
                     return (
@@ -116,7 +138,7 @@ export function OurTornjaks() {
                                             {dog.field_tornjak_registered_name}
                                         </p>
                                     )}
-                                    
+
                                     {dog.field_tornjak_titles_earned && (
                                         <>
                                             <p className="subheading mb-0">
